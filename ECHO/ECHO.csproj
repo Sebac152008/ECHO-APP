@@ -129,6 +129,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="logo.ico" />
+    <None Include="Resources\ECHOLOGO2.png" />
     <None Include="Resources\clock.png" />
     <None Include="Resources\calendar.png" />
     <None Include="Resources\IconoMas.png" />

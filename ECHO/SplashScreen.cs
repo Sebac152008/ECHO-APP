@@ -45,8 +45,8 @@ namespace ECHO
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            panel2.Width += 12;
-            if (panel2.Width >= 950)
+            panel2.Width += 15;
+            if (panel2.Width >= 1150)
             {
                 timer1.Stop();
                 panel2.Visible = false;
