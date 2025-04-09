@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:WPF_ECHO.View"
              xmlns:viewModel="clr-namespace:WPF_ECHO.ViewModels"
+             d:DesignHeight="700" d:DesignWidth="1180"
              mc:Ignorable="d">
 
     <UserControl.DataContext>

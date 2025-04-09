@@ -5,35 +5,155 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WPF_ECHO.View"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800"
+             d:DesignHeight="700" d:DesignWidth="1180"
              Background="#E9E6E6">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="120"/>
-        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="120"/>
+            <ColumnDefinition Width="320"/>
         </Grid.ColumnDefinitions>
 
-        <Button Click="Button_Click" Grid.Row="2" Grid.Column="2" Margin="0 0 50 50" Width="60"  Height="60">
+        <Button Cursor="Hand" Click="Button_Click" Margin="0 0 -170 50" Grid.Column="1" VerticalAlignment="Bottom" Width="55"  Height="55">
 
             <StackPanel>
-                <Image Source="/Imagenes/lapiz.png" Width="40"/>
+                <Image Source="/Imagenes/lapiz.png" Width="30"/>
             </StackPanel>
-            
+
             <Button.Template>
                 <ControlTemplate TargetType="Button">
-                    <Border Background="#FFAB00" CornerRadius="40">
+                    <Border Background="#FFAB00" CornerRadius="40" x:Name="ButtonHover">
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="ButtonHover" Property="Background" Value="#FFB733"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        
+
+        <!-- Cuadro Programar Recordatorio -->
+
+        <!-- Rectángulo contenedor -->
+        <Border Grid.Column="1" Width="310" Height="400" Background="#ffffff" Margin="0 0 0 130" CornerRadius="10" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+            <StackPanel Margin="20">
+                <!-- Título del formulario -->
+                <TextBlock Text="Programar Recordatorio" FontSize="23.2" FontWeight="Bold" Foreground="#2C3E50" HorizontalAlignment="Center" Margin="0 0 0 20"/>
+
+                <!-- Campo para el nombre del recordatorio -->
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                    <TextBlock Text="Nota:" FontSize="19" HorizontalAlignment="Left" Margin="10 0 0 5" Width="70" VerticalAlignment="Center"/>
+                    <Border Background="#323748" Height="50" Width="255" Padding="5" BorderThickness="4" CornerRadius="10">
+                        <TextBox MaxLength="100" FontSize="15" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Foreground="white" HorizontalAlignment="Left" VerticalAlignment="Center"  Background="#323748" BorderBrush="#323748" BorderThickness="0" Height="25" Width="230">
+                            <TextBox.Style>
+                                <Style TargetType="TextBox">
+                                    <Setter Property="Foreground" Value="Gray"/>
+                                    <Setter Property="Text" Value="Escribe algo..."/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsKeyboardFocused" Value="True">
+                                            <Setter Property="Foreground" Value="Black"/>
+                                            <Setter Property="Text" Value=""/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBox.Style>
+                        </TextBox>
+                    </Border>
+                </StackPanel>
+
+                <!-- Campo para seleccionar la fecha -->
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0 10">
+                    <TextBlock FontSize="19" Text="Fecha:" Width="70" HorizontalAlignment="Left" Margin="10 0 0 10"/>
+                    <Border BorderBrush="#323748" BorderThickness="2" CornerRadius="10" Background="White" Height="40">
+                        <DatePicker Focusable="False" BorderThickness="0" Width="250" FontSize="15" Foreground="Black" Padding="9 9 20 0">
+                            <DatePicker.Resources>
+                                <Style TargetType="DatePickerTextBox">
+                                    <!-- Cambiar el color del borde -->
+                                    <Setter Property="Background" Value="White"/>
+                                    <Setter Property="Margin" Value="0 -2 0 0"/>
+                                    <Setter Property="BorderBrush" Value="White"/>
+                                    <Setter Property="BorderThickness" Value="0"/>
+
+                                    <!-- Quitar borde azul interior del DatePicker -->
+
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type DatePickerTextBox}">
+                                                <Grid>
+                                                    <Grid.Resources>
+                                                        <SolidColorBrush x:Key="WatermarkBrush" Color="#FFAAAAAA"/>
+                                                    </Grid.Resources>
+                                                    <VisualStateManager.VisualStateGroups>
+                                                        <VisualStateGroup x:Name="CommonStates">
+                                                            <VisualStateGroup.Transitions>
+                                                                <VisualTransition GeneratedDuration="0"/>
+                                                                <VisualTransition GeneratedDuration="0:0:0.1" To="MouseOver"/>
+                                                            </VisualStateGroup.Transitions>
+                                                            <VisualState x:Name="Normal"/>
+                                                            <VisualState x:Name="MouseOver" />
+                                                        </VisualStateGroup>
+                                                        <VisualStateGroup x:Name="WatermarkStates">
+                                                            <VisualStateGroup.Transitions>
+                                                                <VisualTransition GeneratedDuration="0"/>
+                                                            </VisualStateGroup.Transitions>
+                                                            <VisualState x:Name="Unwatermarked"/>
+                                                            <VisualState x:Name="Watermarked">
+                                                                <Storyboard>
+                                                                    <DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ContentElement"/>
+                                                                    <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="PART_Watermark"/>
+                                                                </Storyboard>
+                                                            </VisualState>
+                                                        </VisualStateGroup>
+                                                        <VisualStateGroup x:Name="FocusStates">
+                                                            <VisualStateGroup.Transitions>
+                                                                <VisualTransition GeneratedDuration="0"/>
+                                                            </VisualStateGroup.Transitions>
+                                                            <VisualState x:Name="Unfocused"/>
+                                                            <VisualState x:Name="Focused" />
+                                                        </VisualStateGroup>
+                                                    </VisualStateManager.VisualStateGroups>
+                                                    <Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="1" Opacity="1" Padding="{TemplateBinding Padding}">
+                                                        <Grid x:Name="WatermarkContent" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                                                            <Border x:Name="ContentElement" BorderBrush="#FFFFFFFF" BorderThickness="1"/>
+                                                            <Border x:Name="watermark_decorator" BorderBrush="#FFFFFFFF" BorderThickness="1">
+                                                                <ContentControl x:Name="PART_Watermark" Focusable="False" IsHitTestVisible="False" Opacity="0" Padding="2"/>
+                                                            </Border>
+                                                            <ScrollViewer x:Name="PART_ContentHost" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="0" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                                        </Grid>
+                                                    </Border>
+                                                </Grid>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+
+                                    <!-- Fin del codio quitador de borde interior DatePicker -->
+
+                                </Style>
+                            </DatePicker.Resources>
+                        </DatePicker>
+                    </Border>
+                </StackPanel>
+
+                <!-- Campo para seleccionar la hora -->
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0 10">
+                    <TextBlock FontSize="19" HorizontalAlignment="Left" Margin="10 0 0 10" Text="Hora:" Width="70"/>
+                    <ComboBox Width="250">
+                        <!-- Opciones de hora -->
+                        <ComboBoxItem Content="12:00 AM"/>
+                        <ComboBoxItem Content="1:00 AM"/>
+                        <ComboBoxItem Content="2:00 AM"/>
+                        <!-- Agrega más opciones según sea necesario -->
+                    </ComboBox>
+                </StackPanel>
+
+                <!-- Botón para guardar el recordatorio -->
+                <Button Content="Guardar Recordatorio" Width="200" Height="40" Background="#2C3E50" Foreground="White" HorizontalAlignment="Center" Margin="20"/>
+            </StackPanel>
+        </Border>
+
     </Grid>
 
 </UserControl>
