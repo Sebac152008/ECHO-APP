@@ -1,0 +1,129 @@
+﻿<UserControl x:Class="WPF_ECHO.View.MenuNav"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:WPF_ECHO.View"
+             xmlns:viewModel="clr-namespace:WPF_ECHO.ViewModels"
+             mc:Ignorable="d">
+
+    <UserControl.DataContext>
+        <viewModel:MainViewModel/>
+    </UserControl.DataContext>
+
+    <UserControl.Resources>
+        <DataTemplate DataType="{x:Type viewModel:InicioView}">
+            <local:InicioView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:AcercaDeView}">
+            <local:AcercaDeView/>
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <!-- Menu de navegacion -->
+            <ColumnDefinition Width="250"/>
+            <!-- Seccion del contenido -->
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Columna del menu de navegacion -->
+        <Border Grid.Column="0"
+                Background="#2C3E50">
+
+            <DockPanel LastChildFill="True">
+                <!-- Logo -->
+                <Border Width="249" Height="130" Background="#1B263B" DockPanel.Dock="Top">
+                    <Image Margin="0 20 0 20" Width="250" Source="/Imagenes/ECHOLOGO2.png" Stretch="Uniform"/>
+                </Border>
+
+                <!-- Contenedor de botones -->
+                <Grid DockPanel.Dock="Top" VerticalAlignment="Stretch">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <!-- Para el botón de inicio -->
+                        <RowDefinition Height="*"/>
+                        <!-- Espacio en medio -->
+                        <RowDefinition Height="Auto"/>
+                        <!-- Para el botón de Acerca de -->
+                    </Grid.RowDefinitions>
+
+                    <!-- Botón de Inicio -->
+                    <Button Grid.Row="0" Cursor="Hand" Margin="0 30 0 0" Width="230" Height="50" FontSize="18" FontFamily="Sans Serif Collection" Foreground="white" HorizontalAlignment="Center" Command="{Binding ShowInicioViewCommand}">
+
+                        <StackPanel Width="180" HorizontalAlignment="Left" Orientation="Horizontal">
+                            <Image VerticalAlignment="Center" Source="/Imagenes/home.png" Width="25" Margin="0 0 0 0"/>
+                            <TextBlock VerticalAlignment="Center" Text="Inicio" Margin="20 0 0 0" Foreground="White" FontSize="16"/>
+                        </StackPanel>
+
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border CornerRadius="10" Background="#1B263B" x:Name="ButtonBorder">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Cursor="Hand"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="ButtonBorder" Property="Background" Value="#274C77"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <!-- Boton mis recordatorios -->
+
+                    <Button Grid.Row="1" Margin="0 35 0 0" Cursor="Hand" Width="230" Height="50" FontSize="18" FontFamily="Sans Serif Collection" Foreground="white" VerticalAlignment="Top" HorizontalAlignment="Center">
+
+                        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                            <Image VerticalAlignment="Center" Source="/Imagenes/love.png" Width="25" Margin="-5 0 0 0"/>
+                            <TextBlock Text="Mis recordatorios" VerticalAlignment="Center" Margin="20 0 0 0" Foreground="White" FontSize="16"/>
+                        </StackPanel>
+
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border CornerRadius="10" Background="#1B263B" x:Name="ButtonBorder">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Cursor="Hand"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="ButtonBorder" Property="Background" Value="#274C77"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <!-- Botón de Acerca de -->
+                    <Button Grid.Row="2" Cursor="Hand" Width="230" Height="50" FontSize="18" FontFamily="Sans Serif Collection" Foreground="white" HorizontalAlignment="Center" Margin="0 20 0 20" Command="{Binding ShowAcercaDeCommand}">
+
+                        <StackPanel Width="170" HorizontalAlignment="Left" Orientation="Horizontal">
+                            <Image VerticalAlignment="Center" Source="/Imagenes/AcercaDe.png" Width="25" Margin="0 0 0 0"/>
+                            <TextBlock Text="Acerca de" VerticalAlignment="Center" Margin="20 0 0 0" Foreground="White" FontSize="16"/>
+                        </StackPanel>
+
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border CornerRadius="10" Background="#2A5069" x:Name="ButtonBorder">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Cursor="Hand"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="ButtonBorder" Property="Background" Value="#3A6F91"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </Grid>
+            </DockPanel>
+        </Border>
+
+
+        <!-- Columna de la seccion del contenido -->
+
+        <ContentControl Content="{Binding CurrentChildView}" Grid.Column="1"/>
+
+    </Grid>
+
+</UserControl>

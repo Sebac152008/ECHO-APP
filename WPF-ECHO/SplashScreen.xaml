@@ -1,0 +1,19 @@
+﻿<Window x:Class="WPF_ECHO.SplashScreen"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:WPF_ECHO.View"
+        Title="ECHO" Height="700" Width="1180" MinHeight="700" MinWidth="1180"
+        WindowStartupLocation="CenterScreen">
+
+    <Grid x:Name="MainGrid">
+        <!-- Splash Screen -->
+        <Grid x:Name="SplashGrid" Background="#2C3E50">
+            <TextBlock Text="Cargando..." FontSize="30" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Grid>
+
+        <!-- Contenido principal -->
+        <ContentControl x:Name="MainContent" Visibility="Collapsed"/>
+    </Grid>
+
+
+</Window>
