@@ -5,9 +5,52 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WPF_ECHO.View"
              mc:Ignorable="d" 
-             d:DesignHeight="700" d:DesignWidth="1180"
+             d:DesignHeight="1700" d:DesignWidth="1180"
              Background="White">
+
     <Grid>
-            
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <!-- Contenido desplazable -->
+            <RowDefinition Height="50"/>
+            <!-- Pie de página fijo -->
+        </Grid.RowDefinitions>
+
+        <!-- ScrollViewer solo en el contenido principal -->
+        <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+            <StackPanel>
+                <!-- Logo -->
+                <StackPanel Orientation="Horizontal" Margin="40 40 0 0">
+                    <Image Source="/Imagenes/logo.png" Stretch="Fill" Width="100"/>
+                    <TextBlock Foreground="#323748" Text="ECHO" FontSize="50" Margin="30 0 0 0" FontFamily="Segoe UI" VerticalAlignment="Center" FontWeight="Black"/>
+                </StackPanel>
+
+                <!-- Contenido General -->
+                <StackPanel>
+                    <TextBlock Padding="20" Text="Aquí puedes poner tu contenido largo que necesite scroll..." FontSize="18" FontFamily="Segoe UI"/>
+                    <TextBlock Padding="20" Text="Aquí puedes poner tu contenido largo que necesite scroll..." FontSize="18" FontFamily="Segoe UI"/>
+                    <TextBlock Padding="20" Text="Aquí puedes poner tu contenido largo que necesite scroll..." FontSize="18" FontFamily="Segoe UI"/>
+                    <TextBlock Padding="20" Text="Aquí puedes poner tu contenido largo que necesite scroll..." FontSize="18" FontFamily="Segoe UI"/>
+                    <TextBlock Padding="20" Text="Aquí puedes poner tu contenido largo que necesite scroll..." FontSize="18" FontFamily="Segoe UI"/>
+                    <TextBlock Padding="20" Text="Aquí puedes poner tu contenido largo que necesite scroll..." FontSize="18" FontFamily="Segoe UI"/>
+                    <TextBlock Padding="20" Text="Aquí puedes poner tu contenido largo que necesite scroll..." FontSize="18" FontFamily="Segoe UI"/>
+
+                    <TextBlock Padding="20" Text="Aquí puedes poner tu contenido largo que necesite scroll..." FontSize="18" FontFamily="Segoe UI"/>
+                    <TextBlock Padding="20" Text="Aquí puedes poner tu contenido largo que necesite scroll..." FontSize="18" FontFamily="Segoe UI"/>
+                    <TextBlock Padding="20" Text="Aquí puedes poner tu contenido largo que necesite scroll..." FontSize="18" FontFamily="Segoe UI"/>
+                    <TextBlock Padding="20" Text="Aquí puedes poner tu contenido largo que necesite scroll..." FontSize="18" FontFamily="Segoe UI"/>
+                    <TextBlock Padding="20" Text="Aquí puedes poner tu contenido largo que necesite scroll..." FontSize="18" FontFamily="Segoe UI"/>
+                    <!-- Puedes repetir este bloque para probar el scroll -->
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- Pie de página fijo -->
+        <Border Grid.Row="1" BorderThickness="0" Background="#E9E6E6">
+            <StackPanel Margin="40 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal">
+                <Image Source="/Imagenes/echoLogo.png" Stretch="Fill" Width="100" Height="30"/>
+                <TextBlock FontSize="15" Margin="20 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="Black" Text="2025 © ECHO - Todos los derechos reservados."/>
+            </StackPanel>
+        </Border>
     </Grid>
 </UserControl>

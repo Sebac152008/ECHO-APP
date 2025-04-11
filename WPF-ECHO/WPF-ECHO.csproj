@@ -19,7 +19,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>true</Optimize>
+    <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -146,6 +146,18 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Imagenes\lapiz.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\Ondas.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\calendarioDark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\echoLogo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

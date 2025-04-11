@@ -30,7 +30,7 @@
         </Grid.ColumnDefinitions>
 
         <!-- Columna del menu de navegacion -->
-        <Border Grid.Column="0"
+        <Border BorderThickness="0" Grid.Column="0"
                 Background="#2C3E50">
 
             <DockPanel LastChildFill="True">
@@ -93,6 +93,7 @@
                                 </ControlTemplate.Triggers>
                             </ControlTemplate>
                         </Button.Template>
+
                     </Button>
 
                     <!-- Botón de Acerca de -->
@@ -123,7 +124,7 @@
 
         <!-- Columna de la seccion del contenido -->
 
-        <ContentControl Content="{Binding CurrentChildView}" Grid.Column="1"/>
+        <ContentControl x:Name="mainContent" Content="{Binding CurrentChildView}" Grid.Column="1"/>
 
     </Grid>
 

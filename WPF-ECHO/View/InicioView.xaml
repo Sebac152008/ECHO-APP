@@ -7,11 +7,37 @@
              mc:Ignorable="d" 
              d:DesignHeight="700" d:DesignWidth="1180"
              Background="#E9E6E6">
+
+    <UserControl.Resources>
+        <!-- Animación de entrada desde la derecha -->
+        <Storyboard x:Key="SlideInFromRightAnimation">
+            <DoubleAnimation
+            Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+            From="400" To="0" Duration="0:0:0.6" />
+            <DoubleAnimation
+            Storyboard.TargetProperty="Opacity"
+            From="0" To="1" Duration="0:0:0.6" />
+        </Storyboard>
+
+        <!-- Animación de salida hacia la derecha -->
+        <Storyboard x:Key="SlideOutToRightAnimation">
+            <DoubleAnimation
+            Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+            From="0" To="400" Duration="0:0:0.6" />
+            <DoubleAnimation
+            Storyboard.TargetProperty="Opacity"
+            From="1" To="0" Duration="0:0:0.6" />
+        </Storyboard>
+    </UserControl.Resources>
+
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="320"/>
+            <ColumnDefinition Width="400"/>
         </Grid.ColumnDefinitions>
+        
+        <!-- Boton para agregar recordatorio. El boton amarillo -->
 
         <Button Cursor="Hand" Click="Button_Click" Margin="0 0 -170 50" Grid.Column="1" VerticalAlignment="Bottom" Width="55"  Height="55">
 
@@ -21,13 +47,13 @@
 
             <Button.Template>
                 <ControlTemplate TargetType="Button">
-                    <Border Background="#FFAB00" CornerRadius="40" x:Name="ButtonHover">
+                    <Border Background="#2C3E50" CornerRadius="40" x:Name="ButtonHover">
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
 
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="ButtonHover" Property="Background" Value="#FFB733"/>
+                            <Setter TargetName="ButtonHover" Property="Background" Value="#34495E"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
 
@@ -38,7 +64,12 @@
         <!-- Cuadro Programar Recordatorio -->
 
         <!-- Rectángulo contenedor -->
-        <Border Grid.Column="1" Width="310" Height="400" Background="#ffffff" Margin="0 0 0 130" CornerRadius="10" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+        <Border x:Name="ContenedorAddRecordatorio" Grid.Column="1" Width="310" Height="450" Background="#ffffff" Margin="0 0 80 130" CornerRadius="20" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+
+            <Border.RenderTransform>
+                <TranslateTransform />
+            </Border.RenderTransform>
+
             <StackPanel Margin="20">
                 <!-- Título del formulario -->
                 <TextBlock Text="Programar Recordatorio" FontSize="23.2" FontWeight="Bold" Foreground="#2C3E50" HorizontalAlignment="Center" Margin="0 0 0 20"/>
@@ -46,28 +77,15 @@
                 <!-- Campo para el nombre del recordatorio -->
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
                     <TextBlock Text="Nota:" FontSize="19" HorizontalAlignment="Left" Margin="10 0 0 5" Width="70" VerticalAlignment="Center"/>
-                    <Border Background="#323748" Height="50" Width="255" Padding="5" BorderThickness="4" CornerRadius="10">
-                        <TextBox MaxLength="100" FontSize="15" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Foreground="white" HorizontalAlignment="Left" VerticalAlignment="Center"  Background="#323748" BorderBrush="#323748" BorderThickness="0" Height="25" Width="230">
-                            <TextBox.Style>
-                                <Style TargetType="TextBox">
-                                    <Setter Property="Foreground" Value="Gray"/>
-                                    <Setter Property="Text" Value="Escribe algo..."/>
-                                    <Style.Triggers>
-                                        <Trigger Property="IsKeyboardFocused" Value="True">
-                                            <Setter Property="Foreground" Value="Black"/>
-                                            <Setter Property="Text" Value=""/>
-                                        </Trigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </TextBox.Style>
-                        </TextBox>
+                    <Border Background="#2C3E50" Height="50" Width="255" Padding="5" BorderThickness="4" CornerRadius="10">
+                        <TextBox x:Name="txtNota" Text="Escribe algo..." Foreground="White" GotFocus="txtNota_GotFocus" LostFocus="txtNota_LostFocus" MaxLength="100" FontSize="15" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Background="#2C3E50" BorderBrush="#323748" BorderThickness="0" Height="25" Width="230"/>
                     </Border>
                 </StackPanel>
 
                 <!-- Campo para seleccionar la fecha -->
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0 10">
                     <TextBlock FontSize="19" Text="Fecha:" Width="70" HorizontalAlignment="Left" Margin="10 0 0 10"/>
-                    <Border BorderBrush="#323748" BorderThickness="2" CornerRadius="10" Background="White" Height="40">
+                    <Border BorderBrush="#2C3E50" BorderThickness="2" CornerRadius="10" Background="White" Height="40">
                         <DatePicker Focusable="False" BorderThickness="0" Width="250" FontSize="15" Foreground="Black" Padding="9 9 20 0">
                             <DatePicker.Resources>
                                 <Style TargetType="DatePickerTextBox">
@@ -75,6 +93,7 @@
                                     <Setter Property="Background" Value="White"/>
                                     <Setter Property="Margin" Value="0 -2 0 0"/>
                                     <Setter Property="BorderBrush" Value="White"/>
+                                    <Setter Property="Cursor" Value="Arrow"/>
                                     <Setter Property="BorderThickness" Value="0"/>
 
                                     <!-- Quitar borde azul interior del DatePicker -->
@@ -140,17 +159,86 @@
                 <!-- Campo para seleccionar la hora -->
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0 10">
                     <TextBlock FontSize="19" HorizontalAlignment="Left" Margin="10 0 0 10" Text="Hora:" Width="70"/>
-                    <ComboBox Width="250">
-                        <!-- Opciones de hora -->
-                        <ComboBoxItem Content="12:00 AM"/>
-                        <ComboBoxItem Content="1:00 AM"/>
-                        <ComboBoxItem Content="2:00 AM"/>
-                        <!-- Agrega más opciones según sea necesario -->
-                    </ComboBox>
-                </StackPanel>
 
-                <!-- Botón para guardar el recordatorio -->
-                <Button Content="Guardar Recordatorio" Width="200" Height="40" Background="#2C3E50" Foreground="White" HorizontalAlignment="Center" Margin="20"/>
+                    <!-- Dividir cada ComboBox -->
+
+                    <Border CornerRadius="10" Padding="10" Background="#2C3E50">
+                        <StackPanel Orientation="Horizontal">
+
+                            <!-- Hora -->
+
+                            <ComboBox Background="Transparent" x:Name="comboHoras" Width="70" Margin="0 0 10 0">
+
+                                <ComboBox.Resources>
+                                    <Style TargetType="ScrollViewer">
+                                        <Setter Property="MaxHeight" Value="100"/>
+                                        <!-- Altura del menú -->
+                                    </Style>
+                                </ComboBox.Resources>
+
+                                <ComboBoxItem IsEnabled="False" Content="Hora" Foreground="Gray"/>
+
+                                <!-- Opciones de hora -->
+                            </ComboBox>
+
+                            <!-- Minutos -->
+
+                            <ComboBox x:Name="comboMin" Width="70" Margin="0 0 10 0">
+
+                                <ComboBox.Resources>
+                                    <Style TargetType="ScrollViewer">
+                                        <Setter Property="MaxHeight" Value="100"/>
+                                        <!-- Altura del menú -->
+                                    </Style>
+                                </ComboBox.Resources>
+
+                                <ComboBoxItem IsEnabled="False" Content="Minutos" Foreground="Gray"/>
+                            </ComboBox>
+
+                            <!-- AM/PM -->
+
+                            <ComboBox Width="70">
+
+                                <ComboBox.Resources>
+                                    <Style TargetType="ScrollViewer">
+                                        <Setter Property="MaxHeight" Value="100"/>
+                                        <!-- Altura del menú -->
+                                    </Style>
+                                </ComboBox.Resources>
+
+                                <ComboBoxItem IsEnabled="False" Content="AM/PM" Foreground="Gray"/>
+
+                                <!-- Opciones de hora -->
+                                <ComboBoxItem Content="AM"/>
+                                <ComboBoxItem Content="PM"/>
+                            </ComboBox>
+                        </StackPanel>
+                    </Border>
+
+                </StackPanel>
+                
+                <!-- Boton de Guardar -->
+
+                <Button Margin="0 20 0 0" Cursor="Hand" Width="255" Height="40" FontSize="18" FontFamily="Sans Serif Collection" Foreground="white" VerticalAlignment="Top" HorizontalAlignment="Center">
+
+                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                        <TextBlock Text="Guardar recordatorio" VerticalAlignment="Center" Foreground="White" FontSize="16"/>
+                    </StackPanel>
+
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border CornerRadius="10" Background="#274C77"  x:Name="ButtonBorder">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Cursor="Hand"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="ButtonBorder" Property="Background" Value="#1B263B"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
             </StackPanel>
         </Border>
 

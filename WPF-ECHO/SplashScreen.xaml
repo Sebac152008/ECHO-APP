@@ -5,15 +5,27 @@
         Title="ECHO" Height="700" Width="1180" MinHeight="700" MinWidth="1180"
         WindowStartupLocation="CenterScreen">
 
-    <Grid x:Name="MainGrid">
-        <!-- Splash Screen -->
-        <Grid x:Name="SplashGrid" Background="#2C3E50">
-            <TextBlock Text="Cargando..." FontSize="30" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        </Grid>
+    <Grid>
+        <!-- Logo o Nombre de la App -->
+        <StackPanel x:Name="SplashGrid" VerticalAlignment="Center" HorizontalAlignment="Center" >
+            <TextBlock Text="ECHO" 
+                       FontSize="48" 
+                       FontWeight="Bold"
+                       Foreground="White"
+                       HorizontalAlignment="Center" 
+                       Margin="0,0,0,20"/>
 
-        <!-- Contenido principal -->
-        <ContentControl x:Name="MainContent" Visibility="Collapsed"/>
+            <!-- Animación GIF -->
+            <MediaElement Name="gifPlayer"
+                          Width="200" Height="200"
+                          Source="/Imagenes/Ondas.gif"
+                          LoadedBehavior="Play"
+                          UnloadedBehavior="Stop"
+                          IsHitTestVisible="False"
+                          Stretch="Fill"/>
+        </StackPanel>
+
+        <ContentControl x:Name="MainContent"/>
+
     </Grid>
-
-
 </Window>
