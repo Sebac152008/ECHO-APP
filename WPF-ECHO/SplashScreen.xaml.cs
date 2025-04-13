@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Media.Animation;
 using System.Windows.Threading;
 
 namespace WPF_ECHO
@@ -7,33 +8,51 @@ namespace WPF_ECHO
     public partial class SplashScreen : Window
     {
         private DispatcherTimer timer;
+        private double maxWidth = 580; // ancho máximo de la barra (ajusta si es necesario)
 
         public SplashScreen()
         {
             InitializeComponent();
+        }
 
-            // Configurar e iniciar el temporizador
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            // Iniciar temporizador
             timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(3); // tiempo que dura la pantalla de carga
+            timer.Interval = TimeSpan.FromMilliseconds(1); // velocidad de animación
             timer.Tick += Timer_Tick;
             timer.Start();
         }
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            timer.Stop(); // Detener el temporizador
-
-            // Mostrar la ventana principal
-            ShowMainContent();
-
-            // Cerrar el splash screen
+            if (ProgressBar.Width < maxWidth)
+            {
+                ProgressBar.Width += 2.5; // incremento suave
+            }
+            else
+            {
+                timer.Stop();
+                MostrarContenidoPrincipalConFade();
+            }
         }
 
-        private void ShowMainContent()
+        private void MostrarContenidoPrincipalConFade()
         {
-            SplashGrid.Visibility = Visibility.Collapsed;
-            MainContent.Content = new View.MenuNav();     // Cargar MenuNav en MainContent
+            SplashScree.Visibility = Visibility.Collapsed;
+
+            // Mostrar contenido principal
+            MainContent.Content = new View.MenuNav();
             MainContent.Visibility = Visibility.Visible;
+
+            // Animar opacidad (fade in)
+            DoubleAnimation fade = new DoubleAnimation
+            {
+                From = 0,
+                To = 1,
+                Duration = TimeSpan.FromSeconds(1)
+            };
+            MainContent.BeginAnimation(OpacityProperty, fade);
         }
     }
 }

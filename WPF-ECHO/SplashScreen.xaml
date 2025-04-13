@@ -1,31 +1,24 @@
 ﻿<Window x:Class="WPF_ECHO.SplashScreen"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:local="clr-namespace:WPF_ECHO.View"
-        Title="ECHO" Height="700" Width="1180" MinHeight="700" MinWidth="1180"
-        WindowStartupLocation="CenterScreen">
+        Title="ECHO" MinHeight="700" MinWidth="1180"
+        WindowStartupLocation="CenterScreen"
+        Background="#E9E6E6"
+        Loaded="Window_Loaded">
 
     <Grid>
-        <!-- Logo o Nombre de la App -->
-        <StackPanel x:Name="SplashGrid" VerticalAlignment="Center" HorizontalAlignment="Center" >
-            <TextBlock Text="ECHO" 
-                       FontSize="48" 
-                       FontWeight="Bold"
-                       Foreground="White"
-                       HorizontalAlignment="Center" 
-                       Margin="0,0,0,20"/>
+        <!-- SplashScreen -->
+        <StackPanel x:Name="SplashScree" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,40">
+            <!-- Logo -->
+            <Image x:Name="Logo" Width="500" Source="/Imagenes/echoLogo.png" HorizontalAlignment="Center"/>
 
-            <!-- Animación GIF -->
-            <MediaElement Name="gifPlayer"
-                          Width="200" Height="200"
-                          Source="/Imagenes/Ondas.gif"
-                          LoadedBehavior="Play"
-                          UnloadedBehavior="Stop"
-                          IsHitTestVisible="False"
-                          Stretch="Fill"/>
+            <!-- Barra de Progreso -->
+            <Border Background="#fff" CornerRadius="10" Margin="0,30,0,0" Width="580" Height="20">
+                <Border x:Name="ProgressBar" Background="#274C77" Width="0" CornerRadius="10" Height="20" HorizontalAlignment="Left"/>
+            </Border>
         </StackPanel>
 
-        <ContentControl x:Name="MainContent"/>
-
+        <!-- Contenido principal oculto al inicio -->
+        <ContentControl x:Name="MainContent" Visibility="Collapsed" Opacity="0"/>
     </Grid>
 </Window>

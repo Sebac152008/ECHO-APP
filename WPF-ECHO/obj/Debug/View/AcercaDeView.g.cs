@@ -52,7 +52,7 @@ namespace WPF_ECHO.View {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/WPF-ECHO;component/view/acercadeview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/ECHO;component/view/acercadeview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\View\AcercaDeView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

@@ -9,6 +9,7 @@
              Background="#E9E6E6">
 
     <UserControl.Resources>
+
         <!-- Animación de entrada desde la derecha -->
         <Storyboard x:Key="SlideInFromRightAnimation">
             <DoubleAnimation
@@ -28,6 +29,7 @@
             Storyboard.TargetProperty="Opacity"
             From="1" To="0" Duration="0:0:0.6" />
         </Storyboard>
+
     </UserControl.Resources>
 
 
@@ -167,14 +169,7 @@
 
                             <!-- Hora -->
 
-                            <ComboBox Background="Transparent" x:Name="comboHoras" Width="70" Margin="0 0 10 0">
-
-                                <ComboBox.Resources>
-                                    <Style TargetType="ScrollViewer">
-                                        <Setter Property="MaxHeight" Value="100"/>
-                                        <!-- Altura del menú -->
-                                    </Style>
-                                </ComboBox.Resources>
+                            <ComboBox x:Name="comboHoras" Width="70" Margin="0 0 10 0">
 
                                 <ComboBoxItem IsEnabled="False" Content="Hora" Foreground="Gray"/>
 
