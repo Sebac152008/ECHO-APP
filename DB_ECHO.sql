@@ -1,0 +1,14 @@
+GO
+CREATE DATABASE ECHO
+GO
+USE ECHO
+GO
+CREATE TABLE Recordatorios(
+ID_Recordatorios INT IDENTITY(1,1) PRIMARY KEY,
+Nota VARCHAR(100),
+Fecha DATE,
+Hora TIME,
+);
+GO
+SELECT * FROM Recordatorios
+GO

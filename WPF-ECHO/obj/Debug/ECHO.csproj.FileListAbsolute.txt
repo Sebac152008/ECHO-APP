@@ -29,3 +29,10 @@ C:\Users\Sebastian Cuevas\Desktop\Proyecto echo\WPF-ECHO\obj\Debug\ECHO.csproj.U
 C:\Users\Sebastian Cuevas\Desktop\Proyecto echo\WPF-ECHO\obj\Debug\ECHO.exe
 C:\Users\Sebastian Cuevas\Desktop\Proyecto echo\WPF-ECHO\obj\Debug\ECHO.pdb
 C:\Users\Sebastian Cuevas\Desktop\Proyecto echo\WPF-ECHO\obj\Debug\ECHO.Properties.Resources.resources
+C:\Users\Sebastian Cuevas\Desktop\Proyecto echo\WPF-ECHO\bin\Debug\ControlzEx.dll
+C:\Users\Sebastian Cuevas\Desktop\Proyecto echo\WPF-ECHO\bin\Debug\Microsoft.Xaml.Behaviors.dll
+C:\Users\Sebastian Cuevas\Desktop\Proyecto echo\WPF-ECHO\bin\Debug\ControlzEx.xml
+C:\Users\Sebastian Cuevas\Desktop\Proyecto echo\WPF-ECHO\bin\Debug\Microsoft.Xaml.Behaviors.pdb
+C:\Users\Sebastian Cuevas\Desktop\Proyecto echo\WPF-ECHO\bin\Debug\Microsoft.Xaml.Behaviors.xml
+C:\Users\Sebastian Cuevas\Desktop\Proyecto echo\WPF-ECHO\obj\Debug\View\RecordatorioItem.g.cs
+C:\Users\Sebastian Cuevas\Desktop\Proyecto echo\WPF-ECHO\obj\Debug\View\RecordatorioItem.baml
