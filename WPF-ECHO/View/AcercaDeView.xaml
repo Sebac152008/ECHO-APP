@@ -12,8 +12,6 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <!-- Contenido desplazable -->
-            <RowDefinition Height="50"/>
-            <!-- Pie de página fijo -->
         </Grid.RowDefinitions>
 
         <!-- ScrollViewer solo en el contenido principal -->
@@ -41,16 +39,16 @@
                     <TextBlock Padding="20" Text="Aquí puedes poner tu contenido largo que necesite scroll..." FontSize="18" FontFamily="Segoe UI"/>
                     <TextBlock Padding="20" Text="Aquí puedes poner tu contenido largo que necesite scroll..." FontSize="18" FontFamily="Segoe UI"/>
                     <!-- Puedes repetir este bloque para probar el scroll -->
+                    
+                    <!-- Pie de pagina -->
+                    <Border Grid.Row="1" Padding="0 30 0 30" BorderThickness="0" Background="#E9E6E6">
+                        <StackPanel Margin="40 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Orientation="Horizontal">
+                            <Image Source="/Imagenes/echoLogo.png" Stretch="Fill" Width="150" Height="50"/>
+                            <TextBlock FontSize="20" Margin="20 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="Black" Text="2025 © ECHO - Todos los derechos reservados."/>
+                        </StackPanel>
+                    </Border>
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>
-
-        <!-- Pie de página fijo -->
-        <Border Grid.Row="1" BorderThickness="0" Background="#E9E6E6">
-            <StackPanel Margin="40 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal">
-                <Image Source="/Imagenes/echoLogo.png" Stretch="Fill" Width="100" Height="30"/>
-                <TextBlock FontSize="15" Margin="20 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="Black" Text="2025 © ECHO - Todos los derechos reservados."/>
-            </StackPanel>
-        </Border>
     </Grid>
 </UserControl>

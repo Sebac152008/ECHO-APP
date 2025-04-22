@@ -4,9 +4,16 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WPF_ECHO.View"
-             mc:Ignorable="d" 
-             d:DesignHeight="700" d:DesignWidth="1180"
-             Background="#E9E6E6">
+             mc:Ignorable="d"
+                  xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+     TextElement.FontWeight="Regular"
+     TextElement.FontSize="13"
+     TextOptions.TextFormattingMode="Ideal"
+     TextOptions.TextRenderingMode="Auto"
+     Background="{DynamicResource MaterialDesignPaper}"
+     FontFamily="{DynamicResource MaterialDesignFont}"
+             d:DesignHeight="700" d:DesignWidth="1180">
 
     <UserControl.Resources>
 
@@ -75,7 +82,7 @@
         <!-- Cuadro Programar Recordatorio -->
 
         <!-- Rectángulo contenedor -->
-        <Border x:Name="ContenedorAddRecordatorio" Width="310" Height="450" Background="#ffffff" Margin="0 0 80 150" CornerRadius="20" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+        <Border x:Name="ContenedorAddRecordatorio" Width="310" Height="463" Background="#ffffff" Margin="0 0 80 150" CornerRadius="20" HorizontalAlignment="Right" VerticalAlignment="Bottom">
 
             <Border.Effect>
                 <DropShadowEffect BlurRadius="20" ShadowDepth="0" Color="Black" Opacity="0.25"/>
@@ -92,82 +99,8 @@
                 <!-- Campo para el nombre del recordatorio -->
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
                     <TextBlock Text="Nota:" FontSize="19" HorizontalAlignment="Left" Margin="10 0 0 5" Width="70" VerticalAlignment="Center"/>
-                    <Border Background="#2C3E50" Height="50" Width="255" Padding="5" BorderThickness="4" CornerRadius="10">
-                        <TextBox x:Name="txtNota" Text="Escribe algo..." Foreground="White" GotFocus="txtNota_GotFocus" LostFocus="txtNota_LostFocus" MaxLength="100" FontSize="15" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Background="#2C3E50" BorderBrush="#323748" BorderThickness="0" Height="25" Width="230"/>
-                    </Border>
-                </StackPanel>
-
-                <!-- Campo para seleccionar la fecha -->
-                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0 10">
-                    <TextBlock FontSize="19" Text="Fecha:" Width="70" HorizontalAlignment="Left" Margin="10 0 0 10"/>
-                    <Border BorderBrush="#2C3E50" BorderThickness="2" CornerRadius="10" Background="White" Height="40">
-                        <DatePicker x:Name="fechaPicker" Focusable="False" BorderThickness="0" Width="250" FontSize="15" Foreground="Black" Padding="9 9 20 0">
-                            <DatePicker.Resources>
-                                <Style TargetType="DatePickerTextBox">
-                                    <!-- Cambiar el color del borde -->
-                                    <Setter Property="Background" Value="White"/>
-                                    <Setter Property="Margin" Value="0 -2 0 0"/>
-                                    <Setter Property="BorderBrush" Value="White"/>
-                                    <Setter Property="Cursor" Value="Arrow"/>
-                                    <Setter Property="BorderThickness" Value="0"/>
-
-                                    <!-- Quitar borde azul interior del DatePicker -->
-
-                                    <Setter Property="Template">
-                                        <Setter.Value>
-                                            <ControlTemplate TargetType="{x:Type DatePickerTextBox}">
-                                                <Grid>
-                                                    <Grid.Resources>
-                                                        <SolidColorBrush x:Key="WatermarkBrush" Color="#FFAAAAAA"/>
-                                                    </Grid.Resources>
-                                                    <VisualStateManager.VisualStateGroups>
-                                                        <VisualStateGroup x:Name="CommonStates">
-                                                            <VisualStateGroup.Transitions>
-                                                                <VisualTransition GeneratedDuration="0"/>
-                                                                <VisualTransition GeneratedDuration="0:0:0.1" To="MouseOver"/>
-                                                            </VisualStateGroup.Transitions>
-                                                            <VisualState x:Name="Normal"/>
-                                                            <VisualState x:Name="MouseOver" />
-                                                        </VisualStateGroup>
-                                                        <VisualStateGroup x:Name="WatermarkStates">
-                                                            <VisualStateGroup.Transitions>
-                                                                <VisualTransition GeneratedDuration="0"/>
-                                                            </VisualStateGroup.Transitions>
-                                                            <VisualState x:Name="Unwatermarked"/>
-                                                            <VisualState x:Name="Watermarked">
-                                                                <Storyboard>
-                                                                    <DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ContentElement"/>
-                                                                    <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="PART_Watermark"/>
-                                                                </Storyboard>
-                                                            </VisualState>
-                                                        </VisualStateGroup>
-                                                        <VisualStateGroup x:Name="FocusStates">
-                                                            <VisualStateGroup.Transitions>
-                                                                <VisualTransition GeneratedDuration="0"/>
-                                                            </VisualStateGroup.Transitions>
-                                                            <VisualState x:Name="Unfocused"/>
-                                                            <VisualState x:Name="Focused" />
-                                                        </VisualStateGroup>
-                                                    </VisualStateManager.VisualStateGroups>
-                                                    <Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="1" Opacity="1" Padding="{TemplateBinding Padding}">
-                                                        <Grid x:Name="WatermarkContent" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
-                                                            <Border x:Name="ContentElement" BorderBrush="#FFFFFFFF" BorderThickness="1"/>
-                                                            <Border x:Name="watermark_decorator" BorderBrush="#FFFFFFFF" BorderThickness="1">
-                                                                <ContentControl x:Name="PART_Watermark" Focusable="False" IsHitTestVisible="False" Opacity="0" Padding="2"/>
-                                                            </Border>
-                                                            <ScrollViewer x:Name="PART_ContentHost" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="0" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                                                        </Grid>
-                                                    </Border>
-                                                </Grid>
-                                            </ControlTemplate>
-                                        </Setter.Value>
-                                    </Setter>
-
-                                    <!-- Fin del codio quitador de borde interior DatePicker -->
-
-                                </Style>
-                            </DatePicker.Resources>
-                        </DatePicker>
+                    <Border Background="#2C3E50" Padding="0 20 0 20" Width="255" BorderThickness="4" CornerRadius="10">
+                        <TextBox x:Name="txtNota" Text="Escribe algo..." Foreground="#A2AAB2" GotFocus="txtNota_GotFocus" LostFocus="txtNota_LostFocus" MaxLength="80" FontSize="15" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Background="#2C3E50" BorderBrush="#323748" BorderThickness="0" Height="30" Width="230" TextChanged="txtNota_TextChanged"/>
                     </Border>
                 </StackPanel>
 
@@ -175,48 +108,20 @@
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0 10">
                     <TextBlock FontSize="19" HorizontalAlignment="Left" Margin="10 0 0 10" Text="Hora:" Width="70"/>
 
-                    <!-- Dividir cada ComboBox -->
-
-                    <Border Width="255" CornerRadius="10" Padding="10" Background="#2C3E50">
-                        <StackPanel Orientation="Horizontal">
-
-                            <ComboBox MaxDropDownHeight="100" x:Name="comboHoraMinuto" Width="235" FontSize="14">
-                                <ComboBoxItem IsEnabled="False" Content="Selecciona la hora" IsSelected="True"/>
-                                <ComboBoxItem Content="06:00"/>
-                                <ComboBoxItem Content="06:30"/>
-                                <ComboBoxItem Content="07:00"/>
-                                <ComboBoxItem Content="07:30"/>
-                                <ComboBoxItem Content="08:00"/>
-                                <ComboBoxItem Content="08:30"/>
-                                <ComboBoxItem Content="09:00"/>
-                                <ComboBoxItem Content="09:30"/>
-                                <ComboBoxItem Content="10:00"/>
-                                <ComboBoxItem Content="10:30"/>
-                                <ComboBoxItem Content="11:00"/>
-                                <ComboBoxItem Content="11:30"/>
-                                <ComboBoxItem Content="12:00"/>
-                                <ComboBoxItem Content="12:30"/>
-                                <ComboBoxItem Content="13:00"/>
-                                <ComboBoxItem Content="13:30"/>
-                                <ComboBoxItem Content="14:00"/>
-                                <ComboBoxItem Content="14:30"/>
-                                <ComboBoxItem Content="15:00"/>
-                                <ComboBoxItem Content="15:30"/>
-                                <ComboBoxItem Content="16:00"/>
-                                <ComboBoxItem Content="16:30"/>
-                                <ComboBoxItem Content="17:00"/>
-                                <ComboBoxItem Content="17:30"/>
-                                <ComboBoxItem Content="18:00"/>
-                                <ComboBoxItem Content="18:30"/>
-                                <ComboBoxItem Content="19:00"/>
-                                <ComboBoxItem Content="19:30"/>
-                                <ComboBoxItem Content="20:00"/>
-                            </ComboBox>
-
-
+                    <Border Width="255" CornerRadius="10" BorderBrush="#2C3E50" BorderThickness="2" Padding="0 10 5 10" Background="#fff">
+                        <StackPanel>
+                            <materialDesign:TimePicker x:Name="comboHoraMinuto" Focusable="False" Width="235"/>
                         </StackPanel>
                     </Border>
 
+                </StackPanel>
+
+                <!-- Campo para seleccionar la fecha -->
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0 10">
+                    <TextBlock FontSize="19" Text="Fecha:" Width="70" HorizontalAlignment="Left" Margin="10 0 0 10"/>
+                    <Border Padding="0 10 5 10" BorderBrush="#2C3E50" BorderThickness="2" CornerRadius="10" Width="255">
+                        <DatePicker Cursor="Arrow" x:Name="fechaPicker" BorderThickness="0" Width="235" Focusable="False"/>
+                    </Border>
                 </StackPanel>
 
                 <!-- Boton de Guardar -->

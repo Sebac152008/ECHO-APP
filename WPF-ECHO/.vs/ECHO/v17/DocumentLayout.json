@@ -3,11 +3,11 @@
   "WorkspaceRootPath": "C:\\Users\\Sebastian Cuevas\\Desktop\\Proyecto echo\\WPF-ECHO\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B8C7A4A0-368E-4D6C-9D5E-173D4B4EF5CA}|ECHO.csproj|c:\\users\\sebastian cuevas\\desktop\\proyecto echo\\wpf-echo\\view\\inicioview.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
-      "RelativeMoniker": "D:0:0:{B8C7A4A0-368E-4D6C-9D5E-173D4B4EF5CA}|ECHO.csproj|solutionrelative:view\\inicioview.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
+      "AbsoluteMoniker": "D:0:0:{B8C7A4A0-368E-4D6C-9D5E-173D4B4EF5CA}|ECHO.csproj|c:\\users\\sebastian cuevas\\desktop\\proyecto echo\\wpf-echo\\view\\inicioview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B8C7A4A0-368E-4D6C-9D5E-173D4B4EF5CA}|ECHO.csproj|solutionrelative:view\\inicioview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B8C7A4A0-368E-4D6C-9D5E-173D4B4EF5CA}|ECHO.csproj|c:\\users\\sebastian cuevas\\desktop\\proyecto echo\\wpf-echo\\view\\inicioview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{B8C7A4A0-368E-4D6C-9D5E-173D4B4EF5CA}|ECHO.csproj|C:\\Users\\Sebastian Cuevas\\Desktop\\Proyecto echo\\WPF-ECHO\\view\\inicioview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{B8C7A4A0-368E-4D6C-9D5E-173D4B4EF5CA}|ECHO.csproj|solutionrelative:view\\inicioview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
@@ -18,24 +18,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "InicioView.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\Sebastian Cuevas\\Desktop\\Proyecto echo\\WPF-ECHO\\View\\InicioView.xaml.cs",
-              "RelativeDocumentMoniker": "View\\InicioView.xaml.cs",
-              "ToolTip": "C:\\Users\\Sebastian Cuevas\\Desktop\\Proyecto echo\\WPF-ECHO\\View\\InicioView.xaml.cs",
-              "RelativeToolTip": "View\\InicioView.xaml.cs",
-              "ViewState": "AgIAAFgAAAAAAAAAAAAkwHIAAABOAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-18T02:16:10.011Z",
-              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -46,7 +33,19 @@
               "ToolTip": "C:\\Users\\Sebastian Cuevas\\Desktop\\Proyecto echo\\WPF-ECHO\\View\\InicioView.xaml",
               "RelativeToolTip": "View\\InicioView.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-04-18T02:00:56.932Z",
+              "WhenOpened": "2025-04-21T22:47:12.979Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "InicioView.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Sebastian Cuevas\\Desktop\\Proyecto echo\\WPF-ECHO\\View\\InicioView.xaml.cs",
+              "RelativeDocumentMoniker": "View\\InicioView.xaml.cs",
+              "ToolTip": "C:\\Users\\Sebastian Cuevas\\Desktop\\Proyecto echo\\WPF-ECHO\\View\\InicioView.xaml.cs",
+              "RelativeToolTip": "View\\InicioView.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-21T22:46:20.403Z",
               "EditorCaption": ""
             }
           ]

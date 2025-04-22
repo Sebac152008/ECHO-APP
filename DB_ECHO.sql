@@ -5,9 +5,9 @@ USE ECHO
 GO
 CREATE TABLE Recordatorios(
 ID_Recordatorios INT IDENTITY(1,1) PRIMARY KEY,
-Nota VARCHAR(100),
+Nota VARCHAR(50),
 Fecha DATE,
-Hora TIME,
+Hora NVARCHAR(20),
 );
 GO
 SELECT * FROM Recordatorios

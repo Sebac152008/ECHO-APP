@@ -123,6 +123,7 @@
 
 
         <!-- Columna de la seccion del contenido -->
+        <!-- Aqui se conectan cada una de las ventanas -->
 
         <ContentControl x:Name="mainContent" Content="{Binding CurrentChildView}" Grid.Column="1"/>
 

@@ -83,7 +83,7 @@ namespace WPF_ECHO.View
             if (txtNota.Text == "")
             {
                 txtNota.Text = "Escribe algo...";
-                txtNota.Foreground = Brushes.White;
+                txtNota.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#A2AAB2"));
             }
         }
 
@@ -101,10 +101,19 @@ namespace WPF_ECHO.View
         {
             string nota = txtNota.Text.Trim();
             DateTime? fecha = fechaPicker.SelectedDate;
-            string hora = (comboHoraMinuto.SelectedItem as ComboBoxItem)?.Content.ToString();
+
+            var horaSeleccionada = comboHoraMinuto.SelectedTime;
+
+            if (horaSeleccionada == null)
+            {
+                MessageBox.Show("Por favor selecciona una hora.", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            string hora = horaSeleccionada.Value.ToString("hh:mm tt"); //Guardando la hora en la base de datos
 
             // Validar datos
-            if (string.IsNullOrEmpty(nota) || nota == "Escribe algo..." || fecha == null || string.IsNullOrEmpty(hora) || hora == "Selecciona la hora")
+            if (string.IsNullOrEmpty(nota) || nota == "Escribe algo..." || fecha == null || comboHoraMinuto.SelectedTime == null)
             {
                 MessageBox.Show("Por favor completa todos los campos.", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
@@ -158,12 +167,12 @@ namespace WPF_ECHO.View
 
 
 
-        private void LimpiarCampos()
+        private void LimpiarCampos() // Aqui limpiamos los datos despues de ser enviados
         {
             txtNota.Text = "Escribe algo...";
-            txtNota.Foreground = Brushes.White;
+            txtNota.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#A2AAB2"));
             fechaPicker.SelectedDate = null;
-            comboHoraMinuto.SelectedIndex = -1; // Desmarca cualquier selección
+            comboHoraMinuto.SelectedTime = null; // Desmarca cualquier selección
         }
 
         private void CargarRecordatoriosDesdeBD()
@@ -254,5 +263,8 @@ namespace WPF_ECHO.View
             }
         }
 
+        private void txtNota_TextChanged(object sender, TextChangedEventArgs e)
+        {
+        }
     }
 }
