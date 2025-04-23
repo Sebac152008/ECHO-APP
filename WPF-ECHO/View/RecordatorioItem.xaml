@@ -23,10 +23,8 @@
                 <!-- Boton de Corazon -->
 
                 <Button Margin="0 0 10 0" Width="35" Height="35" Background="Transparent"
-                ToolTip="Marcar como favorito" Click="btnCorazon_Click">
-                    <Image Source="/Imagenes/corazon-vacio.png" Width="25" Height="25"/>
-
-
+                ToolTip="Marcar como destacado" Click="btnDestacado_Click">
+                    <Image Source="/Imagenes/EstrellaVaciaAmarilla.png" Width="25" Height="25"/>
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
                             <Border Cursor="Hand" BorderBrush="#26263B" BorderThickness="1.3" Background="#fff" CornerRadius="40" x:Name="ButtonHover">

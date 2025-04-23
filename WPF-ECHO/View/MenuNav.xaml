@@ -16,6 +16,15 @@
         <DataTemplate DataType="{x:Type viewModel:InicioView}">
             <local:InicioView/>
         </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModel:CalendarioView}">
+            <local:CalendarioView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModel:MisRecordatoriosView}">
+            <local:MisRecordatoriosVIEW/>
+        </DataTemplate>
+
         <DataTemplate DataType="{x:Type viewModel:AcercaDeView}">
             <local:AcercaDeView/>
         </DataTemplate>
@@ -72,13 +81,37 @@
                         </Button.Template>
                     </Button>
 
-                    <!-- Boton mis recordatorios -->
+                    <!-- Boton Destacados -->
 
-                    <Button Grid.Row="1" Margin="0 35 0 0" Cursor="Hand" Width="230" Height="50" FontSize="18" FontFamily="Sans Serif Collection" Foreground="white" VerticalAlignment="Top" HorizontalAlignment="Center">
+                    <Button Grid.Row="1" Margin="0 35 0 0" Cursor="Hand" Width="230" Height="50" FontSize="18" FontFamily="Sans Serif Collection" Foreground="white" VerticalAlignment="Top" HorizontalAlignment="Center" Command="{Binding ShowMisRecordatoriosViewCommand}">
 
-                        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                            <Image VerticalAlignment="Center" Source="/Imagenes/love.png" Width="25" Margin="-5 0 0 0"/>
-                            <TextBlock Text="Mis recordatorios" VerticalAlignment="Center" Margin="20 0 0 0" Foreground="White" FontSize="16"/>
+                        <StackPanel HorizontalAlignment="Left" Margin="-50 0 0 0" Orientation="Horizontal">
+                            <Image VerticalAlignment="Center" Source="/Imagenes/EstrellaVacia.png" Width="25"/>
+                            <TextBlock Text="Destacados" VerticalAlignment="Center" Margin="20 0 0 0" Foreground="White" FontSize="16"/>
+                        </StackPanel>
+
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border CornerRadius="10" Background="#1B263B" x:Name="ButtonBorder">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Cursor="Hand"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="ButtonBorder" Property="Background" Value="#274C77"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Button.Template>
+
+                    </Button>
+
+                    <!-- Boton Calendario -->
+
+                    <Button Grid.Row="1" Margin="0 120 0 0" Cursor="Hand" Width="230" Height="50" FontSize="18" FontFamily="Sans Serif Collection" Foreground="white" VerticalAlignment="Top" HorizontalAlignment="Center" Command="{Binding ShowCalendarioCommand}">
+
+                        <StackPanel HorizontalAlignment="Left" Margin="-50 0 0 0" Orientation="Horizontal">
+                            <Image VerticalAlignment="Center" Source="/Imagenes/calendario.png" Width="25"/>
+                            <TextBlock Text="Calendario" VerticalAlignment="Center" Margin="20 0 0 0" Foreground="White" FontSize="16"/>
                         </StackPanel>
 
                         <Button.Template>

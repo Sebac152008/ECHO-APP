@@ -8,7 +8,7 @@ namespace WPF_ECHO
     public partial class SplashScreen : Window
     {
         private DispatcherTimer timer;
-        private double maxWidth = 580; // ancho máximo de la barra (ajusta si es necesario)
+        private double maxWidth = 440; // ancho máximo de la barra (ajusta si es necesario)
 
         public SplashScreen()
         {

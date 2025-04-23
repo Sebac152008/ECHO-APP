@@ -7,7 +7,7 @@ CREATE TABLE Recordatorios(
 ID_Recordatorios INT IDENTITY(1,1) PRIMARY KEY,
 Nota VARCHAR(50),
 Fecha DATE,
-Hora NVARCHAR(20),
+Hora TIME,
 );
 GO
 SELECT * FROM Recordatorios

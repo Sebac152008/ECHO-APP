@@ -13,7 +13,8 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Data.SqlClient;
+using System.Data.SQLite;
+using Microsoft.Data.Sqlite;
 using ECHO.View;
 
 namespace WPF_ECHO.View
@@ -24,7 +25,8 @@ namespace WPF_ECHO.View
     public partial class InicioView : UserControl
     {
 
-        string connectionString = "Server=DESKTOP-IF8RULA\\SQLEXPRESS;Database=ECHO;Trusted_Connection=True;Encrypt=True;TrustServerCertificate=True;";
+        private static readonly string dbPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ECHO.db");
+        private static readonly string connectionString = $"Data Source={dbPath};";
 
         private bool animacionEnCurso = false;
         public InicioView()
@@ -97,60 +99,87 @@ namespace WPF_ECHO.View
             }
         }
 
+        private bool HayErrorMostrado()
+        {
+            return ErrorTitulo.Visibility == Visibility.Visible ||
+                   ErrorFecha.Visibility == Visibility.Visible ||
+                   ErrorHora.Visibility == Visibility.Visible;
+        }
+
+
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
             string nota = txtNota.Text.Trim();
             DateTime? fecha = fechaPicker.SelectedDate;
+            TimeSpan? hora = comboHoraMinuto.SelectedTime?.TimeOfDay;
 
-            var horaSeleccionada = comboHoraMinuto.SelectedTime;
+            bool hayErrores = false;
 
-            if (horaSeleccionada == null)
+            // Validación del título
+            if (string.IsNullOrEmpty(nota) || nota == "Escribe algo...")
             {
-                MessageBox.Show("Por favor selecciona una hora.", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
+                ErrorTitulo.Visibility = Visibility.Visible;
+                ErrorTitulo.Text = "El título no puede quedar vacío.";
+                hayErrores = true;
+            }
+            else
+            {
+                ErrorTitulo.Visibility = Visibility.Collapsed;
             }
 
-            string hora = horaSeleccionada.Value.ToString("hh:mm tt"); //Guardando la hora en la base de datos
+            // Validación de la fecha
+            if (fecha == null)
+            {
+                ErrorFecha.Visibility = Visibility.Visible;
+                ErrorFecha.Text = "Por favor selecciona una fecha.";
+                hayErrores = true;
+            }
+            else if (fecha.Value.Date < DateTime.Today)
+            {
+                ErrorFecha.Visibility = Visibility.Visible;
+                ErrorFecha.Text = "La fecha no puede ser anterior al día de hoy.";
+                hayErrores = true;
+            }
+            else
+            {
+                ErrorFecha.Visibility = Visibility.Collapsed;
+            }
 
-            // Validar datos
-            if (string.IsNullOrEmpty(nota) || nota == "Escribe algo..." || fecha == null || comboHoraMinuto.SelectedTime == null)
+            // Validación de la hora
+            if (hora == null)
             {
-                MessageBox.Show("Por favor completa todos los campos.", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
+                ErrorHora.Visibility = Visibility.Visible;
+                ErrorHora.Text = "Por favor selecciona una hora.";
+                hayErrores = true;
             }
-            if (fecha.Value.Date < DateTime.Today)
+            else
             {
-                MessageBox.Show("La fecha no puede ser anterior al día de hoy.", "Fecha inválida",
-                                MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
+                ErrorHora.Visibility = Visibility.Collapsed;
             }
+
+            if (hayErrores)
+                return; // Detener el guardado si hay errores
+
+            // ✅ Si llegamos aquí, todo está validado correctamente
 
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SQLiteConnection connection = new SQLiteConnection(connectionString))
                 {
                     connection.Open();
 
-                    // Insertar el recordatorio en la base de datos
                     string insertQuery = "INSERT INTO Recordatorios (Nota, Fecha, Hora) VALUES (@Nota, @Fecha, @Hora)";
-                    SqlCommand insertCommand = new SqlCommand(insertQuery, connection);
+                    SQLiteCommand insertCommand = new SQLiteCommand(insertQuery, connection);
                     insertCommand.Parameters.AddWithValue("@Nota", nota);
-                    insertCommand.Parameters.AddWithValue("@Fecha", fecha.Value);
-                    insertCommand.Parameters.AddWithValue("@Hora", hora);
+                    insertCommand.Parameters.AddWithValue("@Fecha", fecha.Value.ToString("yyyy-MM-dd"));
+                    insertCommand.Parameters.AddWithValue("@Hora", hora.Value.ToString(@"hh\:mm"));
 
                     int rowsAffected = insertCommand.ExecuteNonQuery();
 
                     if (rowsAffected > 0)
                     {
-
-                        // Limpiar campos
                         LimpiarCampos();
-
-                        // Agregar el recordatorio a la UI sin recargar todos los datos
-                        AgregarRecordatorio(nota, fecha.Value.ToShortDateString(), hora);
-
-                        // O si prefieres recargar todos los recordatorios desde la BD
-                        // CargarRecordatoriosDesdeBD();
+                        AgregarRecordatorio(nota, fecha.Value.ToShortDateString(), hora.Value.ToString(@"hh\:mm"));
                     }
                     else
                     {
@@ -163,6 +192,7 @@ namespace WPF_ECHO.View
                 MessageBox.Show($"Error al guardar el recordatorio: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
 
 
 
@@ -181,14 +211,14 @@ namespace WPF_ECHO.View
 
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SQLiteConnection connection = new SQLiteConnection(connectionString))
                 {
                     connection.Open();
 
                     string selectQuery = "SELECT * FROM Recordatorios";
-                    SqlCommand selectCommand = new SqlCommand(selectQuery, connection);
+                    SQLiteCommand selectCommand = new SQLiteCommand(selectQuery, connection);
 
-                    using (SqlDataReader reader = selectCommand.ExecuteReader())
+                    using (SQLiteDataReader reader = selectCommand.ExecuteReader())
                     {
                         while (reader.Read())
                         {
@@ -196,8 +226,8 @@ namespace WPF_ECHO.View
                             {
                                 ID_Recordatorios = Convert.ToInt32(reader["ID_Recordatorios"]),
                                 Descripcion = reader["Nota"].ToString(),
-                                Fecha = ((DateTime)reader["Fecha"]).ToShortDateString(),
-                                Hora = ((TimeSpan)reader["Hora"]).ToString(@"hh\:mm")
+                                Fecha = reader["Fecha"].ToString(),
+                                Hora = reader["Hora"].ToString()
                             };
 
                             item.DataContext = item;
@@ -243,12 +273,12 @@ namespace WPF_ECHO.View
             {
                 try
                 {
-                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    using (SQLiteConnection connection = new SQLiteConnection(connectionString))
                     {
                         connection.Open();
 
                         string deleteQuery = "DELETE FROM Recordatorios WHERE ID_Recordatorios = @ID";
-                        SqlCommand deleteCommand = new SqlCommand(deleteQuery, connection);
+                        SQLiteCommand deleteCommand = new SQLiteCommand(deleteQuery, connection);
                         deleteCommand.Parameters.AddWithValue("@ID", recordatorio.ID_Recordatorios);
 
                         deleteCommand.ExecuteNonQuery();

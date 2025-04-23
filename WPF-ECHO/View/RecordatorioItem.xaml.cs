@@ -19,8 +19,11 @@ namespace ECHO.View
     /// <summary>
     /// Lógica de interacción para RecordatorioItem.xaml
     /// </summary>
+    /// 
+
     public partial class RecordatorioItem : UserControl
     {
+        private bool estaDestacado = false;
 
         public static readonly DependencyProperty DescripcionProperty =
             DependencyProperty.Register(nameof(Descripcion), typeof(string), typeof(RecordatorioItem));
@@ -66,20 +69,22 @@ namespace ECHO.View
         }
 
         // Método para el corazón (Favorito)
-        private void btnCorazon_Click(object sender, RoutedEventArgs e)
+        private void btnDestacado_Click(object sender, RoutedEventArgs e)
         {
             var btn = sender as Button;
             var img = btn.Content as Image;
 
-            // Alterna entre el icono vacío y el relleno del corazón
-            var uri = img.Source.ToString().Contains("vacio")
-                ? "/Imagenes/corazon-rellenado.png"
-                : "/Imagenes/corazon-vacio.png";
+            estaDestacado = !estaDestacado;
+
+            var uri = estaDestacado
+                ? "/Imagenes/EstrellaRellenada.png"
+                : "/Imagenes/EstrellaVaciaAmarilla.png";
 
             img.Source = new BitmapImage(new Uri(uri, UriKind.Relative));
 
-            // Aquí podrías actualizar la base de datos o el modelo para reflejar el cambio
+            // Aquí puedes guardar el estado si lo necesitas
         }
+
 
         // Método para mostrar el formulario de agregar recordatorio con animación
 

@@ -3,19 +3,39 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="ECHO" MinHeight="700" MinWidth="1180"
         WindowStartupLocation="CenterScreen"
-        Background="#E9E6E6"
+        Background="#fff"
         Loaded="Window_Loaded">
 
     <Grid>
         <!-- SplashScreen -->
-        <StackPanel x:Name="SplashScree" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,40">
-            <!-- Logo -->
-            <Image x:Name="Logo" Width="500" Source="/Imagenes/echoLogo.png" HorizontalAlignment="Center"/>
+        <StackPanel VerticalAlignment="Center" x:Name="SplashScree" HorizontalAlignment="Center" Margin="50 0 0 0">
 
-            <!-- Barra de Progreso -->
-            <Border Background="#fff" CornerRadius="10" Margin="0,30,0,0" Width="580" Height="20">
-                <Border x:Name="ProgressBar" Background="#274C77" Width="0" CornerRadius="10" Height="20" HorizontalAlignment="Left"/>
-            </Border>
+            <Grid VerticalAlignment="Center" HorizontalAlignment="Center" >
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="400" />
+                </Grid.RowDefinitions>
+                
+                <!-- Logo -->
+                <Image Margin="0 0 0 0" x:Name="Logo" Width="550" Source="/Imagenes/echoLogo.png" HorizontalAlignment="Left"/>
+                <!-- Texto -->
+                <TextBlock Text="Loading Resources.." VerticalAlignment="Center" Margin="55 200 0 0"/>
+                <!-- Barra de Progreso -->
+                <Border VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0 0 0 60" Background="#26263B" Width="440" Height="15">
+                    <Border x:Name="ProgressBar" Background="#3A6F91" Width="0" HorizontalAlignment="Left"/>
+                </Border>
+                
+                <!-- Ilustracion -->
+
+                <Image Width="600" Grid.Column="1" Source="/Imagenes/illustration-plate-pour-celebration-journee-du-secretaire_52683-107968.png" />
+
+            </Grid>
+            
         </StackPanel>
 
         <!-- Contenido principal oculto al inicio -->
