@@ -17,6 +17,21 @@
 
     <UserControl.Resources>
 
+        <Storyboard x:Key="MostrarMensaje">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Duration="0:0:0">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Visible}" />
+            </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.3"/>
+        </Storyboard>
+
+        <Storyboard x:Key="OcultarMensaje">
+            <DoubleAnimation Storyboard.TargetProperty="Opacity" From="1" To="0" Duration="0:0:0.3"/>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" BeginTime="0:0:0.3">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Collapsed}" />
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+
+
         <!-- Animación de entrada desde la derecha -->
         <Storyboard x:Key="SlideInFromRightAnimation">
             <DoubleAnimation
@@ -78,11 +93,38 @@
                 </Button.Template>
             </Button>
         </Border>
+        
+        <!-- Cuadro que muestra la verificacion del destacado -->
+
+        <Border x:Name="RecordatorioDestacado" Visibility="Collapsed" Width="250" Height="45" VerticalAlignment="Top" Margin="0 40 0 0" CornerRadius="10" Background="#26263B">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Image Margin="20 0 0 0" Width="20" Source="/Imagenes/EstrellaRellenada.png"/>
+                <TextBlock VerticalAlignment="Center" Width="200" Height="15" Foreground="#fff" FontSize="15" TextAlignment="Center" Text="Recordatorio destacado" />
+            </StackPanel>
+        </Border>
+
+        <!-- Cuadro que muestra la verificacion de agregado -->
+
+        <Border x:Name="RecordatorioGuardado" Visibility="Collapsed" Width="250" Height="45" VerticalAlignment="Top" Margin="0 40 0 0" CornerRadius="10" Background="#26263B">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Image Margin="20 0 0 0" Width="20" Source="/Imagenes/comprobado.png"/>
+                <TextBlock Width="200" Height="15" Foreground="#fff" FontSize="15" TextAlignment="Center" Text="Guardado con exito" />
+            </StackPanel>
+        </Border>
+        
+        <!-- Cuadro para la eliminacion de un recordatorio -->
+
+        <Border Visibility="Collapsed" x:Name="RecordatorioEliminado" Width="250" Height="45" VerticalAlignment="Top" Margin="0 40 0 0" CornerRadius="10" Background="#26263B">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Image Margin="20 0 0 0" Width="20" Source="/Imagenes/eliminar.png"/>
+                <TextBlock Width="200" Height="15" Foreground="#fff" FontSize="15" TextAlignment="Center" Text="Recordatorio eliminado" />
+            </StackPanel>
+        </Border>
 
         <!-- Cuadro Programar Recordatorio -->
 
         <!-- Rectángulo contenedor -->
-        <Border x:Name="ContenedorAddRecordatorio" Width="310" Background="#ffffff" Margin="0 0 80 150" CornerRadius="20" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+        <Border Visibility="Collapsed" x:Name="ContenedorAddRecordatorio" Width="310" Background="#ffffff" Margin="0 0 80 150" CornerRadius="20" HorizontalAlignment="Right" VerticalAlignment="Bottom">
 
             <Border.Effect>
                 <DropShadowEffect BlurRadius="20" ShadowDepth="0" Color="Black" Opacity="0.25"/>
@@ -115,12 +157,12 @@
                 <!-- Campo para seleccionar la hora -->
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0 10">
 
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Vertical">
                         <TextBlock FontSize="19" HorizontalAlignment="Left" Margin="10 0 0 10" Text="Hora:" Width="55"/>
                         
                         <!-- Error Hora -->
                         
-                        <TextBlock x:Name="ErrorHora" FontSize="15" HorizontalAlignment="Right" Visibility="Collapsed" Margin="2 3 0 0" Text="Error" Foreground="Red"/>
+                        <TextBlock x:Name="ErrorHora" FontSize="15" HorizontalAlignment="Left" Visibility="Collapsed" Margin="10 0 0 10" Text="Error" Foreground="Red"/>
                     </StackPanel>
 
                     <Border Width="255" CornerRadius="10" BorderBrush="#2C3E50" BorderThickness="2" Padding="0 10 5 10" Background="#fff">

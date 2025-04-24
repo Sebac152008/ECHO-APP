@@ -1,0 +1,65 @@
+﻿<UserControl x:Class="WPF_ECHO.View.DestacadoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ECHO.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             Background="#F1F1F1"
+             Loaded="DestacadoView_Loaded">
+
+    <UserControl.Resources>
+
+        <Storyboard x:Key="MostrarMensaje">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Duration="0:0:0">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Visible}" />
+            </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.3"/>
+        </Storyboard>
+
+        <Storyboard x:Key="OcultarMensaje">
+            <DoubleAnimation Storyboard.TargetProperty="Opacity" From="1" To="0" Duration="0:0:0.3"/>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" BeginTime="0:0:0.3">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Collapsed}" />
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+
+    </UserControl.Resources>
+
+
+    <Grid>
+
+        <Grid>
+
+            <!-- Cuadro para la eliminacion de un recordatorio -->
+
+            <Border Visibility="Collapsed" x:Name="RecordatorioDestacado" Width="280" Height="45" VerticalAlignment="Top" Margin="0 40 0 0" CornerRadius="10" Background="#26263B">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Image Margin="0 0 10 0" Width="20" Source="/Imagenes/eliminar.png"/>
+                    <TextBlock Width="210" Height="20" Foreground="#fff" FontSize="15" TextAlignment="Center" Text="El recordatorio fue desmarcado" />
+                </StackPanel>
+            </Border>
+
+            <!-- Cuadro para la eliminacion de un recordatorio -->
+
+            <Border Visibility="Collapsed" x:Name="RecordatorioEliminado" Width="250" Height="45" VerticalAlignment="Top" Margin="0 40 0 0" CornerRadius="10" Background="#26263B">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Image Margin="20 0 0 0" Width="20" Source="/Imagenes/eliminar.png"/>
+                    <TextBlock Width="200" Height="20" Foreground="#fff" FontSize="15" TextAlignment="Center" Text="Recordatorio eliminado" />
+                </StackPanel>
+            </Border>
+
+            <!-- Contenedor para los recordatorios destacados -->
+            <StackPanel x:Name="StackPanelContenedor" Orientation="Vertical" Margin="10">
+                <!-- Los recordatorios destacados se añaden aquí -->
+            </StackPanel>
+
+            <!-- Contenedor para los recordatorios no destacados -->
+            <StackPanel x:Name="PanelRecordatorios" Orientation="Vertical" Margin="10,0,10,10">
+                <!-- Los recordatorios no destacados se añaden aquí -->
+            </StackPanel>
+        </Grid>
+
+    </Grid>
+</UserControl>

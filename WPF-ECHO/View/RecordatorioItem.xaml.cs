@@ -13,6 +13,9 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Data.SQLite;
+using Microsoft.Data.Sqlite;
+using ECHO.ViewModels;
 
 namespace ECHO.View
 {
@@ -21,9 +24,20 @@ namespace ECHO.View
     /// </summary>
     /// 
 
+
     public partial class RecordatorioItem : UserControl
     {
         private bool estaDestacado = false;
+
+        public event EventHandler RecordatorioDestacadoEvent;
+
+
+        public bool EsDestacado => estaDestacado;
+
+        public event EventHandler<bool> DestacadoCambiado;
+
+        public event EventHandler<int> CambiarVisibilidadDesdeDestacado;
+
 
         public static readonly DependencyProperty DescripcionProperty =
             DependencyProperty.Register(nameof(Descripcion), typeof(string), typeof(RecordatorioItem));
@@ -66,6 +80,7 @@ namespace ECHO.View
         {
             // Disparar el evento para que el contenedor lo maneje
             EliminarRecordatorio?.Invoke(this, EventArgs.Empty);
+
         }
 
         // Método para el corazón (Favorito)
@@ -82,6 +97,29 @@ namespace ECHO.View
 
             img.Source = new BitmapImage(new Uri(uri, UriKind.Relative));
 
+            // Guardar el estado en la base de datos
+            try
+            {
+                using (var connection = new SQLiteConnection("Data Source=ECHO.db;"))
+                {
+                    connection.Open();
+                    string update = "UPDATE Recordatorios SET Destacado = @Destacado WHERE ID_Recordatorios = @ID";
+                    var command = new SQLiteCommand(update, connection);
+                    command.Parameters.AddWithValue("@Destacado", estaDestacado ? 1 : 0);
+                    command.Parameters.AddWithValue("@ID", ID_Recordatorios);
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al actualizar destacado: {ex.Message}");
+            }
+
+            RecordatorioDestacadoEvent?.Invoke(this, EventArgs.Empty);
+
+            RecordatorioEventAggregator.RaiseDestacadoToggled(this, estaDestacado);
+
+            CambiarVisibilidadDesdeDestacado?.Invoke(this, ID_Recordatorios);
             // Aquí puedes guardar el estado si lo necesitas
         }
 
@@ -96,6 +134,21 @@ namespace ECHO.View
         {
             get => (int)GetValue(ID_RecordatoriosProperty);
             set => SetValue(ID_RecordatoriosProperty, value);
+        }
+
+        public void SetEstaDestacadoDesdeBD(bool valor)
+        {
+            estaDestacado = valor;
+
+            var uri = estaDestacado
+                ? "/Imagenes/EstrellaRellenada.png"
+                : "/Imagenes/EstrellaVaciaAmarilla.png";
+
+            // Después de cambiar estaDestacado y guardar en BD...
+            imgDestacado.Source = new BitmapImage(new Uri(uri, UriKind.Relative));
+            // Y lanzas el evento:
+            DestacadoCambiado?.Invoke(this, estaDestacado);
+
         }
 
 

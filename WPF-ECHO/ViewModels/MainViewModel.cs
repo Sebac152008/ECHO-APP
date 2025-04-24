@@ -26,13 +26,13 @@ namespace WPF_ECHO.ViewModels
         public ICommand ShowMenuNavCommand { get; }
 
         public ICommand ShowCalendarioCommand { get; }
-        public ICommand ShowMisRecordatoriosViewCommand { get; }
+        public ICommand ShowDestacadoViewCommand { get; }
 
         public MainViewModel()
         {
             //Initialize commands
             ShowInicioViewCommand = new ViewModelCommand(ExecuteShowInicioViewCommand);
-            ShowMisRecordatoriosViewCommand = new ViewModelCommand(ExecuteShowMisRecordatoriosViewCommand);
+            ShowDestacadoViewCommand = new ViewModelCommand(ExecuteShowDestacadoViewCommand);
             ShowAcercaDeCommand = new ViewModelCommand(ExecuteShowAcercaDeCommand);
             ShowMenuNavCommand = new ViewModelCommand(ExecuteShowMenuNavCommand);
             ShowCalendarioCommand = new ViewModelCommand(ExecuteShowCalendarioCommand);
@@ -61,9 +61,9 @@ namespace WPF_ECHO.ViewModels
         {
             CurrentChildView = new InicioView();
         }
-        private void ExecuteShowMisRecordatoriosViewCommand(object obj)
+        private void ExecuteShowDestacadoViewCommand(object obj)
         {
-            CurrentChildView = new MisRecordatoriosView();
+            CurrentChildView = new DestacadoView();
         }
     }
 }

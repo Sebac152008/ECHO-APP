@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Sebastian Cuevas\Desktop\Proyecto echo\WPF-ECHO\App.xaml
-72070545178
+7-637330072
 2-1140688320
-20575369212
-70343433845
-SplashScreen.xaml;View\AcercaDeView.xaml;View\CalendarioView.xaml;View\InicioView.xaml;View\MenuNav.xaml;View\MisRecordatorios.xaml;View\RecordatorioItem.xaml;
+21110611244
+47-1192744874
+SplashScreen.xaml;View\AcercaDeView.xaml;View\CalendarioView.xaml;View\InicioView.xaml;View\MenuNav.xaml;View\DestacadoView.xaml;View\RecordatorioItem.xaml;
 
-False
+True
 

@@ -21,8 +21,8 @@
             <local:CalendarioView/>
         </DataTemplate>
 
-        <DataTemplate DataType="{x:Type viewModel:MisRecordatoriosView}">
-            <local:MisRecordatoriosVIEW/>
+        <DataTemplate DataType="{x:Type viewModel:DestacadoView}">
+            <local:DestacadoView/>
         </DataTemplate>
 
         <DataTemplate DataType="{x:Type viewModel:AcercaDeView}">
@@ -33,7 +33,7 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <!-- Menu de navegacion -->
-            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="260"/>
             <!-- Seccion del contenido -->
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
@@ -44,7 +44,7 @@
 
             <DockPanel LastChildFill="True">
                 <!-- Logo -->
-                <Border Width="249" Height="130" Background="#1B263B" DockPanel.Dock="Top">
+                <Border Width="260" Height="130" Background="#1B263B" DockPanel.Dock="Top">
                     <Image Margin="0 20 0 20" Width="250" Source="/Imagenes/ECHOLOGO2.png" Stretch="Uniform"/>
                 </Border>
 
@@ -83,7 +83,7 @@
 
                     <!-- Boton Destacados -->
 
-                    <Button Grid.Row="1" Margin="0 35 0 0" Cursor="Hand" Width="230" Height="50" FontSize="18" FontFamily="Sans Serif Collection" Foreground="white" VerticalAlignment="Top" HorizontalAlignment="Center" Command="{Binding ShowMisRecordatoriosViewCommand}">
+                    <Button Grid.Row="1" Margin="0 25 0 0" Cursor="Hand" Width="230" Height="50" FontSize="18" FontFamily="Sans Serif Collection" Foreground="white" VerticalAlignment="Top" HorizontalAlignment="Center" Command="{Binding ShowDestacadoViewCommand}">
 
                         <StackPanel HorizontalAlignment="Left" Margin="-50 0 0 0" Orientation="Horizontal">
                             <Image VerticalAlignment="Center" Source="/Imagenes/EstrellaVacia.png" Width="25"/>
@@ -107,7 +107,7 @@
 
                     <!-- Boton Calendario -->
 
-                    <Button Grid.Row="1" Margin="0 120 0 0" Cursor="Hand" Width="230" Height="50" FontSize="18" FontFamily="Sans Serif Collection" Foreground="white" VerticalAlignment="Top" HorizontalAlignment="Center" Command="{Binding ShowCalendarioCommand}">
+                    <Button Grid.Row="1" Margin="0 100 0 0" Cursor="Hand" Width="230" Height="50" FontSize="18" FontFamily="Sans Serif Collection" Foreground="white" VerticalAlignment="Top" HorizontalAlignment="Center" Command="{Binding ShowCalendarioCommand}">
 
                         <StackPanel HorizontalAlignment="Left" Margin="-50 0 0 0" Orientation="Horizontal">
                             <Image VerticalAlignment="Center" Source="/Imagenes/calendario.png" Width="25"/>

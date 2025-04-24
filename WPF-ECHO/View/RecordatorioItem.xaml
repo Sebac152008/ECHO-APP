@@ -14,42 +14,46 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <StackPanel>
-                <TextBlock Text="{Binding Descripcion}" FontSize="18" FontWeight="Bold" Foreground="#2C3E50"/>
-                <TextBlock Text="{Binding Fecha}" FontSize="16" Foreground="#2C3E50" Margin="0,5,0,0"/>
-                <TextBlock Text="{Binding Hora}" FontSize="16" Foreground="#2C3E50"/>
+                <TextBlock Text="{Binding Descripcion, RelativeSource={RelativeSource AncestorType=UserControl}}" FontSize="18" FontWeight="Bold" Foreground="#2C3E50"/>
+                <TextBlock Text="{Binding Fecha, RelativeSource={RelativeSource AncestorType=UserControl}}" FontSize="16" Foreground="#2C3E50" Margin="0,5,0,0"/>
+                <TextBlock Text="{Binding Hora, RelativeSource={RelativeSource AncestorType=UserControl}}" FontSize="16" Foreground="#2C3E50"/>
             </StackPanel>
             <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Top" Margin="10,0,0,0">
-                
-                <!-- Boton de Corazon -->
-
-                <Button Margin="0 0 10 0" Width="35" Height="35" Background="Transparent"
-                ToolTip="Marcar como destacado" Click="btnDestacado_Click">
-                    <Image Source="/Imagenes/EstrellaVaciaAmarilla.png" Width="25" Height="25"/>
+                <!-- Botón de Destacado -->
+                <Button x:Name="btnDestacado" Margin="0,0,10,0" Width="35" Height="35"
+            Background="Transparent" ToolTip="Marcar como destacado"
+            Click="btnDestacado_Click">
+                    <!-- Nombramos la imagen para poder cambiarla en code-behind -->
+                    <Image x:Name="imgDestacado" Source="/Imagenes/EstrellaVaciaAmarilla.png"
+               Width="25" Height="25"/>
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
-                            <Border Cursor="Hand" BorderBrush="#26263B" BorderThickness="1.3" Background="#fff" CornerRadius="40" x:Name="ButtonHover">
-                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <Border Cursor="Hand" BorderBrush="#26263B" BorderThickness="1.3"
+                        Background="#fff" CornerRadius="40">
+                                <ContentPresenter HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"/>
                             </Border>
                         </ControlTemplate>
                     </Button.Template>
-                    
-                    <!-- Boton de borrar -->
-
                 </Button>
-                <Button Width="35" Height="35" Background="Transparent" BorderThickness="0"
-                ToolTip="Eliminar recordatorio" Click="btnBorrar_Click">
-                    <Image Source="/Imagenes/borrar.png" Width="25" Height="25"/>
 
+                <!-- Botón de borrar -->
+                <Button x:Name="btnBorrar" Width="35" Height="35" Background="Transparent"
+            BorderThickness="0" ToolTip="Eliminar recordatorio"
+            Click="btnBorrar_Click">
+                    <Image Source="/Imagenes/borrar.png" Width="25" Height="25"/>
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
-                            <Border Cursor="Hand" BorderBrush="#26263B" BorderThickness="1.3" Background="#fff" CornerRadius="40">
-                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <Border Cursor="Hand" BorderBrush="#26263B" BorderThickness="1.3"
+                        Background="#fff" CornerRadius="40">
+                                <ContentPresenter HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"/>
                             </Border>
                         </ControlTemplate>
                     </Button.Template>
-
                 </Button>
             </StackPanel>
+
         </Grid>
     </Border>
 </UserControl>
