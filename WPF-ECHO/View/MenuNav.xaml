@@ -4,6 +4,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:WPF_ECHO.View"
+             xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
              xmlns:viewModel="clr-namespace:WPF_ECHO.ViewModels"
              d:DesignHeight="700" d:DesignWidth="1180"
              mc:Ignorable="d">
@@ -44,112 +45,68 @@
 
             <DockPanel LastChildFill="True">
                 <!-- Logo -->
-                <Border Width="260" Height="130" Background="#1B263B" DockPanel.Dock="Top">
+                <Border Width="260" Margin="0 0 0 30" Height="130" Background="Transparent" BorderBrush="#A2AAB2" BorderThickness="0,0,0,2" DockPanel.Dock="Top">
                     <Image Margin="0 20 0 20" Width="250" Source="/Imagenes/ECHOLOGO2.png" Stretch="Uniform"/>
                 </Border>
 
                 <!-- Contenedor de botones -->
                 <Grid DockPanel.Dock="Top" VerticalAlignment="Stretch">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="60"/>
                         <!-- Para el botón de inicio -->
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
                         <RowDefinition Height="*"/>
                         <!-- Espacio en medio -->
-                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="auto"/>
                         <!-- Para el botón de Acerca de -->
                     </Grid.RowDefinitions>
 
                     <!-- Botón de Inicio -->
-                    <Button Grid.Row="0" Cursor="Hand" Margin="0 30 0 0" Width="230" Height="50" FontSize="18" FontFamily="Sans Serif Collection" Foreground="white" HorizontalAlignment="Center" Command="{Binding ShowInicioViewCommand}">
 
-                        <StackPanel Width="180" HorizontalAlignment="Left" Orientation="Horizontal">
-                            <Image VerticalAlignment="Center" Source="/Imagenes/home.png" Width="25" Margin="0 0 0 0"/>
-                            <TextBlock VerticalAlignment="Center" Text="Inicio" Margin="20 0 0 0" Foreground="White" FontSize="16"/>
+                    <RadioButton Grid.Row="0" Style="{StaticResource menuButton}" Tag="#fff" >
+                        <StackPanel Orientation="Horizontal">
+                            <fa:IconImage Icon="Home" Style="{StaticResource menuButtonIcon}" />
+                            <TextBlock Text="Inicio" Style="{StaticResource menuButtonText}" />
                         </StackPanel>
-
-                        <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <Border CornerRadius="10" Background="#1B263B" x:Name="ButtonBorder">
-                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Cursor="Hand"/>
-                                </Border>
-                                <ControlTemplate.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter TargetName="ButtonBorder" Property="Background" Value="#274C77"/>
-                                    </Trigger>
-                                </ControlTemplate.Triggers>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
+                    </RadioButton>
 
                     <!-- Boton Destacados -->
 
-                    <Button Grid.Row="1" Margin="0 25 0 0" Cursor="Hand" Width="230" Height="50" FontSize="18" FontFamily="Sans Serif Collection" Foreground="white" VerticalAlignment="Top" HorizontalAlignment="Center" Command="{Binding ShowDestacadoViewCommand}">
-
-                        <StackPanel HorizontalAlignment="Left" Margin="-50 0 0 0" Orientation="Horizontal">
-                            <Image VerticalAlignment="Center" Source="/Imagenes/EstrellaVacia.png" Width="25"/>
-                            <TextBlock Text="Destacados" VerticalAlignment="Center" Margin="20 0 0 0" Foreground="White" FontSize="16"/>
+                    <RadioButton VerticalAlignment="Top" Grid.Row="1" Style="{StaticResource menuButton}" Tag="#fff" >
+                        <StackPanel Orientation="Horizontal">
+                            <fa:IconImage Icon="Star" IconFont="Solid"  Style="{StaticResource menuButtonIcon}" />
+                            <TextBlock Text="Destacado" Style="{StaticResource menuButtonText}" />
                         </StackPanel>
+                    </RadioButton>
+                    
+                    <!-- Boton Buscar -->
 
-                        <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <Border CornerRadius="10" Background="#1B263B" x:Name="ButtonBorder">
-                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Cursor="Hand"/>
-                                </Border>
-                                <ControlTemplate.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter TargetName="ButtonBorder" Property="Background" Value="#274C77"/>
-                                    </Trigger>
-                                </ControlTemplate.Triggers>
-                            </ControlTemplate>
-                        </Button.Template>
-
-                    </Button>
+                    <RadioButton VerticalAlignment="Top" Grid.Row="2" Style="{StaticResource menuButton}" Tag="#fff" >
+                        <StackPanel Orientation="Horizontal">
+                            <fa:IconImage Icon="Search" IconFont="Solid"  Style="{StaticResource menuButtonIcon}" />
+                            <TextBlock Text="Buscar" Style="{StaticResource menuButtonText}" />
+                        </StackPanel>
+                    </RadioButton>
 
                     <!-- Boton Calendario -->
 
-                    <Button Grid.Row="1" Margin="0 100 0 0" Cursor="Hand" Width="230" Height="50" FontSize="18" FontFamily="Sans Serif Collection" Foreground="white" VerticalAlignment="Top" HorizontalAlignment="Center" Command="{Binding ShowCalendarioCommand}">
-
-                        <StackPanel HorizontalAlignment="Left" Margin="-50 0 0 0" Orientation="Horizontal">
-                            <Image VerticalAlignment="Center" Source="/Imagenes/calendario.png" Width="25"/>
-                            <TextBlock Text="Calendario" VerticalAlignment="Center" Margin="20 0 0 0" Foreground="White" FontSize="16"/>
+                    <RadioButton VerticalAlignment="Top" Grid.Row="3" Style="{StaticResource menuButton}" Tag="#fff" >
+                        <StackPanel Orientation="Horizontal">
+                            <fa:IconImage Icon="Calendar" Style="{StaticResource menuButtonIcon}" />
+                            <TextBlock Text="Calendario" Style="{StaticResource menuButtonText}" />
                         </StackPanel>
-
-                        <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <Border CornerRadius="10" Background="#1B263B" x:Name="ButtonBorder">
-                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Cursor="Hand"/>
-                                </Border>
-                                <ControlTemplate.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter TargetName="ButtonBorder" Property="Background" Value="#274C77"/>
-                                    </Trigger>
-                                </ControlTemplate.Triggers>
-                            </ControlTemplate>
-                        </Button.Template>
-
-                    </Button>
+                    </RadioButton>
 
                     <!-- Botón de Acerca de -->
-                    <Button Grid.Row="2" Cursor="Hand" Width="230" Height="50" FontSize="18" FontFamily="Sans Serif Collection" Foreground="white" HorizontalAlignment="Center" Margin="0 20 0 20" Command="{Binding ShowAcercaDeCommand}">
 
-                        <StackPanel Width="170" HorizontalAlignment="Left" Orientation="Horizontal">
-                            <Image VerticalAlignment="Center" Source="/Imagenes/AcercaDe.png" Width="25" Margin="0 0 0 0"/>
-                            <TextBlock Text="Acerca de" VerticalAlignment="Center" Margin="20 0 0 0" Foreground="White" FontSize="16"/>
+                    <RadioButton Margin="0 10 0 10" Grid.Row="4" Style="{StaticResource menuButton}" Tag="#fff" >
+                        <StackPanel Orientation="Horizontal">
+                            <fa:IconImage Icon="ExclamationCircle" Style="{StaticResource menuButtonIcon}" />
+                            <TextBlock Text="Acerca de" Style="{StaticResource menuButtonText}" />
                         </StackPanel>
-
-                        <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <Border CornerRadius="10" Background="#2A5069" x:Name="ButtonBorder">
-                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Cursor="Hand"/>
-                                </Border>
-                                <ControlTemplate.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter TargetName="ButtonBorder" Property="Background" Value="#3A6F91"/>
-                                    </Trigger>
-                                </ControlTemplate.Triggers>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
+                    </RadioButton>
+                    
                 </Grid>
             </DockPanel>
         </Border>

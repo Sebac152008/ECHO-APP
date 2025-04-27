@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Sebastian Cuevas\Desktop\Proyecto echo\WPF-ECHO\obj\Debug\
+C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\obj\Debug\
 ECHO
 none
 false
 DEBUG;TRACE
-C:\Users\Sebastian Cuevas\Desktop\Proyecto echo\WPF-ECHO\App.xaml
-7-637330072
-2-1140688320
+C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\App.xaml
+8-501850025
+2-1901535790
 21110611244
-47-1192744874
-SplashScreen.xaml;View\AcercaDeView.xaml;View\CalendarioView.xaml;View\InicioView.xaml;View\MenuNav.xaml;View\DestacadoView.xaml;View\RecordatorioItem.xaml;
+48-654430076
+SplashScreen.xaml;Style\ButtonStyles.xaml;View\AcercaDeView.xaml;View\CalendarioView.xaml;View\InicioView.xaml;View\MenuNav.xaml;View\DestacadoView.xaml;View\RecordatorioItem.xaml;
 
 True
 

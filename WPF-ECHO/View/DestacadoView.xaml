@@ -32,23 +32,7 @@
 
         <Grid>
 
-            <!-- Cuadro para la eliminacion de un recordatorio -->
-
-            <Border Visibility="Collapsed" x:Name="RecordatorioDestacado" Width="280" Height="45" VerticalAlignment="Top" Margin="0 40 0 0" CornerRadius="10" Background="#26263B">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Image Margin="0 0 10 0" Width="20" Source="/Imagenes/eliminar.png"/>
-                    <TextBlock Width="210" Height="20" Foreground="#fff" FontSize="15" TextAlignment="Center" Text="El recordatorio fue desmarcado" />
-                </StackPanel>
-            </Border>
-
-            <!-- Cuadro para la eliminacion de un recordatorio -->
-
-            <Border Visibility="Collapsed" x:Name="RecordatorioEliminado" Width="250" Height="45" VerticalAlignment="Top" Margin="0 40 0 0" CornerRadius="10" Background="#26263B">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Image Margin="20 0 0 0" Width="20" Source="/Imagenes/eliminar.png"/>
-                    <TextBlock Width="200" Height="20" Foreground="#fff" FontSize="15" TextAlignment="Center" Text="Recordatorio eliminado" />
-                </StackPanel>
-            </Border>
+            <StackPanel x:Name="StackMensajes" VerticalAlignment="Top" Width="220" Margin="10" Orientation="Vertical" />
 
             <!-- Contenedor para los recordatorios destacados -->
             <StackPanel x:Name="StackPanelContenedor" Orientation="Vertical" Margin="10">

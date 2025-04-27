@@ -1,10 +1,10 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Sebastian Cuevas\\Desktop\\Proyecto echo\\WPF-ECHO\\",
+  "WorkspaceRootPath": "C:\\Users\\Sebastian Cuevas\\Desktop\\ECHO-APP\\WPF-ECHO\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B8C7A4A0-368E-4D6C-9D5E-173D4B4EF5CA}|ECHO.csproj|c:\\users\\sebastian cuevas\\desktop\\proyecto echo\\wpf-echo\\view\\inicioview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{B8C7A4A0-368E-4D6C-9D5E-173D4B4EF5CA}|ECHO.csproj|solutionrelative:view\\inicioview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{B8C7A4A0-368E-4D6C-9D5E-173D4B4EF5CA}|ECHO.csproj|c:\\users\\sebastian cuevas\\desktop\\echo-app\\wpf-echo\\view\\menunav.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{B8C7A4A0-368E-4D6C-9D5E-173D4B4EF5CA}|ECHO.csproj|solutionrelative:view\\menunav.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -23,13 +23,13 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "InicioView.xaml",
-              "DocumentMoniker": "C:\\Users\\Sebastian Cuevas\\Desktop\\Proyecto echo\\WPF-ECHO\\View\\InicioView.xaml",
-              "RelativeDocumentMoniker": "View\\InicioView.xaml",
-              "ToolTip": "C:\\Users\\Sebastian Cuevas\\Desktop\\Proyecto echo\\WPF-ECHO\\View\\InicioView.xaml*",
-              "RelativeToolTip": "View\\InicioView.xaml*",
+              "Title": "MenuNav.xaml",
+              "DocumentMoniker": "C:\\Users\\Sebastian Cuevas\\Desktop\\ECHO-APP\\WPF-ECHO\\View\\MenuNav.xaml",
+              "RelativeDocumentMoniker": "View\\MenuNav.xaml",
+              "ToolTip": "C:\\Users\\Sebastian Cuevas\\Desktop\\ECHO-APP\\WPF-ECHO\\View\\MenuNav.xaml",
+              "RelativeToolTip": "View\\MenuNav.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-04-24T17:51:57.634Z",
+              "WhenOpened": "2025-04-27T20:50:58.473Z",
               "EditorCaption": ""
             }
           ]

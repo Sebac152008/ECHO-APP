@@ -329,21 +329,7 @@ namespace WPF_ECHO.View
 
         private void MostrarRecordatorioGuardado()
         {
-            RecordatorioGuardado.Visibility = Visibility.Visible;
-            var storyboard = (Storyboard)this.FindResource("MostrarMensaje");
-            Storyboard.SetTarget(storyboard, RecordatorioGuardado);
-            storyboard.Begin();
-
-            // Ocultarlo automáticamente después de 2 segundos
-            Task.Delay(2000).ContinueWith(_ =>
-            {
-                Dispatcher.Invoke(() =>
-                {
-                    var ocultar = (Storyboard)this.FindResource("OcultarMensaje");
-                    Storyboard.SetTarget(ocultar, RecordatorioGuardado);
-                    ocultar.Begin();
-                });
-            });
+            MostrarMensaje("Recordatorio añadido", "comprobado.png");
         }
 
         private void RecordatorioDestacadoDesdeItem(object sender, EventArgs e)
@@ -353,50 +339,64 @@ namespace WPF_ECHO.View
 
         public void MostrarRecordatorioEliminado()
         {
-            RecordatorioEliminado.Visibility = Visibility.Visible;
-
-            var storyboard = (Storyboard)this.FindResource("MostrarMensaje");
-            Storyboard.SetTarget(storyboard, RecordatorioEliminado);
-            storyboard.Begin();
-
-            // Ocultar automáticamente después de 2 segundos
-            DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(2);
-            timer.Tick += (s, e) =>
-            {
-                timer.Stop();
-                var hideStoryboard = (Storyboard)this.FindResource("OcultarMensaje");
-                Storyboard.SetTarget(hideStoryboard, RecordatorioEliminado);
-                hideStoryboard.Begin();
-            };
-            timer.Start();
+            MostrarMensaje("Recordatorio eliminado", "eliminar.png");
         }
 
         private void MostrarRecordatorioDestacado()
         {
-            // Establecer la visibilidad a visible
-            RecordatorioDestacado.Visibility = Visibility.Visible;
-
-            // Obtener y comenzar la animación de mostrar mensaje
-            Storyboard mostrar = (Storyboard)this.Resources["MostrarMensaje"];
-            Storyboard.SetTarget(mostrar, RecordatorioDestacado);
-            mostrar.Begin();
-
-            // Iniciar un temporizador para ocultarlo después de unos segundos
-            var temporizador = new System.Windows.Threading.DispatcherTimer
-            {
-                Interval = TimeSpan.FromSeconds(2)
-            };
-            temporizador.Tick += (s, e) =>
-            {
-                temporizador.Stop();
-
-                Storyboard ocultar = (Storyboard)this.Resources["OcultarMensaje"];
-                Storyboard.SetTarget(ocultar, RecordatorioDestacado);
-                ocultar.Begin();
-            };
-            temporizador.Start();
+            MostrarMensaje("Recordatorio destacado", "EstrellaRellenada.png");
         }
+
+        /* Estos son los mensajes que te dicen cuando añadiste o eliminaste y destacaste un recordatorio */
+        private async void MostrarMensaje(string texto, string icono)
+        {
+            // Crear contenedor del mensaje
+            Border borde = new Border
+            {
+                Background = new SolidColorBrush(Color.FromRgb(30, 30, 30)),
+                CornerRadius = new CornerRadius(10),
+                Margin = new Thickness(0, 5, 0, 0),
+                Padding = new Thickness(10),
+                Opacity = 0,
+                Child = new StackPanel
+                {
+                    Orientation = Orientation.Horizontal,
+                    Children =
+            {
+                new Image
+                {
+                    Source = new BitmapImage(new Uri($"pack://application:,,,/Imagenes/{icono}", UriKind.Absolute)),
+                    Width = 24,
+                    Height = 24,
+                    Margin = new Thickness(0,0,10,0)
+                },
+                new TextBlock
+                {
+                    Text = texto,
+                    Foreground = Brushes.White,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    FontSize = 14,
+                    TextWrapping = TextWrapping.Wrap
+                }
+            }
+                }
+            };
+
+            StackMensajes.Children.Add(borde);
+
+            // Animación de entrada (fade-in)
+            DoubleAnimation fadeIn = new DoubleAnimation(0, 1, TimeSpan.FromMilliseconds(300));
+            borde.BeginAnimation(Border.OpacityProperty, fadeIn);
+
+            // Esperar 2.5 segundos
+            await Task.Delay(2500);
+
+            // Animación de salida (fade-out)
+            DoubleAnimation fadeOut = new DoubleAnimation(1, 0, TimeSpan.FromMilliseconds(300));
+            fadeOut.Completed += (s, e) => StackMensajes.Children.Remove(borde);
+            borde.BeginAnimation(Border.OpacityProperty, fadeOut);
+        }
+
 
 
 

@@ -5,11 +5,21 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              StartupUri="SplashScreen.xaml">
     <Application.Resources>
+        <!-- Merged dictionaries for Material Design -->
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <materialDesign:BundledTheme BaseTheme="Light" PrimaryColor="BlueGrey"  SecondaryColor="Lime" />
+                <!-- BaseTheme is Light, PrimaryColor is BlueGrey, SecondaryColor is Lime -->
+                <materialDesign:BundledTheme BaseTheme="Light" PrimaryColor="BlueGrey" SecondaryColor="Lime" />
+
+                <!-- Default MaterialDesign Styles -->
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign2.Defaults.xaml" />
+
+
+                <ResourceDictionary Source="/Style/ButtonStyles.xaml"/>
+
             </ResourceDictionary.MergedDictionaries>
+
         </ResourceDictionary>
+
     </Application.Resources>
 </Application>

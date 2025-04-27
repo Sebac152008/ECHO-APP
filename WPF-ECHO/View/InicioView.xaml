@@ -94,32 +94,9 @@
             </Button>
         </Border>
         
-        <!-- Cuadro que muestra la verificacion del destacado -->
+        <!-- Mensajes de recordatorios añadidos eliminados y destacado -->
 
-        <Border x:Name="RecordatorioDestacado" Visibility="Collapsed" Width="250" Height="45" VerticalAlignment="Top" Margin="0 40 0 0" CornerRadius="10" Background="#26263B">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Image Margin="20 0 0 0" Width="20" Source="/Imagenes/EstrellaRellenada.png"/>
-                <TextBlock VerticalAlignment="Center" Width="200" Height="15" Foreground="#fff" FontSize="15" TextAlignment="Center" Text="Recordatorio destacado" />
-            </StackPanel>
-        </Border>
-
-        <!-- Cuadro que muestra la verificacion de agregado -->
-
-        <Border x:Name="RecordatorioGuardado" Visibility="Collapsed" Width="250" Height="45" VerticalAlignment="Top" Margin="0 40 0 0" CornerRadius="10" Background="#26263B">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Image Margin="20 0 0 0" Width="20" Source="/Imagenes/comprobado.png"/>
-                <TextBlock Width="200" Height="15" Foreground="#fff" FontSize="15" TextAlignment="Center" Text="Guardado con exito" />
-            </StackPanel>
-        </Border>
-        
-        <!-- Cuadro para la eliminacion de un recordatorio -->
-
-        <Border Visibility="Collapsed" x:Name="RecordatorioEliminado" Width="250" Height="45" VerticalAlignment="Top" Margin="0 40 0 0" CornerRadius="10" Background="#26263B">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Image Margin="20 0 0 0" Width="20" Source="/Imagenes/eliminar.png"/>
-                <TextBlock Width="200" Height="15" Foreground="#fff" FontSize="15" TextAlignment="Center" Text="Recordatorio eliminado" />
-            </StackPanel>
-        </Border>
+        <StackPanel x:Name="StackMensajes" VerticalAlignment="Top" Width="220" Margin="10" Orientation="Vertical" />
 
         <!-- Cuadro Programar Recordatorio -->
 

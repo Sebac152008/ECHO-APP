@@ -57,22 +57,7 @@ namespace WPF_ECHO.View
 
         private void MostrarRecordatorioDesmarcado()
         {
-            RecordatorioDestacado.Visibility = Visibility.Visible;
-
-            var storyboard = (Storyboard)this.FindResource("MostrarMensaje");
-            Storyboard.SetTarget(storyboard, RecordatorioDestacado);
-            storyboard.Begin();
-
-            DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(2);
-            timer.Tick += (s, e) =>
-            {
-                timer.Stop();
-                var ocultar = (Storyboard)this.FindResource("OcultarMensaje");
-                Storyboard.SetTarget(ocultar, RecordatorioDestacado);
-                ocultar.Begin();
-            };
-            timer.Start();
+            MostrarMensaje("Recordatorio desmarcado", "EstrellaVaciaAmarilla.png");
         }
 
 
@@ -140,28 +125,59 @@ namespace WPF_ECHO.View
 
         private void MostrarRecordatorioEliminado()
         {
-            // Hacer visible el mensaje de eliminación
-            RecordatorioEliminado.Visibility = Visibility.Visible;
-
-            // Obtener la animación definida en XAML para mostrar el mensaje
-            var sb = (Storyboard)Resources["MostrarMensaje"];
-            Storyboard.SetTarget(sb, RecordatorioEliminado);
-            sb.Begin();
-
-            // Temporizador para ocultar el mensaje después de 2 segundos
-            var timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(2) };
-            timer.Tick += (s, e) =>
-            {
-                timer.Stop();
-                var hide = (Storyboard)Resources["OcultarMensaje"];
-                Storyboard.SetTarget(hide, RecordatorioEliminado);
-                hide.Begin();
-            };
-            timer.Start();
+            MostrarMensaje("Recordatorio eliminado", "eliminar.png");
         }
 
+        /* Estos son los mensajes que te dicen cuando añadiste o eliminaste y destacaste un recordatorio */
 
+        private async void MostrarMensaje(string texto, string icono)
+        {
+            // Crear contenedor del mensaje
+            Border borde = new Border
+            {
+                Background = new SolidColorBrush(Color.FromRgb(30, 30, 30)),
+                CornerRadius = new CornerRadius(10),
+                Margin = new Thickness(0, 5, 0, 0),
+                Padding = new Thickness(10),
+                Opacity = 0,
+                Child = new StackPanel
+                {
+                    Orientation = Orientation.Horizontal,
+                    Children =
+            {
+                new Image
+                {
+                    Source = new BitmapImage(new Uri($"pack://application:,,,/Imagenes/{icono}", UriKind.Absolute)),
+                    Width = 24,
+                    Height = 24,
+                    Margin = new Thickness(0,0,10,0)
+                },
+                new TextBlock
+                {
+                    Text = texto,
+                    Foreground = Brushes.White,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    FontSize = 14,
+                    TextWrapping = TextWrapping.Wrap
+                }
+            }
+                }
+            };
 
+            StackMensajes.Children.Add(borde);
+
+            // Animación de entrada (fade-in)
+            DoubleAnimation fadeIn = new DoubleAnimation(0, 1, TimeSpan.FromMilliseconds(300));
+            borde.BeginAnimation(Border.OpacityProperty, fadeIn);
+
+            // Esperar 2.5 segundos
+            await Task.Delay(2500);
+
+            // Animación de salida (fade-out)
+            DoubleAnimation fadeOut = new DoubleAnimation(1, 0, TimeSpan.FromMilliseconds(300));
+            fadeOut.Completed += (s, e) => StackMensajes.Children.Remove(borde);
+            borde.BeginAnimation(Border.OpacityProperty, fadeOut);
+        }
 
         private void OnDestacadoToggled(RecordatorioItem item, bool isDestacado)
         {
