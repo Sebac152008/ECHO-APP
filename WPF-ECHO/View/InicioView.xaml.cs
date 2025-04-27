@@ -17,7 +17,6 @@ using System.Data.SQLite;
 using Microsoft.Data.Sqlite;
 using ECHO.View;
 using System.Windows.Threading;
-using ECHO.ViewModels;
 
 namespace WPF_ECHO.View
 {
@@ -35,7 +34,7 @@ namespace WPF_ECHO.View
         {
             InitializeComponent(); // Asegúrate de que esta línea esté primero
 
-            RecordatorioEventAggregator.DestacadoToggled += OnDestacadoToggled;
+            RecordatorioEventAggregator.RecordatorioDesdestacado += OnRecordatorioDesdestacado;
 
             this.Loaded += InicioView_Loaded;
         }
@@ -48,23 +47,18 @@ namespace WPF_ECHO.View
             ActualizarRecordatorios();
         }
 
-        private void OnDestacadoToggled(RecordatorioItem item, bool isDestacado)
+        private void OnRecordatorioDesdestacado(RecordatorioItem item)
         {
-            // 1) Quitarlo de su padre actual (si lo tuviera)
             var parent = LogicalTreeHelper.GetParent(item) as Panel;
             if (parent != null)
             {
-                parent.Children.Remove(item);
+                parent.Children.Remove(item);  // Lo quitas del contenedor anterior
             }
 
-            // 2) Si NO está destacado, volverlo a añadir a InicioView
-            if (!isDestacado)
-            {
-                PanelRecordatorios.Children.Add(item);
-            }
-            // Si isDestacado == true, no hagas nada aquí:
-            // ya ha sido movido a DestacadoView por su propio manejador.
+            PanelRecordatorios.Children.Add(item); // Ahora sí, lo agregas al nuevo
         }
+
+
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {

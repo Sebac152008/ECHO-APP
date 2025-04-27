@@ -15,7 +15,6 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.SQLite;
 using Microsoft.Data.Sqlite;
-using ECHO.ViewModels;
 
 namespace ECHO.View
 {
@@ -28,6 +27,9 @@ namespace ECHO.View
     public partial class RecordatorioItem : UserControl
     {
         private bool estaDestacado = false;
+
+        public bool IsDestacado { get; private set; } // o public set si quieres permitir cambiarlo externamente
+
 
         public event EventHandler RecordatorioDestacadoEvent;
 
@@ -90,6 +92,7 @@ namespace ECHO.View
             var img = btn.Content as Image;
 
             estaDestacado = !estaDestacado;
+            IsDestacado = estaDestacado; // <- AGREGA ESTO
 
             var uri = estaDestacado
                 ? "/Imagenes/EstrellaRellenada.png"
@@ -139,6 +142,8 @@ namespace ECHO.View
         public void SetEstaDestacadoDesdeBD(bool valor)
         {
             estaDestacado = valor;
+            IsDestacado = valor; // <- AGREGA ESTO
+
 
             var uri = estaDestacado
                 ? "/Imagenes/EstrellaRellenada.png"

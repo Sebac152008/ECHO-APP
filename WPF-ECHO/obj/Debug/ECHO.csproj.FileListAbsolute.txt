@@ -180,3 +180,4 @@ C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\obj\Debug\ECHO.exe
 C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\obj\Debug\ECHO.pdb
 C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\bin\Debug\FontAwesome.Sharp.dll
 C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\obj\Debug\Style\ButtonStyles.baml
+C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\bin\Debug\ECHO.xml

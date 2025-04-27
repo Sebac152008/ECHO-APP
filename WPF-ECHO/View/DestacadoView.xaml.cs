@@ -16,7 +16,6 @@ using System.Data.SQLite;
 using CommunityToolkit.WinUI.Notifications;
 using Microsoft.Data.Sqlite;
 using ECHO.View;
-using ECHO.ViewModels;
 using System.Windows.Media.Animation;
 using System.Windows.Threading;
 using System.Xml;
@@ -181,19 +180,16 @@ namespace WPF_ECHO.View
 
         private void OnDestacadoToggled(RecordatorioItem item, bool isDestacado)
         {
-            // 1) Quitarlo de su padre actual
-            var parent = LogicalTreeHelper.GetParent(item) as  Panel;
-            if (parent != null)
+            if (!item.IsDestacado)
             {
-                parent.Children.Remove(item);
-            }
+                // Si ya no está destacado, lo quitamos de destacados
+                StackPanelContenedor.Children.Remove(item);
 
-            // 2) Si está destacado, añadirlo a DestacadoView
-            if (isDestacado)
-            {
-                StackPanelContenedor.Children.Insert(0, item);
+                // 🔥 Y lanzamos un evento global para que InicioView lo reciba
+                RecordatorioEventAggregator.OnRecordatorioDesdestacado(item);
             }
         }
+
 
         private void EliminarRecordatorioDeBD(int id)
         {
@@ -260,7 +256,7 @@ namespace WPF_ECHO.View
         private void StartNotificacionTimer()
         {
             _notificacionTimer = new DispatcherTimer();
-            _notificacionTimer.Interval = TimeSpan.FromMinutes(1);  // Verifica cada minuto
+            _notificacionTimer.Interval = TimeSpan.FromMilliseconds(1);  // Verifica cada minuto
             _notificacionTimer.Tick += NotificacionTimer_Tick;
             _notificacionTimer.Start();
         }
@@ -325,8 +321,13 @@ namespace WPF_ECHO.View
 
         private void DestacadoView_Unloaded(object sender, RoutedEventArgs e)
         {
+            if (_notificacionTimer != null)
+            {
+                _notificacionTimer.Stop();
+                _notificacionTimer.Tick -= NotificacionTimer_Tick;
+                _notificacionTimer = null;
+            }
         }
-
 
     }
 
