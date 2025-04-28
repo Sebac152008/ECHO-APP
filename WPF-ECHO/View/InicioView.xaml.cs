@@ -416,10 +416,5 @@ namespace WPF_ECHO.View
             // Ahora, recargar los recordatorios desde la base de datos (separados por destacado o no)
             CargarRecordatoriosDesdeBD();  // Aquí puedes volver a llamar a tu método de carga.
         }
-
-
-        private void txtNota_TextChanged(object sender, TextChangedEventArgs e)
-        {
-        }
     }
 }

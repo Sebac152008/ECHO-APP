@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
 namespace WPF_ECHO.ViewModels
 {
-    public class CalendarioView : ViewModelBase
+    public class BuscarView : ViewModelBase
     {
     }
 }

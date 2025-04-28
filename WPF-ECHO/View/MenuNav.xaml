@@ -18,12 +18,13 @@
             <local:InicioView/>
         </DataTemplate>
 
-        <DataTemplate DataType="{x:Type viewModel:CalendarioView}">
-            <local:CalendarioView/>
-        </DataTemplate>
-
         <DataTemplate DataType="{x:Type viewModel:DestacadoView}">
             <local:DestacadoView/>
+        </DataTemplate>
+
+
+        <DataTemplate DataType="{x:Type viewModel:BuscarView}">
+            <local:BuscarView/>
         </DataTemplate>
 
         <DataTemplate DataType="{x:Type viewModel:AcercaDeView}">
@@ -45,7 +46,7 @@
 
             <DockPanel LastChildFill="True">
                 <!-- Logo -->
-                <Border Width="260" Margin="0 0 0 30" Height="130" Background="Transparent" BorderBrush="#A2AAB2" BorderThickness="0,0,0,2" DockPanel.Dock="Top">
+                <Border Width="260" Margin="0 0 0 30" Height="130" Background="Transparent" BorderBrush="#A2AAB2" BorderThickness="0,0,0,1" DockPanel.Dock="Top">
                     <Image Margin="0 20 0 20" Width="250" Source="/Imagenes/ECHOLOGO2.png" Stretch="Uniform"/>
                 </Border>
 
@@ -54,7 +55,6 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="60"/>
                         <!-- Para el botón de inicio -->
-                        <RowDefinition Height="60"/>
                         <RowDefinition Height="60"/>
                         <RowDefinition Height="*"/>
                         <!-- Espacio en medio -->
@@ -82,31 +82,22 @@
                     
                     <!-- Boton Buscar -->
 
-                    <RadioButton VerticalAlignment="Top" Grid.Row="2" Style="{StaticResource menuButton}" Tag="#fff" >
+                    <RadioButton Command="{Binding ShowBuscarViewCommand}" VerticalAlignment="Top" Grid.Row="2" Style="{StaticResource menuButton}" Tag="#fff" >
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="Search" IconFont="Solid"  Style="{StaticResource menuButtonIcon}" />
                             <TextBlock Text="Buscar" Style="{StaticResource menuButtonText}" />
                         </StackPanel>
                     </RadioButton>
 
-                    <!-- Boton Calendario -->
-
-                    <RadioButton Command="{Binding ShowCalendarioCommand}" VerticalAlignment="Top" Grid.Row="3" Style="{StaticResource menuButton}" Tag="#fff" >
-                        <StackPanel Orientation="Horizontal">
-                            <fa:IconImage Icon="Calendar" Style="{StaticResource menuButtonIcon}" />
-                            <TextBlock Text="Calendario" Style="{StaticResource menuButtonText}" />
-                        </StackPanel>
-                    </RadioButton>
-
                     <!-- Botón de Acerca de -->
 
-                    <RadioButton Command="{Binding ShowAcercaDeCommand}" Margin="0 10 0 20" Grid.Row="4" Style="{StaticResource menuButton}" Tag="#fff" >
+                    <RadioButton Grid.Row="3" Command="{Binding ShowAcercaDeCommand}" Margin="0 10 0 20" Style="{StaticResource menuButton}" Tag="#fff" >
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="ExclamationCircle" Style="{StaticResource menuButtonIcon}" />
                             <TextBlock Text="Acerca de" Style="{StaticResource menuButtonText}" />
                         </StackPanel>
                     </RadioButton>
-                    
+
                 </Grid>
             </DockPanel>
         </Border>

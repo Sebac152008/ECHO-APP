@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using ECHO.View;
 using WPF_ECHO.View;
 
 namespace WPF_ECHO.ViewModels
@@ -24,9 +25,9 @@ namespace WPF_ECHO.ViewModels
         public ICommand ShowInicioViewCommand { get; }
         public ICommand ShowAcercaDeCommand { get; }
         public ICommand ShowMenuNavCommand { get; }
-
-        public ICommand ShowCalendarioCommand { get; }
         public ICommand ShowDestacadoViewCommand { get; }
+
+        public ICommand ShowBuscarViewCommand { get; }
 
         public MainViewModel()
         {
@@ -35,16 +36,16 @@ namespace WPF_ECHO.ViewModels
             ShowDestacadoViewCommand = new ViewModelCommand(ExecuteShowDestacadoViewCommand);
             ShowAcercaDeCommand = new ViewModelCommand(ExecuteShowAcercaDeCommand);
             ShowMenuNavCommand = new ViewModelCommand(ExecuteShowMenuNavCommand);
-            ShowCalendarioCommand = new ViewModelCommand(ExecuteShowCalendarioCommand);
+            ShowBuscarViewCommand = new ViewModelCommand(ExecuteShowBuscarCommand);
 
             //Defaul view
 
             ExecuteShowInicioViewCommand(null);
         }
 
-        private void ExecuteShowCalendarioCommand(object obj)
+        private void ExecuteShowBuscarCommand(object obj)
         {
-            CurrentChildView = new CalendarioView();
+            CurrentChildView = new BuscarView();
         }
 
         private void ExecuteShowMenuNavCommand(object obj)
