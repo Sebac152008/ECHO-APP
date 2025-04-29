@@ -106,7 +106,13 @@
         <!-- Columna de la seccion del contenido -->
         <!-- Aqui se conectan cada una de las ventanas -->
 
-        <ContentControl x:Name="mainContent" Content="{Binding CurrentChildView}" Grid.Column="1"/>
+        <Border Background="#2C3E50" Grid.Column="1" >
+            <Grid>
+                <Border CornerRadius="20 20 20 20" >
+                    <ContentControl Grid.Row="1" x:Name="mainContent" Content="{Binding CurrentChildView}"/>
+                </Border>
+            </Grid>
+        </Border>
 
     </Grid>
 

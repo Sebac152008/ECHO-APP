@@ -144,6 +144,14 @@ namespace ECHO.View
             estaDestacado = valor;
             IsDestacado = valor; // <- AGREGA ESTO
 
+            if (estaDestacado)
+            {
+                btnDestacado.ToolTip = "Desmarcar recordatorio";
+            }
+            if (!estaDestacado)
+            {
+                btnDestacado.ToolTip = "Marcar como destacado";
+            }
 
             var uri = estaDestacado
                 ? "/Imagenes/EstrellaRellenada.png"

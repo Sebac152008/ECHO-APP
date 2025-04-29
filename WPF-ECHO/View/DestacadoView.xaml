@@ -32,7 +32,7 @@
 
         <Grid>
 
-            <StackPanel x:Name="StackMensajes" VerticalAlignment="Top" Width="220" Margin="10" Orientation="Vertical" />
+            <StackPanel Panel.ZIndex="100" x:Name="StackMensajes" VerticalAlignment="Top" Width="220" Margin="10" Orientation="Vertical" />
 
             <!-- Contenedor para los recordatorios destacados -->
             <StackPanel x:Name="StackPanelContenedor" Orientation="Vertical" Margin="10">

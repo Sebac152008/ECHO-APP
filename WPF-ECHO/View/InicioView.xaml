@@ -12,7 +12,7 @@
      TextElement.FontSize="13"
      TextOptions.TextFormattingMode="Ideal"
      TextOptions.TextRenderingMode="Auto"
-     Background="{DynamicResource MaterialDesignPaper}"
+     Background="#EFDECD"
      FontFamily="{DynamicResource MaterialDesignFont}"
              d:DesignHeight="700" d:DesignWidth="1180">
 
@@ -55,28 +55,21 @@
 
     </UserControl.Resources>
 
-
     <Grid>
 
-        <ScrollViewer Margin="10 3 0 0" VerticalScrollBarVisibility="Auto">
+        <!-- CONTENIDO SCROLLABLE -->
+        <ScrollViewer Margin="0 10 0 0" VerticalScrollBarVisibility="Auto">
             <StackPanel x:Name="PanelRecordatorios">
                 <!-- Aquí se agregarán los recordatorios dinámicamente -->
             </StackPanel>
         </ScrollViewer>
 
         <!-- Boton para agregar recordatorio. El boton azul oscuro -->
-        
+
         <!-- Texto que avisa de agregar un recordatorio -->
 
         <StackPanel Margin="0 0 200 75" VerticalAlignment="Bottom" HorizontalAlignment="Right" >
 
-            <Border Opacity="0.7">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <TextBlock Text="Crea un nuevo recordatorio" Foreground="#2C3E50" FontSize="30" FontWeight="Black"/>
-                    <fa:IconImage Icon="RightLong" Margin="20 0 0 0" Width="50" Foreground="#2C3E50"/>
-                </StackPanel>
-            </Border>
-            
         </StackPanel>
 
         <Border>
@@ -84,8 +77,8 @@
             <Border.Effect>
                 <DropShadowEffect BlurRadius="20" ShadowDepth="0" Color="Black" Opacity="0.25"/>
             </Border.Effect>
-            
-            
+
+
 
             <Button Cursor="Hand" Click="Button_Click" Margin="0 0 130 70" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="55"  Height="55">
 
@@ -109,7 +102,7 @@
                 </Button.Template>
             </Button>
         </Border>
-        
+
         <!-- Mensajes de recordatorios añadidos eliminados y destacado -->
 
         <StackPanel x:Name="StackMensajes" VerticalAlignment="Top" Width="220" Margin="10" Orientation="Vertical" />
@@ -129,19 +122,19 @@
 
             <StackPanel Margin="10">
                 <!-- Título del formulario -->
-                <TextBlock Text="Programar Recordatorio" FontSize="23.2" FontWeight="Bold" Foreground="#2C3E50" HorizontalAlignment="Center" Margin="0 10 0 20"/>
+                <TextBlock Text="Nuevo recordatorio" FontSize="23.2" FontWeight="Bold" Foreground="#2C3E50" HorizontalAlignment="Center" Margin="0 10 0 20"/>
 
                 <!-- Campo para el nombre del recordatorio -->
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
 
                     <StackPanel>
                         <TextBlock Text="Titulo:" FontSize="19" HorizontalAlignment="Left" Margin="10 0 0 5" Width="70" VerticalAlignment="Center"/>
-                        
+
                         <!-- Error Titulo -->
-                        
+
                         <TextBlock FontSize="15" Margin="10 5 0 5" Visibility="Collapsed" x:Name="ErrorTitulo" Foreground="Red" Text="Error" />
                     </StackPanel>
-                    
+
                     <Border Background="#2C3E50" Padding="0 20 0 20" Width="255" BorderThickness="4" CornerRadius="10">
                         <TextBox x:Name="txtNota" Text="Escribe algo..." Foreground="#A2AAB2" GotFocus="txtNota_GotFocus" LostFocus="txtNota_LostFocus" MaxLength="50" FontSize="15" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Background="#2C3E50" BorderBrush="#323748" BorderThickness="0" Height="30" Width="230"/>
                     </Border>
@@ -152,9 +145,9 @@
 
                     <StackPanel Orientation="Vertical">
                         <TextBlock FontSize="19" HorizontalAlignment="Left" Margin="10 0 0 10" Text="Hora:" Width="55"/>
-                        
+
                         <!-- Error Hora -->
-                        
+
                         <TextBlock x:Name="ErrorHora" FontSize="15" HorizontalAlignment="Left" Visibility="Collapsed" Margin="10 0 0 10" Text="Error" Foreground="Red"/>
                     </StackPanel>
 
@@ -170,9 +163,9 @@
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0 10">
                     <StackPanel Orientation="Vertical">
                         <TextBlock FontSize="19" Text="Fecha:" Width="70" HorizontalAlignment="Left" Margin="10 0 0 10"/>
-                        
+
                         <!-- Error Fecha -->
-                        
+
                         <TextBlock x:Name="ErrorFecha" FontSize="15" Foreground="red" Visibility="Collapsed" TextWrapping="Wrap" Width="235" Margin="0 3 0 10" Text="Error"/>
                     </StackPanel>
                     <Border Padding="0 10 5 10" BorderBrush="#2C3E50" BorderThickness="2" CornerRadius="10" Width="255">
