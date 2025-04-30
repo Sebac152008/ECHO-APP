@@ -13,6 +13,8 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
+using IOPath = System.IO.Path;
 using System.Data.SQLite;
 using Microsoft.Data.Sqlite;
 
@@ -26,6 +28,7 @@ namespace ECHO.View
 
     public partial class RecordatorioItem : UserControl
     {
+
         private bool estaDestacado = false;
 
         public bool IsDestacado { get; private set; } // o public set si quieres permitir cambiarlo externamente
@@ -68,9 +71,43 @@ namespace ECHO.View
             set => SetValue(HoraProperty, value);
         }
 
+        string dbPath;
+
         public RecordatorioItem()
         {
             InitializeComponent();
+
+
+            // Obtener la ruta de la carpeta "Roaming" del usuario
+            string appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+
+            // Crear la ruta completa de la carpeta "EchoApp"
+            string echoAppFolderPath = IOPath.Combine(appDataPath, "EchoApp");
+
+            // Verificar si la carpeta no existe
+            if (!Directory.Exists(echoAppFolderPath))
+            {
+                // Si no existe, la crea
+                Directory.CreateDirectory(echoAppFolderPath);
+            }
+
+            // Ruta de la base de datos
+            dbPath = System.IO.Path.Combine(echoAppFolderPath, "ECHO.db");
+
+            // Aquí es donde puedes usar dbPath para interactuar con tu base de datos
+            // Ejemplo de abrir la conexión con SQLite
+            try
+            {
+                using (var connection = new SQLiteConnection($"Data Source={dbPath};"))
+                {
+                    connection.Open();
+                    // Puedes realizar operaciones sobre la base de datos aquí
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al conectar a la base de datos: {ex.Message}");
+            }
         }
 
         // Método para el corazón (Favorito)
@@ -93,6 +130,15 @@ namespace ECHO.View
 
             estaDestacado = !estaDestacado;
             IsDestacado = estaDestacado; // <- AGREGA ESTO
+
+            if (estaDestacado)
+            {
+                btnDestacado.ToolTip = "Desmarcar recordatorio";
+            }
+            if (!estaDestacado)
+            {
+                btnDestacado.ToolTip = "Marcar como destacado";
+            }
 
             var uri = estaDestacado
                 ? "/Imagenes/EstrellaRellenada.png"

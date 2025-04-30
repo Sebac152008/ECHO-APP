@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:WPF_ECHO.View"
              xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
              xmlns:viewModel="clr-namespace:WPF_ECHO.ViewModels"
+             Background="#2C3E50"
              d:DesignHeight="700" d:DesignWidth="1180"
              mc:Ignorable="d">
 
@@ -14,6 +15,7 @@
     </UserControl.DataContext>
 
     <UserControl.Resources>
+
         <DataTemplate DataType="{x:Type viewModel:InicioView}">
             <local:InicioView/>
         </DataTemplate>
@@ -105,14 +107,7 @@
 
         <!-- Columna de la seccion del contenido -->
         <!-- Aqui se conectan cada una de las ventanas -->
-
-        <Border Background="#2C3E50" Grid.Column="1" >
-            <Grid>
-                <Border CornerRadius="20 20 20 20" >
-                    <ContentControl Grid.Row="1" x:Name="mainContent" Content="{Binding CurrentChildView}"/>
-                </Border>
-            </Grid>
-        </Border>
+        <ContentControl Grid.Column="1" x:Name="mainContent" Content="{Binding CurrentChildView}"/>
 
     </Grid>
 

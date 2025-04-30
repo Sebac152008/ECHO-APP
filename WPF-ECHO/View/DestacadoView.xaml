@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:ECHO.View"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
-             Background="#F1F1F1"
+             Background="#000"
              Loaded="DestacadoView_Loaded">
 
     <UserControl.Resources>
@@ -31,9 +31,12 @@
     <Grid>
 
         <Grid>
+            <Image x:Name="FondoImagen" Loaded="FondoImagen_Loaded" Source="/Imagenes/paulius-dragunas-Nhs0sLAn1Is-unsplash.jpg" Stretch="UniformToFill" Opacity="0.7" />
+        </Grid>
+
+        <Grid>
 
             <StackPanel Panel.ZIndex="100" x:Name="StackMensajes" VerticalAlignment="Top" Width="220" Margin="10" Orientation="Vertical" />
-
             <!-- Contenedor para los recordatorios destacados -->
             <StackPanel x:Name="StackPanelContenedor" Orientation="Vertical" Margin="10">
                 <!-- Los recordatorios destacados se añaden aquí -->

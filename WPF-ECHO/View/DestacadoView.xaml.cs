@@ -41,8 +41,17 @@ namespace WPF_ECHO.View
         }
 
         private static readonly string dbPath =
-            System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ECHO.db");
+        System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ECHO.db");
         private static readonly string connectionString = $"Data Source={dbPath};";
+
+        private void FondoImagen_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (Application.Current.Resources.Contains("ImagenFondoPrecargada"))
+            {
+                FondoImagen.Source = (BitmapImage)Application.Current.Resources["ImagenFondoPre"];
+                FondoImagen.Visibility = Visibility.Visible;
+            }
+        }
 
         /// <summary>
         /// Carga todos los recordatorios marcados como Destacado = 1
@@ -134,7 +143,7 @@ namespace WPF_ECHO.View
             // Crear contenedor del mensaje
             Border borde = new Border
             {
-                Background = new SolidColorBrush(Color.FromRgb(30, 30, 30)),
+                Background = new SolidColorBrush(Color.FromRgb(44, 62, 80)),
                 CornerRadius = new CornerRadius(10),
                 Margin = new Thickness(0, 5, 0, 0),
                 Padding = new Thickness(10),
@@ -182,13 +191,11 @@ namespace WPF_ECHO.View
         {
             if (!item.IsDestacado)
             {
-                // Si ya no está destacado, lo quitamos de destacados
                 StackPanelContenedor.Children.Remove(item);
-
-                // 🔥 Y lanzamos un evento global para que InicioView lo reciba
                 RecordatorioEventAggregator.OnRecordatorioDesdestacado(item);
             }
         }
+
 
 
         private void EliminarRecordatorioDeBD(int id)

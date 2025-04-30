@@ -23,6 +23,7 @@ namespace WPF_ECHO.View
         public MenuNav()
         {
             InitializeComponent();
+
         }
 
     }

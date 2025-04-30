@@ -8,35 +8,9 @@
 
     <Grid>
         <!-- SplashScreen -->
-        <StackPanel VerticalAlignment="Center" x:Name="SplashScree" HorizontalAlignment="Center" Margin="50 0 0 0">
 
-            <Grid VerticalAlignment="Center" HorizontalAlignment="Center" >
-
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="400" />
-                </Grid.RowDefinitions>
-                
-                <!-- Logo -->
-                <Image Margin="0 0 0 100" x:Name="Logo" Width="550" Height="150" Source="/Imagenes/echoLogo.png" HorizontalAlignment="Left"/>
-                <!-- Texto -->
-                <TextBlock FontSize="15" Text="Loading Resources.." VerticalAlignment="Center" Margin="60 160 0 0"/>
-                <!-- Barra de Progreso -->
-                <Border CornerRadius="5" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0 0 0 75" Background="#26263B" Width="440" Height="15">
-                    <Border x:Name="ProgressBar" CornerRadius="5" Background="#3A6F91" Width="0" HorizontalAlignment="Left"/>
-                </Border>
-                
-                <!-- Ilustracion -->
-
-                <Image Width="600" Grid.Column="1" Source="/Imagenes/illustration-plate-pour-celebration-journee-du-secretaire_52683-107968.png" />
-
-            </Grid>
-            
-        </StackPanel>
+        <!-- Logo -->
+        <Image x:Name="SplashImage" Width="550" Height="150" Source="/Imagenes/echoLogo.png" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
         <!-- Contenido principal oculto al inicio -->
         <ContentControl x:Name="MainContent" Visibility="Collapsed" Opacity="0"/>

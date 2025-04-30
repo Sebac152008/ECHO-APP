@@ -16,7 +16,10 @@ using System.Windows.Shapes;
 using System.Data.SQLite;
 using Microsoft.Data.Sqlite;
 using ECHO.View;
+using IOPath = System.IO.Path;
 using System.Windows.Threading;
+using System.IO;
+using MaterialDesignThemes.Wpf;
 
 namespace WPF_ECHO.View
 {
@@ -37,7 +40,20 @@ namespace WPF_ECHO.View
             RecordatorioEventAggregator.RecordatorioDesdestacado += OnRecordatorioDesdestacado;
 
             this.Loaded += InicioView_Loaded;
+
+            // Inicializar dbPath dentro del constructor
+
         }
+
+        private void FondoImagen_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (Application.Current.Resources.Contains("ImagenFondoPrecargada"))
+            {
+                FondoImagen.Source = (BitmapImage)Application.Current.Resources["ImagenFondoPrecargada"];
+                FondoImagen.Visibility = Visibility.Visible;
+            }
+        }
+
 
         private void InicioView_Loaded(object sender, RoutedEventArgs e)
         {
@@ -289,10 +305,64 @@ namespace WPF_ECHO.View
 
 
         // Manejar el evento de eliminación
-        private void Recordatorio_EliminarRecordatorio(object sender, EventArgs e)
+        private async void Recordatorio_EliminarRecordatorio(object sender, EventArgs e)
         {
             var recordatorio = sender as RecordatorioItem;
-            if (recordatorio != null)
+            if (recordatorio == null) return;
+
+            var dialogResult = await MaterialDesignThemes.Wpf.DialogHost.Show(
+                new TextBlock
+                {
+                    Text = "¿Estás seguro de que deseas eliminar este recordatorio?",
+                    TextWrapping = TextWrapping.Wrap,
+                    Margin = new Thickness(20),
+                    Width = 300
+                },
+                "MainDialogHost",
+                (object s, DialogOpenedEventArgs args) =>
+                {
+                    var dialogGrid = new StackPanel
+                    {
+                        Orientation = Orientation.Vertical,
+                        Children =
+                        {
+                    new TextBlock
+                    {
+                        Text = "¿Estás seguro de que deseas eliminar este recordatorio?",
+                        TextWrapping = TextWrapping.Wrap,
+                        Margin = new Thickness(20, 20, 20, 16)
+                    },
+                    new StackPanel
+                    {
+                        Orientation = Orientation.Horizontal,
+                        HorizontalAlignment = HorizontalAlignment.Right,
+                        Children =
+                        {
+                            new Button
+                            {
+                                Content = "Cancelar",
+                                Margin = new Thickness(0,0,8,0),
+                                Command = MaterialDesignThemes.Wpf.DialogHost.CloseDialogCommand,
+                                CommandParameter = false
+                            },
+                            new Button
+                            {
+                                Content = "Eliminar",
+                                Margin = new Thickness (10,10,8,10),
+                                Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#C0392B")),
+                                Foreground = Brushes.White,
+                                Command = MaterialDesignThemes.Wpf.DialogHost.CloseDialogCommand,
+                                CommandParameter = true
+                            }
+                        }
+                    }
+                        }
+                    };
+
+                    args.Session.UpdateContent(dialogGrid);
+                });
+
+            if (dialogResult is bool confirmado && confirmado)
             {
                 try
                 {
@@ -308,18 +378,15 @@ namespace WPF_ECHO.View
                     }
 
                     PanelRecordatorios.Children.Remove(recordatorio);
-
                     MostrarRecordatorioEliminado();
-
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show($"Error al eliminar el recordatorio: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
-
-
         }
+
 
         private void MostrarRecordatorioGuardado()
         {
@@ -328,8 +395,36 @@ namespace WPF_ECHO.View
 
         private void RecordatorioDestacadoDesdeItem(object sender, EventArgs e)
         {
+            var item = sender as RecordatorioItem;
+            if (item == null) return;
+
+            // Actualizar en BD
+            try
+            {
+                using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+                {
+                    connection.Open();
+                    string updateQuery = "UPDATE Recordatorios SET Destacado = 1 WHERE ID_Recordatorios = @id";
+                    using (var command = new SQLiteCommand(updateQuery, connection))
+                    {
+                        command.Parameters.AddWithValue("@id", item.ID_Recordatorios);
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al destacar el recordatorio: {ex.Message}");
+                return;
+            }
+
+            // Lanzar evento para que lo escuche DestacadoView
+            RecordatorioEventAggregator.RaiseDestacadoToggled(item, true);
+
+            // Mostrar el mensaje visual
             MostrarRecordatorioDestacado();
         }
+
 
         public void MostrarRecordatorioEliminado()
         {
@@ -347,7 +442,7 @@ namespace WPF_ECHO.View
             // Crear contenedor del mensaje
             Border borde = new Border
             {
-                Background = new SolidColorBrush(Color.FromRgb(30, 30, 30)),
+                Background = new SolidColorBrush(Color.FromRgb(44, 62, 80)),
                 CornerRadius = new CornerRadius(10),
                 Margin = new Thickness(0, 5, 0, 0),
                 Padding = new Thickness(10),

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Media.Animation;
+using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 
 namespace WPF_ECHO
@@ -8,7 +9,6 @@ namespace WPF_ECHO
     public partial class SplashScreen : Window
     {
         private DispatcherTimer timer;
-        private double maxWidth = 440; // ancho máximo de la barra (ajusta si es necesario)
 
         public SplashScreen()
         {
@@ -17,42 +17,46 @@ namespace WPF_ECHO
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            // Iniciar temporizador
             timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromMilliseconds(1); // velocidad de animación
+            timer.Interval = TimeSpan.FromSeconds(0.5);
             timer.Tick += Timer_Tick;
             timer.Start();
         }
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            if (ProgressBar.Width < maxWidth)
-            {
-                ProgressBar.Width += 2.5; // incremento suave
-            }
-            else
-            {
-                timer.Stop();
-                MostrarContenidoPrincipalConFade();
-            }
+            timer.Stop();
+            FadeOutSplash();
         }
 
-        private void MostrarContenidoPrincipalConFade()
+        private void FadeOutSplash()
         {
-            SplashScree.Visibility = Visibility.Collapsed;
-
-            // Mostrar contenido principal
-            MainContent.Content = new View.MenuNav();
-            MainContent.Visibility = Visibility.Visible;
-
-            // Animar opacidad (fade in)
-            DoubleAnimation fade = new DoubleAnimation
+            DoubleAnimation fadeOut = new DoubleAnimation
             {
-                From = 0,
-                To = 1,
-                Duration = TimeSpan.FromSeconds(1)
+                From = 1,
+                To = 0,
+                Duration = TimeSpan.FromSeconds(0.5)
             };
-            MainContent.BeginAnimation(OpacityProperty, fade);
+
+            fadeOut.Completed += (s, e) =>
+            {
+                SplashImage.Visibility = Visibility.Collapsed;
+
+                MainContent.Content = new View.MenuNav();
+                MainContent.Visibility = Visibility.Visible;
+
+                DoubleAnimation fadeIn = new DoubleAnimation
+                {
+                    From = 0,
+                    To = 1,
+                    Duration = TimeSpan.FromSeconds(1)
+                };
+
+                MainContent.BeginAnimation(OpacityProperty, fadeIn);
+            };
+
+            SplashImage.BeginAnimation(OpacityProperty, fadeOut);
         }
+
     }
 }
