@@ -8,7 +8,8 @@ using System.Windows;
 using WPF_ECHO.ViewModels;
 using CommunityToolkit.WinUI.Notifications;
 using System.Windows.Media.Imaging;
-using System.Threading; // <-- Asegúrate de agregar esto
+using System.Threading;
+
 
 namespace WPF_ECHO
 {
@@ -20,8 +21,16 @@ namespace WPF_ECHO
 
         private static Mutex _mutex; // <-- Agrega esta línea
 
+        private NotificadorRecordatorios _notificador;
+
         protected override void OnStartup(StartupEventArgs e)
         {
+
+            base.OnStartup(e);
+
+            _notificador = new NotificadorRecordatorios();
+            _notificador.Iniciar();
+
             // ----- Precargar imagen -----
             Uri uri = new Uri("pack://application:,,,/Imagenes/paulius-dragunas-Nhs0sLAn1Is-unsplash.jpg");
             BitmapImage precargada = new BitmapImage();
@@ -51,17 +60,6 @@ namespace WPF_ECHO
                 Application.Current.Shutdown();
                 return;
             }
-
-            // ----- Toast Notifications -----
-            ToastNotificationManagerCompat.OnActivated += toastArgs =>
-            {
-                // Aquí puedes manejar los clics si quieres
-            };
-
-            ToastNotificationManagerCompat.History.Clear();
-
-            // Llamar solo una vez al base
-            base.OnStartup(e);
         }
 
     }

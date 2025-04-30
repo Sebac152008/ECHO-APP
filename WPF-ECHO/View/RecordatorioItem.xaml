@@ -41,6 +41,19 @@
                     </Button.Template>
                 </Button>
 
+                <Button x:Name="btnEditar" Width="35" Height="35" Background="Transparent"
+        BorderThickness="0" ToolTip="Editar recordatorio"
+        Click="BtnEditar_Click">
+                    <fa:IconImage Icon="Pen" Foreground="#26263B" Width="20"/>
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Cursor="Hand" Background="#fff" CornerRadius="40">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
                 <!-- Botón de borrar -->
                 <Button x:Name="btnBorrar" Width="35" Height="35" Background="Transparent"
             BorderThickness="0" ToolTip="Eliminar recordatorio"

@@ -8,7 +8,7 @@ public static class RecordatorioEventAggregator
     /// </summary>
     public static event Action<RecordatorioItem> RecordatorioDesdestacado;
 
-    public static event Action<RecordatorioItem, bool> DestacadoToggled; // <- ESTA LÍNEA FALTABA
+    public static event Action<RecordatorioItem, bool> DestacadoToggled; 
 
     public static void OnRecordatorioDesdestacado(RecordatorioItem item)
     {

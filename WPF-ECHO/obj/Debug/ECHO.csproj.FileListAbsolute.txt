@@ -90,6 +90,8 @@ C:\Users\Sebastian Cuevas\Desktop\Proyecto echo\WPF-ECHO\obj\Debug\ECHO.exe
 C:\Users\Sebastian Cuevas\Desktop\Proyecto echo\WPF-ECHO\obj\Debug\ECHO.pdb
 C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\bin\Debug\x86\sqlite3.dll
 C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\bin\Debug\x64\sqlite3.dll
+C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\bin\Debug\DB\ECHO.db
+C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\bin\Debug\Sonidos\alarma.mp3
 C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\bin\Debug\ECHO.exe.config
 C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\bin\Debug\ECHO.exe.manifest
 C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\bin\Debug\ECHO.application
@@ -177,6 +179,7 @@ C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\obj\Debug\Style\ButtonStyles
 C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\obj\Debug\SplashScreen.g.cs
 C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\obj\Debug\View\AcercaDeView.g.cs
 C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\obj\Debug\View\BuscarView.g.cs
+C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\obj\Debug\View\EditarRecordatorioDialog.g.cs
 C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\obj\Debug\View\InicioView.g.cs
 C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\obj\Debug\View\MenuNav.g.cs
 C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\obj\Debug\View\DestacadoView.g.cs
@@ -189,6 +192,7 @@ C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\obj\Debug\ECHO_MarkupCompile
 C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\obj\Debug\App.baml
 C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\obj\Debug\View\AcercaDeView.baml
 C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\obj\Debug\View\BuscarView.baml
+C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\obj\Debug\View\EditarRecordatorioDialog.baml
 C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\obj\Debug\View\InicioView.baml
 C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\obj\Debug\View\MenuNav.baml
 C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\obj\Debug\View\DestacadoView.baml

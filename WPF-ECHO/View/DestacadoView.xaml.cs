@@ -1,25 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Data.SQLite;
-using CommunityToolkit.WinUI.Notifications;
-using Microsoft.Data.Sqlite;
 using ECHO.View;
+using IOPath = System.IO.Path;
 using MaterialDesignThemes.Wpf;
 using System.Windows.Media.Animation;
-using System.Windows.Threading;
-using System.Xml;
 
 namespace WPF_ECHO.View
 {
@@ -29,21 +18,19 @@ namespace WPF_ECHO.View
     public partial class DestacadoView : UserControl
     {
 
-        private DispatcherTimer _notificacionTimer;
         public DestacadoView()
         {
             InitializeComponent();
-            RecordatorioEventAggregator.DestacadoToggled += OnDestacadoToggled;
-            this.Loaded += DestacadoView_Loaded;
-            this.Unloaded += DestacadoView_Unloaded;
 
-            StartNotificacionTimer();  // Inicia el temporizador de notificación
+            this.Loaded += DestacadoView_Loaded;
 
         }
 
-        private static readonly string dbPath =
-        System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ECHO.db");
+        //Conexion DB
+
+        private static readonly string dbPath = IOPath.Combine(AppDomain.CurrentDomain.BaseDirectory, "DB", "ECHO.db");
         private static readonly string connectionString = $"Data Source={dbPath};";
+
 
         private void FondoImagen_Loaded(object sender, RoutedEventArgs e)
         {
@@ -291,87 +278,6 @@ namespace WPF_ECHO.View
                 EliminarRecordatorioDeBD(recordatorio.ID_Recordatorios);
                 StackPanelContenedor.Children.Remove(recordatorio);
                 MostrarRecordatorioEliminado();
-            }
-        }
-
-
-
-
-
-        private void StartNotificacionTimer()
-        {
-            _notificacionTimer = new DispatcherTimer();
-            _notificacionTimer.Interval = TimeSpan.FromMilliseconds(1);  // Verifica cada 1 milisegundo
-            _notificacionTimer.Tick += NotificacionTimer_Tick;
-            _notificacionTimer.Start();
-        }
-
-        private void NotificacionTimer_Tick(object sender, EventArgs e)
-        {
-            VerificarRecordatorios();
-        }
-
-        private void VerificarRecordatorios()
-        {
-            try
-            {
-                var recordatoriosParaEliminar = new List<(int id, string nota)>();
-
-                using (var connection = new SQLiteConnection(connectionString))
-                {
-                    connection.Open();
-                    var selectQuery = "SELECT * FROM Recordatorios WHERE Destacado = 1";
-                    using (var command = new SQLiteCommand(selectQuery, connection))
-                    using (var reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            var fechaRecordatorio = Convert.ToDateTime(reader["Fecha"] + " " + reader["Hora"]);
-                            if (fechaRecordatorio <= DateTime.Now)
-                            {
-                                int id = Convert.ToInt32(reader["ID_Recordatorios"]);
-                                string nota = reader["Nota"].ToString();
-                                recordatoriosParaEliminar.Add((id, nota));
-                            }
-                        }
-                    }
-
-                    // 🔁 Eliminar después de cerrar el lector
-                    foreach (var (id, nota) in recordatoriosParaEliminar)
-                    {
-                        MostrarNotificacion(nota);
-                        EliminarRecordatorioDeBD(id);
-                        CargarRecordatoriosDestacadosDesdeBD();
-                    }
-                }
-            }
-            catch (SQLiteException ex)
-            {
-                MessageBox.Show($"Error de conexión a la base de datos: {ex.Message}");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error al verificar recordatorios: {ex.Message}");
-            }
-        }
-
-
-        private void MostrarNotificacion(string mensaje)
-        {
-            new ToastContentBuilder()
-                .AddText("Recordatorio")
-                .AddText(mensaje)
-                .Show(); // Muestra la notificación
-        }
-
-
-        private void DestacadoView_Unloaded(object sender, RoutedEventArgs e)
-        {
-            if (_notificacionTimer != null)
-            {
-                _notificacionTimer.Stop();
-                _notificacionTimer.Tick -= NotificacionTimer_Tick;
-                _notificacionTimer = null;
             }
         }
 

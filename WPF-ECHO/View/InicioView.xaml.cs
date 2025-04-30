@@ -16,10 +16,13 @@ using System.Windows.Shapes;
 using System.Data.SQLite;
 using Microsoft.Data.Sqlite;
 using ECHO.View;
+using WPF_ECHO.ViewModels;
 using IOPath = System.IO.Path;
 using System.Windows.Threading;
 using System.IO;
 using MaterialDesignThemes.Wpf;
+using System.Windows.Controls.Primitives;
+using CommunityToolkit.WinUI.Notifications;
 
 namespace WPF_ECHO.View
 {
@@ -29,8 +32,11 @@ namespace WPF_ECHO.View
     public partial class InicioView : UserControl
     {
 
-        private static readonly string dbPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ECHO.db");
+        //Conexion DB
+
+        private static readonly string dbPath = IOPath.Combine(AppDomain.CurrentDomain.BaseDirectory, "DB", "ECHO.db");
         private static readonly string connectionString = $"Data Source={dbPath};";
+
 
         private bool animacionEnCurso = false;
         public InicioView()
@@ -41,6 +47,21 @@ namespace WPF_ECHO.View
 
             this.Loaded += InicioView_Loaded;
 
+            this.Loaded += (s, e) =>
+            {
+                if (comboHoraMinuto.Template.FindName("PART_Popup", comboHoraMinuto) is Popup popup)
+                {
+                    popup.Placement = PlacementMode.Bottom;
+                    popup.PlacementTarget = comboHoraMinuto;
+
+                    popup.CustomPopupPlacementCallback = (popupSize, targetSize, offset) =>
+                    {
+                        // Ajusta la posición Y para que el Popup aparezca ligeramente más arriba o abajo
+                        Point point = new Point(0, targetSize.Height + 5); // +5 es un pequeño margen
+                        return new[] { new CustomPopupPlacement(point, PopupPrimaryAxis.Horizontal) };
+                    };
+                }
+            };
             // Inicializar dbPath dentro del constructor
 
         }
@@ -145,14 +166,11 @@ namespace WPF_ECHO.View
             DateTime? fecha = fechaPicker.SelectedDate;
             TimeSpan? hora = comboHoraMinuto.SelectedTime?.TimeOfDay;
 
-            bool hayErrores = false;
-
             // Validación del título
             if (string.IsNullOrEmpty(nota) || nota == "Escribe algo...")
             {
                 ErrorTitulo.Visibility = Visibility.Visible;
                 ErrorTitulo.Text = "El título no puede quedar vacío.";
-                hayErrores = true;
             }
             else
             {
@@ -164,17 +182,29 @@ namespace WPF_ECHO.View
             {
                 ErrorFecha.Visibility = Visibility.Visible;
                 ErrorFecha.Text = "Por favor selecciona una fecha.";
-                hayErrores = true;
-            }
-            else if (fecha.Value.Date < DateTime.Today)
-            {
-                ErrorFecha.Visibility = Visibility.Visible;
-                ErrorFecha.Text = "La fecha no puede ser anterior al día de hoy.";
-                hayErrores = true;
             }
             else
             {
                 ErrorFecha.Visibility = Visibility.Collapsed;
+            }
+            if (fecha.Value.Date < DateTime.Today)
+            {
+                ErrorFecha.Visibility = Visibility.Visible;
+                ErrorFecha.Text = "La fecha no puede ser anterior al día de hoy.";
+            }
+            else
+            {
+                ErrorFecha.Visibility = Visibility.Collapsed;
+            }
+            if (fecha.Value.Date == DateTime.Today && hora.HasValue && hora.Value < DateTime.Now.TimeOfDay)
+            {
+                // Si la fecha es hoy, comprobamos si la hora seleccionada es anterior a la hora actual
+                ErrorHora.Visibility = Visibility.Visible;
+                ErrorHora.Text = "La hora seleccionada no puede ser anterior a la hora actual.";
+            }
+            else
+            {
+                ErrorHora.Visibility = Visibility.Collapsed;
             }
 
             // Validación de la hora
@@ -182,15 +212,11 @@ namespace WPF_ECHO.View
             {
                 ErrorHora.Visibility = Visibility.Visible;
                 ErrorHora.Text = "Por favor selecciona una hora.";
-                hayErrores = true;
             }
             else
             {
                 ErrorHora.Visibility = Visibility.Collapsed;
             }
-
-            if (hayErrores)
-                return; // Detener el guardado si hay errores
 
             // ✅ Si llegamos aquí, todo está validado correctamente
 
@@ -270,12 +296,17 @@ namespace WPF_ECHO.View
                             };
 
                             item.RecordatorioDestacadoEvent += RecordatorioDestacadoDesdeItem;
-
-                            item.DataContext = item;
                             item.EliminarRecordatorio += Recordatorio_EliminarRecordatorio;
+                            item.DataContext = item;
 
-                            // Agregarlo a la vista de recordatorios
+                            // Asignar evento de edición (solo si implementaste el evento EditarClicked en RecordatorioItem)
+                            item.EditarClicked += (s, e) =>
+                            {
+                                EditarRecordatorio(item); // Asegúrate de tener este método implementado
+                            };
+
                             PanelRecordatorios.Children.Add(item);
+
                         }
                     }
                 }
@@ -283,6 +314,53 @@ namespace WPF_ECHO.View
             catch (Exception ex)
             {
                 MessageBox.Show($"Error al acceder a la base de datos: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private async void EditarRecordatorio(RecordatorioItem recordatorio)
+        {
+
+            var editarControl = new EditarRecordatorioDialog();
+
+            // Rellenar con los datos actuales
+            editarControl.txtNotaEditar.Text = recordatorio.Descripcion;
+            editarControl.fechaEditar.SelectedDate = DateTime.Parse(recordatorio.Fecha);
+            TimeSpan hora = TimeSpan.Parse(recordatorio.Hora);  // Convierte el string a TimeSpan
+            editarControl.horaEditar.SelectedTime = DateTime.Today.Add(hora);  // Suma el TimeSpan a DateTime.Today
+
+            var resultado = await DialogHost.Show(editarControl, "MainDialogHost");
+
+            if (resultado is bool confirmado && confirmado)
+            {
+                // Obtener valores editados
+                string nuevaNota = editarControl.txtNotaEditar.Text;
+                DateTime? nuevaFecha = editarControl.fechaEditar.SelectedDate;
+                TimeSpan? nuevaHora = editarControl.horaEditar.SelectedTime?.TimeOfDay;
+
+                // Validaciones básicas (puedes mejorar)
+                if (!string.IsNullOrWhiteSpace(nuevaNota) && nuevaFecha != null && nuevaHora != null)
+                {
+                    try
+                    {
+                        using (var conn = new SQLiteConnection(connectionString))
+                        {
+                            conn.Open();
+                            var cmd = new SQLiteCommand("UPDATE Recordatorios SET Nota=@nota, Fecha=@fecha, Hora=@hora WHERE ID_Recordatorios=@id", conn);
+                            cmd.Parameters.AddWithValue("@nota", nuevaNota);
+                            cmd.Parameters.AddWithValue("@fecha", nuevaFecha.Value.ToString("yyyy-MM-dd"));
+                            cmd.Parameters.AddWithValue("@hora", nuevaHora.Value.ToString(@"hh\:mm"));
+                            cmd.Parameters.AddWithValue("@id", recordatorio.ID_Recordatorios);
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        MostrarMensaje("Recordatorio editado", "comprobado.png");
+                        ActualizarRecordatorios();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error al editar: {ex.Message}");
+                    }
+                }
             }
         }
 
@@ -507,6 +585,8 @@ namespace WPF_ECHO.View
         // Método para actualizar los recordatorios cuando se regresa a InicioView
         private void ActualizarRecordatorios()
         {
+            CargarRecordatoriosDesdeBD();
+
             // Limpiar los recordatorios previos
             PanelRecordatorios.Children.Clear();
 

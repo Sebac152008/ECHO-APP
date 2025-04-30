@@ -112,3 +112,4 @@ C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\obj\Release\ECHO.application
 C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\obj\Release\ECHO.csproj.Up2Date
 C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\obj\Release\ECHO.exe
 C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\obj\Release\ECHO.pdb
+C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\bin\Release\DB\ECHO.db

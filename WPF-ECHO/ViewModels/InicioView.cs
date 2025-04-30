@@ -8,5 +8,6 @@ namespace WPF_ECHO.ViewModels
 {
     public class InicioView : ViewModelBase
     {
+
     }
 }

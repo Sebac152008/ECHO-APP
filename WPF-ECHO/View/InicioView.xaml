@@ -112,7 +112,7 @@
 
             <StackPanel x:Name="StackMensajes" VerticalAlignment="Top" Width="220" Margin="10" Orientation="Vertical" />
 
-            <!-- Cuadro Programar Recordatorio -->
+            <!-- Cuadro Nuevo Recordatorio -->
 
             <!-- Rectángulo contenedor -->
             <Border Visibility="Collapsed" x:Name="ContenedorAddRecordatorio" Width="310" Background="#ffffff" Margin="0 0 80 150" CornerRadius="20" HorizontalAlignment="Right" VerticalAlignment="Bottom">
