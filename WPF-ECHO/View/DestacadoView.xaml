@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ECHO.View"
+             xmlns:materialDesing="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              Background="#000"
@@ -27,26 +28,30 @@
 
     </UserControl.Resources>
 
-
-    <Grid>
-
-        <Grid>
-            <Image x:Name="FondoImagen" Loaded="FondoImagen_Loaded" Source="/Imagenes/paulius-dragunas-Nhs0sLAn1Is-unsplash.jpg" Stretch="UniformToFill" Opacity="0.7" />
-        </Grid>
+    <materialDesing:DialogHost x:Name="DialogHostEliminar" Identifier="MainDialogHost">
 
         <Grid>
 
-            <StackPanel Panel.ZIndex="100" x:Name="StackMensajes" VerticalAlignment="Top" Width="220" Margin="10" Orientation="Vertical" />
-            <!-- Contenedor para los recordatorios destacados -->
-            <StackPanel x:Name="StackPanelContenedor" Orientation="Vertical" Margin="10">
-                <!-- Los recordatorios destacados se añaden aquí -->
-            </StackPanel>
+            <Grid>
+                <Image x:Name="FondoImagen" Loaded="FondoImagen_Loaded" Stretch="UniformToFill" Opacity="0.7" />
+            </Grid>
 
-            <!-- Contenedor para los recordatorios no destacados -->
-            <StackPanel x:Name="PanelRecordatorios" Orientation="Vertical" Margin="10,0,10,10">
-                <!-- Los recordatorios no destacados se añaden aquí -->
-            </StackPanel>
+            <Grid>
+
+                <StackPanel Panel.ZIndex="100" x:Name="StackMensajes" VerticalAlignment="Top" Width="220" Margin="10" Orientation="Vertical" />
+                <!-- Contenedor para los recordatorios destacados -->
+                <StackPanel x:Name="StackPanelContenedor" Orientation="Vertical" Margin="10">
+                    <!-- Los recordatorios destacados se añaden aquí -->
+                </StackPanel>
+
+                <!-- Contenedor para los recordatorios no destacados -->
+                <StackPanel x:Name="PanelRecordatorios" Orientation="Vertical" Margin="10,0,10,10">
+                    <!-- Los recordatorios no destacados se añaden aquí -->
+                </StackPanel>
+            </Grid>
+
         </Grid>
 
-    </Grid>
+    </materialDesing:DialogHost>
+    
 </UserControl>

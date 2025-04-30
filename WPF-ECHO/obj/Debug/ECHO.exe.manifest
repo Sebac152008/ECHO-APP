@@ -67,14 +67,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ECHO.exe" size="7673344">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ECHO.exe" size="7667712">
       <assemblyIdentity name="ECHO" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>gUD26RnwqpzxrYd3mWIU0njM8cWfbQeL5r/gOCuw+yw=</dsig:DigestValue>
+        <dsig:DigestValue>b3cUnroLXSuKvJ0BX788CrYWRiznzjzVppX0lOVH7LI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

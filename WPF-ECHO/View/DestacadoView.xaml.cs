@@ -16,6 +16,7 @@ using System.Data.SQLite;
 using CommunityToolkit.WinUI.Notifications;
 using Microsoft.Data.Sqlite;
 using ECHO.View;
+using MaterialDesignThemes.Wpf;
 using System.Windows.Media.Animation;
 using System.Windows.Threading;
 using System.Xml;
@@ -228,42 +229,79 @@ namespace WPF_ECHO.View
 
         // Método para manejar la eliminación de un recordatorio
         // Método para manejar la eliminación de un recordatorio
-        private void Recordatorio_EliminarRecordatorio(object sender, EventArgs e)
+        private async void Recordatorio_EliminarRecordatorio(object sender, EventArgs e)
         {
-            // Convierte el sender a un RecordatorioItem
-            var item = sender as RecordatorioItem;
+            var recordatorio = sender as RecordatorioItem;
+            if (recordatorio == null) return;
 
-            // Si el item es null (por alguna razón), salimos
-            if (item == null)
-                return;
+            var dialogResult = await MaterialDesignThemes.Wpf.DialogHost.Show(
+                new TextBlock
+                {
+                    Text = "¿Estás seguro de que deseas eliminar este recordatorio?",
+                    TextWrapping = TextWrapping.Wrap,
+                    Margin = new Thickness(20),
+                    Width = 300
+                },
+                "MainDialogHost",
+                (object s, DialogOpenedEventArgs args) =>
+                {
+                    var dialogGrid = new StackPanel
+                    {
+                        Orientation = Orientation.Vertical,
+                        Children =
+                        {
+                    new TextBlock
+                    {
+                        Text = "¿Estás seguro de que deseas eliminar este recordatorio?",
+                        TextWrapping = TextWrapping.Wrap,
+                        Margin = new Thickness(20, 20, 20, 16)
+                    },
+                    new StackPanel
+                    {
+                        Orientation = Orientation.Horizontal,
+                        HorizontalAlignment = HorizontalAlignment.Right,
+                        Children =
+                        {
+                            new Button
+                            {
+                                Content = "Cancelar",
+                                Margin = new Thickness(0,0,8,0),
+                                Command = MaterialDesignThemes.Wpf.DialogHost.CloseDialogCommand,
+                                CommandParameter = false
+                            },
+                            new Button
+                            {
+                                Content = "Eliminar",
+                                Margin = new Thickness (10,10,8,10),
+                                Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#C0392B")),
+                                Foreground = Brushes.White,
+                                Command = MaterialDesignThemes.Wpf.DialogHost.CloseDialogCommand,
+                                CommandParameter = true
+                            }
+                        }
+                    }
+                        }
+                    };
 
-            // Mostrar un cuadro de mensaje de confirmación para eliminar
-            var resultado = System.Windows.MessageBox.Show(
-                "¿Estás seguro de que deseas eliminar este recordatorio?",
-                "Confirmar eliminación",
-                MessageBoxButton.YesNo,
-                MessageBoxImage.Warning);
+                    args.Session.UpdateContent(dialogGrid);
+                });
 
-            // Si el usuario confirma, eliminamos el recordatorio
-            if (resultado == MessageBoxResult.Yes)
+            if (dialogResult is bool confirmado && confirmado)
             {
-                // Eliminar el recordatorio de la base de datos
-                EliminarRecordatorioDeBD(item.ID_Recordatorios);
-
-                // Quitar el item de la interfaz de usuario (de la lista de destacados)
-                StackPanelContenedor.Children.Remove(item);
-
-                // Mostrar una animación de "recordatorio eliminado"
+                EliminarRecordatorioDeBD(recordatorio.ID_Recordatorios);
+                StackPanelContenedor.Children.Remove(recordatorio);
                 MostrarRecordatorioEliminado();
             }
         }
 
 
 
+
+
         private void StartNotificacionTimer()
         {
             _notificacionTimer = new DispatcherTimer();
-            _notificacionTimer.Interval = TimeSpan.FromMilliseconds(1);  // Verifica cada minuto
+            _notificacionTimer.Interval = TimeSpan.FromMilliseconds(1);  // Verifica cada 1 milisegundo
             _notificacionTimer.Tick += NotificacionTimer_Tick;
             _notificacionTimer.Start();
         }
@@ -303,6 +341,7 @@ namespace WPF_ECHO.View
                     {
                         MostrarNotificacion(nota);
                         EliminarRecordatorioDeBD(id);
+                        CargarRecordatoriosDestacadosDesdeBD();
                     }
                 }
             }

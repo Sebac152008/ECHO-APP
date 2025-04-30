@@ -227,6 +227,8 @@ namespace WPF_ECHO.View
             {
                 MessageBox.Show($"Error al guardar el recordatorio: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+
+            CargarRecordatoriosDesdeBD();
         }
 
 

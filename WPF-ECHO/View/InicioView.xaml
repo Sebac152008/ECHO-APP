@@ -59,7 +59,7 @@
         <Grid>
 
             <Grid>
-                <Image x:Name="FondoImagen" Loaded="FondoImagen_Loaded" Source="/Imagenes/paulius-dragunas-Nhs0sLAn1Is-unsplash.jpg" Stretch="UniformToFill" Opacity="0.6" />
+                <Image x:Name="FondoImagen" Loaded="FondoImagen_Loaded" Stretch="UniformToFill" Opacity="0.6" />
             </Grid>
 
             <!-- CONTENIDO SCROLLABLE -->

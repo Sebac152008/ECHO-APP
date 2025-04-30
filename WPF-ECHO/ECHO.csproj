@@ -367,9 +367,6 @@
     <Resource Include="Imagenes\echo.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="logo.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Imagenes\logo.png" />
   </ItemGroup>
   <ItemGroup>

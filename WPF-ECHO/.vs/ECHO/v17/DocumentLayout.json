@@ -3,8 +3,28 @@
   "WorkspaceRootPath": "C:\\Users\\Sebastian Cuevas\\Desktop\\ECHO-APP\\WPF-ECHO\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B8C7A4A0-368E-4D6C-9D5E-173D4B4EF5CA}|ECHO.csproj|c:\\users\\sebastian cuevas\\desktop\\echo-app\\wpf-echo\\view\\acercadeview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{B8C7A4A0-368E-4D6C-9D5E-173D4B4EF5CA}|ECHO.csproj|solutionrelative:view\\acercadeview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{B8C7A4A0-368E-4D6C-9D5E-173D4B4EF5CA}|ECHO.csproj|c:\\users\\sebastian cuevas\\desktop\\echo-app\\wpf-echo\\view\\destacadoview.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
+      "RelativeMoniker": "D:0:0:{B8C7A4A0-368E-4D6C-9D5E-173D4B4EF5CA}|ECHO.csproj|solutionrelative:view\\destacadoview.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B8C7A4A0-368E-4D6C-9D5E-173D4B4EF5CA}|ECHO.csproj|c:\\users\\sebastian cuevas\\desktop\\echo-app\\wpf-echo\\view\\destacadoview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{B8C7A4A0-368E-4D6C-9D5E-173D4B4EF5CA}|ECHO.csproj|solutionrelative:view\\destacadoview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B8C7A4A0-368E-4D6C-9D5E-173D4B4EF5CA}|ECHO.csproj|c:\\users\\sebastian cuevas\\desktop\\echo-app\\wpf-echo\\view\\inicioview.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
+      "RelativeMoniker": "D:0:0:{B8C7A4A0-368E-4D6C-9D5E-173D4B4EF5CA}|ECHO.csproj|solutionrelative:view\\inicioview.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B8C7A4A0-368E-4D6C-9D5E-173D4B4EF5CA}|ECHO.csproj|c:\\users\\sebastian cuevas\\desktop\\echo-app\\wpf-echo\\view\\inicioview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{B8C7A4A0-368E-4D6C-9D5E-173D4B4EF5CA}|ECHO.csproj|solutionrelative:view\\inicioview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B8C7A4A0-368E-4D6C-9D5E-173D4B4EF5CA}|ECHO.csproj|c:\\users\\sebastian cuevas\\desktop\\echo-app\\wpf-echo\\viewmodels\\recordatorioeventaggregator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B8C7A4A0-368E-4D6C-9D5E-173D4B4EF5CA}|ECHO.csproj|solutionrelative:viewmodels\\recordatorioeventaggregator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B8C7A4A0-368E-4D6C-9D5E-173D4B4EF5CA}|ECHO.csproj|c:\\users\\sebastian cuevas\\desktop\\echo-app\\wpf-echo\\view\\recordatorioitem.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
+      "RelativeMoniker": "D:0:0:{B8C7A4A0-368E-4D6C-9D5E-173D4B4EF5CA}|ECHO.csproj|solutionrelative:view\\recordatorioitem.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,18 +34,82 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "AcercaDeView.xaml",
-              "DocumentMoniker": "C:\\Users\\Sebastian Cuevas\\Desktop\\ECHO-APP\\WPF-ECHO\\View\\AcercaDeView.xaml",
-              "RelativeDocumentMoniker": "View\\AcercaDeView.xaml",
-              "ToolTip": "C:\\Users\\Sebastian Cuevas\\Desktop\\ECHO-APP\\WPF-ECHO\\View\\AcercaDeView.xaml",
-              "RelativeToolTip": "View\\AcercaDeView.xaml",
+              "DocumentIndex": 3,
+              "Title": "InicioView.xaml",
+              "DocumentMoniker": "C:\\Users\\Sebastian Cuevas\\Desktop\\ECHO-APP\\WPF-ECHO\\View\\InicioView.xaml",
+              "RelativeDocumentMoniker": "View\\InicioView.xaml",
+              "ToolTip": "C:\\Users\\Sebastian Cuevas\\Desktop\\ECHO-APP\\WPF-ECHO\\View\\InicioView.xaml",
+              "RelativeToolTip": "View\\InicioView.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-04-30T10:39:13.669Z",
+              "WhenOpened": "2025-04-30T11:01:38.837Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "InicioView.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Sebastian Cuevas\\Desktop\\ECHO-APP\\WPF-ECHO\\View\\InicioView.xaml.cs",
+              "RelativeDocumentMoniker": "View\\InicioView.xaml.cs",
+              "ToolTip": "C:\\Users\\Sebastian Cuevas\\Desktop\\ECHO-APP\\WPF-ECHO\\View\\InicioView.xaml.cs",
+              "RelativeToolTip": "View\\InicioView.xaml.cs",
+              "ViewState": "AgIAAMYAAAAAAAAAAAAIwOYAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-30T11:01:34.499Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "DestacadoView.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Sebastian Cuevas\\Desktop\\ECHO-APP\\WPF-ECHO\\View\\DestacadoView.xaml.cs",
+              "RelativeDocumentMoniker": "View\\DestacadoView.xaml.cs",
+              "ToolTip": "C:\\Users\\Sebastian Cuevas\\Desktop\\ECHO-APP\\WPF-ECHO\\View\\DestacadoView.xaml.cs",
+              "RelativeToolTip": "View\\DestacadoView.xaml.cs",
+              "ViewState": "AgIAAEkBAAAAAAAAAAAAwFsBAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-30T10:57:09.181Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DestacadoView.xaml",
+              "DocumentMoniker": "C:\\Users\\Sebastian Cuevas\\Desktop\\ECHO-APP\\WPF-ECHO\\View\\DestacadoView.xaml",
+              "RelativeDocumentMoniker": "View\\DestacadoView.xaml",
+              "ToolTip": "C:\\Users\\Sebastian Cuevas\\Desktop\\ECHO-APP\\WPF-ECHO\\View\\DestacadoView.xaml",
+              "RelativeToolTip": "View\\DestacadoView.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-04-30T11:00:02.187Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "RecordatorioEventAggregator.cs",
+              "DocumentMoniker": "C:\\Users\\Sebastian Cuevas\\Desktop\\ECHO-APP\\WPF-ECHO\\ViewModels\\RecordatorioEventAggregator.cs",
+              "RelativeDocumentMoniker": "ViewModels\\RecordatorioEventAggregator.cs",
+              "ToolTip": "C:\\Users\\Sebastian Cuevas\\Desktop\\ECHO-APP\\WPF-ECHO\\ViewModels\\RecordatorioEventAggregator.cs",
+              "RelativeToolTip": "ViewModels\\RecordatorioEventAggregator.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-30T10:57:26.369Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "RecordatorioItem.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Sebastian Cuevas\\Desktop\\ECHO-APP\\WPF-ECHO\\View\\RecordatorioItem.xaml.cs",
+              "RelativeDocumentMoniker": "View\\RecordatorioItem.xaml.cs",
+              "ToolTip": "C:\\Users\\Sebastian Cuevas\\Desktop\\ECHO-APP\\WPF-ECHO\\View\\RecordatorioItem.xaml.cs",
+              "RelativeToolTip": "View\\RecordatorioItem.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-30T10:57:15.078Z",
               "EditorCaption": ""
             }
           ]
