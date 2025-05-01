@@ -71,7 +71,7 @@ namespace ECHO.View
             set => SetValue(HoraProperty, value);
         }
 
-        private static readonly string dbPath = IOPath.Combine(AppDomain.CurrentDomain.BaseDirectory, "DB", "ECHO.db");
+        private static readonly string dbPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ECHO.db");
         private static readonly string connectionString = $"Data Source={dbPath};";
 
 

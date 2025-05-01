@@ -14,9 +14,10 @@ public class NotificadorRecordatorios
     private MediaPlayer _mediaPlayer = new MediaPlayer();
     private string connectionString;
 
+    private static readonly string dbPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ECHO.db");
+
     public NotificadorRecordatorios()
     {
-        string dbPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "DB", "ECHO.db");
         connectionString = $"Data Source={dbPath};";
 
         _timer = new DispatcherTimer

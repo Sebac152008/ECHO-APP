@@ -28,7 +28,7 @@ namespace WPF_ECHO.View
 
         //Conexion DB
 
-        private static readonly string dbPath = IOPath.Combine(AppDomain.CurrentDomain.BaseDirectory, "DB", "ECHO.db");
+        private static readonly string dbPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ECHO.db");
         private static readonly string connectionString = $"Data Source={dbPath};";
 
 
@@ -54,6 +54,8 @@ namespace WPF_ECHO.View
         private void MostrarRecordatorioDesmarcado()
         {
             MostrarMensaje("Recordatorio desmarcado", "EstrellaVaciaAmarilla.png");
+
+            CargarRecordatoriosDestacadosDesdeBD();
         }
 
 
@@ -97,6 +99,11 @@ namespace WPF_ECHO.View
                             item.DestacadoCambiado += (s, esDestacado) =>
                             {
                                 OnDestacadoToggled(item, esDestacado);
+                            };
+
+                            item.EditarClicked += (s, e) =>
+                            {
+                                EditarRecordatorio(item); // Asegúrate de tener este método implementado
                             };
 
                             // Añadir a la interfaz de usuario (contenedor de destacados)
@@ -278,6 +285,59 @@ namespace WPF_ECHO.View
                 EliminarRecordatorioDeBD(recordatorio.ID_Recordatorios);
                 StackPanelContenedor.Children.Remove(recordatorio);
                 MostrarRecordatorioEliminado();
+            }
+        }
+
+        private async void EditarRecordatorio(RecordatorioItem recordatorio)
+        {
+
+            var editarControl = new EditarRecordatorioDialog();
+
+            // Rellenar campos con los datos actuales
+            editarControl.txtNotaEditar.Text = recordatorio.Descripcion;
+            editarControl.fechaEditar.SelectedDate = DateTime.Parse(recordatorio.Fecha);
+
+            // Intentar parsear la hora en formato 24 horas (ej. "14:30")
+            if (!TimeSpan.TryParse(recordatorio.Hora, out TimeSpan horaParseada))
+            {
+                MessageBox.Show("La hora del recordatorio no se pudo interpretar correctamente.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            editarControl.horaEditar.SelectedTime = DateTime.Today.Add(horaParseada);
+
+            // Mostrar diálogo
+            var resultado = await MaterialDesignThemes.Wpf.DialogHost.Show(editarControl, "MainDialogHost");
+
+            if (resultado is "true")
+            {
+                string nuevaNota = editarControl.txtNotaEditar.Text;
+                DateTime? nuevaFecha = editarControl.fechaEditar.SelectedDate;
+                TimeSpan? nuevaHora = editarControl.horaEditar.SelectedTime?.TimeOfDay;
+
+                if (!string.IsNullOrWhiteSpace(nuevaNota) && nuevaFecha != null && nuevaHora != null)
+                {
+                    try
+                    {
+                        using (var conn = new SQLiteConnection(connectionString))
+                        {
+                            conn.Open();
+                            var cmd = new SQLiteCommand("UPDATE Recordatorios SET Nota=@nota, Fecha=@fecha, Hora=@hora WHERE ID_Recordatorios=@id", conn);
+                            cmd.Parameters.AddWithValue("@nota", nuevaNota);
+                            cmd.Parameters.AddWithValue("@fecha", nuevaFecha.Value.ToString("yyyy-MM-dd"));
+                            cmd.Parameters.AddWithValue("@hora", nuevaHora.Value.ToString(@"hh\:mm")); // ⏱️ formato 24h
+                            cmd.Parameters.AddWithValue("@id", recordatorio.ID_Recordatorios);
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        MostrarMensaje("Recordatorio editado", "comprobado.png");
+                        CargarRecordatoriosDestacadosDesdeBD();
+
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error al editar: {ex.Message}");
+                    }
+                }
             }
         }
 

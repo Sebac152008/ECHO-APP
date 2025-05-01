@@ -34,7 +34,7 @@ namespace WPF_ECHO.View
 
         //Conexion DB
 
-        private static readonly string dbPath = IOPath.Combine(AppDomain.CurrentDomain.BaseDirectory, "DB", "ECHO.db");
+        private static readonly string dbPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ECHO.db");
         private static readonly string connectionString = $"Data Source={dbPath};";
 
 
@@ -131,24 +131,6 @@ namespace WPF_ECHO.View
             animacionEnCurso = false;
         }
 
-        private void txtNota_GotFocus(object sender, RoutedEventArgs e)
-        {
-            if (txtNota.Text == "Escribe algo...")
-            {
-                txtNota.Text = "";
-                txtNota.Foreground = Brushes.White;
-            }
-        }
-
-        private void txtNota_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (txtNota.Text == "")
-            {
-                txtNota.Text = "Escribe algo...";
-                txtNota.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#A2AAB2"));
-            }
-        }
-
         private void BtnEliminar_Click(object sender, RoutedEventArgs e)
         {
             Button boton = sender as Button;
@@ -160,17 +142,20 @@ namespace WPF_ECHO.View
         }
 
 
-        private void btnGuardar_Click(object sender, RoutedEventArgs e)
+        private async void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
             string nota = txtNota.Text.Trim();
             DateTime? fecha = fechaPicker.SelectedDate;
             TimeSpan? hora = comboHoraMinuto.SelectedTime?.TimeOfDay;
+
+            bool esValido = true;
 
             // Validación del título
             if (string.IsNullOrEmpty(nota) || nota == "Escribe algo...")
             {
                 ErrorTitulo.Visibility = Visibility.Visible;
                 ErrorTitulo.Text = "El título no puede quedar vacío.";
+                esValido = false;
             }
             else
             {
@@ -182,29 +167,17 @@ namespace WPF_ECHO.View
             {
                 ErrorFecha.Visibility = Visibility.Visible;
                 ErrorFecha.Text = "Por favor selecciona una fecha.";
+                esValido = false;
             }
-            else
-            {
-                ErrorFecha.Visibility = Visibility.Collapsed;
-            }
-            if (fecha.Value.Date < DateTime.Today)
+            else if (fecha.Value.Date < DateTime.Today)
             {
                 ErrorFecha.Visibility = Visibility.Visible;
                 ErrorFecha.Text = "La fecha no puede ser anterior al día de hoy.";
+                esValido = false;
             }
             else
             {
                 ErrorFecha.Visibility = Visibility.Collapsed;
-            }
-            if (fecha.Value.Date == DateTime.Today && hora.HasValue && hora.Value < DateTime.Now.TimeOfDay)
-            {
-                // Si la fecha es hoy, comprobamos si la hora seleccionada es anterior a la hora actual
-                ErrorHora.Visibility = Visibility.Visible;
-                ErrorHora.Text = "La hora seleccionada no puede ser anterior a la hora actual.";
-            }
-            else
-            {
-                ErrorHora.Visibility = Visibility.Collapsed;
             }
 
             // Validación de la hora
@@ -212,12 +185,22 @@ namespace WPF_ECHO.View
             {
                 ErrorHora.Visibility = Visibility.Visible;
                 ErrorHora.Text = "Por favor selecciona una hora.";
+                esValido = false;
+            }
+            else if (fecha.HasValue && fecha.Value.Date == DateTime.Today && hora.Value < DateTime.Now.TimeOfDay)
+            {
+                ErrorHora.Visibility = Visibility.Visible;
+                ErrorHora.Text = "La hora seleccionada no puede ser anterior a la hora actual.";
+                esValido = false;
             }
             else
             {
                 ErrorHora.Visibility = Visibility.Collapsed;
             }
 
+            // 🚫 Detener si hubo errores
+            if (!esValido)
+                return;
             // ✅ Si llegamos aquí, todo está validado correctamente
 
             OcultarContenedorAddRecordatorio();
@@ -330,7 +313,7 @@ namespace WPF_ECHO.View
 
             var resultado = await DialogHost.Show(editarControl, "MainDialogHost");
 
-            if (resultado is bool confirmado && confirmado)
+            if (resultado is "true")
             {
                 // Obtener valores editados
                 string nuevaNota = editarControl.txtNotaEditar.Text;
@@ -355,6 +338,7 @@ namespace WPF_ECHO.View
 
                         MostrarMensaje("Recordatorio editado", "comprobado.png");
                         ActualizarRecordatorios();
+                        CargarRecordatoriosDesdeBD();
                     }
                     catch (Exception ex)
                     {
@@ -514,6 +498,9 @@ namespace WPF_ECHO.View
         private void MostrarRecordatorioDestacado()
         {
             MostrarMensaje("Recordatorio destacado", "EstrellaRellenada.png");
+
+            CargarRecordatoriosDesdeBD();
+
         }
 
         /* Estos son los mensajes que te dicen cuando añadiste o eliminaste y destacaste un recordatorio */
@@ -566,21 +553,27 @@ namespace WPF_ECHO.View
             borde.BeginAnimation(Border.OpacityProperty, fadeOut);
         }
 
-
-
-
-        private void OcultarContenedorAddRecordatorio()
+        private async Task OcultarContenedorAddRecordatorio()
         {
+            var tcs = new TaskCompletionSource<bool>();
             var storyboard = (Storyboard)this.FindResource("SlideOutToRightAnimation");
+
+            EventHandler handler = null;
+            handler = (s, e) =>
+            {
+                storyboard.Completed -= handler; // 👈 importante: evitar múltiples suscripciones
+                ContenedorAddRecordatorio.Visibility = Visibility.Collapsed;
+                tcs.TrySetResult(true); // 👈 TrySetResult evita la excepción si ya se completó
+            };
+
+            storyboard.Completed += handler;
             Storyboard.SetTarget(storyboard, ContenedorAddRecordatorio);
             storyboard.Begin();
 
-            // Opcional: ocultarlo completamente después de que termine la animación
-            storyboard.Completed += (s, e) =>
-            {
-                ContenedorAddRecordatorio.Visibility = Visibility.Collapsed;
-            };
+            await tcs.Task;
         }
+
+
 
         // Método para actualizar los recordatorios cuando se regresa a InicioView
         private void ActualizarRecordatorios()
