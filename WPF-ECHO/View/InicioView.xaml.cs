@@ -32,6 +32,8 @@ namespace WPF_ECHO.View
     public partial class InicioView : UserControl
     {
 
+        public static InicioView InstanciaActual;
+
         //Conexion DB
 
         private static readonly string dbPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ECHO.db");
@@ -42,6 +44,8 @@ namespace WPF_ECHO.View
         public InicioView()
         {
             InitializeComponent(); // Asegúrate de que esta línea esté primero
+
+            InstanciaActual = this;
 
             RecordatorioEventAggregator.RecordatorioDesdestacado += OnRecordatorioDesdestacado;
 
@@ -64,6 +68,11 @@ namespace WPF_ECHO.View
             };
             // Inicializar dbPath dentro del constructor
 
+        }
+
+        public void RecargarRecordatorios()
+        {
+            CargarRecordatoriosDesdeBD();
         }
 
         private void FondoImagen_Loaded(object sender, RoutedEventArgs e)
@@ -393,6 +402,7 @@ namespace WPF_ECHO.View
                     new TextBlock
                     {
                         Text = "¿Estás seguro de que deseas eliminar este recordatorio?",
+                        FontSize = 16,
                         TextWrapping = TextWrapping.Wrap,
                         Margin = new Thickness(20, 20, 20, 16)
                     },
@@ -406,13 +416,15 @@ namespace WPF_ECHO.View
                             {
                                 Content = "Cancelar",
                                 Margin = new Thickness(0,0,8,0),
+                                Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#fff")),
+                                Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#2C3E50")),
                                 Command = MaterialDesignThemes.Wpf.DialogHost.CloseDialogCommand,
                                 CommandParameter = false
                             },
                             new Button
                             {
                                 Content = "Eliminar",
-                                Margin = new Thickness (10,10,8,10),
+                                Margin = new Thickness (10,10,10,10),
                                 Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#C0392B")),
                                 Foreground = Brushes.White,
                                 Command = MaterialDesignThemes.Wpf.DialogHost.CloseDialogCommand,

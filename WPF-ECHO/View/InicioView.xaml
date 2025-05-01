@@ -84,16 +84,15 @@
                 </Border.Effect>
 
 
-
                 <Button Cursor="Hand" Click="Button_Click" Margin="0 0 170 75" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="55"  Height="55">
 
                     <StackPanel>
-                        <fa:IconImage Icon="PenToSquare"  Width="30" Foreground="White"/>
+                        <fa:IconImage Icon="PenToSquare"  Width="30" Foreground="#fff"/>
                     </StackPanel>
 
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
-                            <Border Background="#2C3E50" CornerRadius="40" x:Name="ButtonHover">
+                            <Border Background="#2C3E50" CornerRadius="5" x:Name="ButtonHover">
                                 <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
 
@@ -141,7 +140,7 @@
                         </StackPanel>
 
                         <Border Background="#2C3E50" Padding="0 20 0 20" Width="255" BorderThickness="4" CornerRadius="10">
-                            <TextBox x:Name="txtNota" Foreground="#A2AAB2" materialDesign:HintAssist.Hint="Escribe algo..." MaxLength="50" FontSize="15" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Background="#2C3E50" BorderBrush="#323748" BorderThickness="0" Height="30" Width="230"/>
+                            <TextBox x:Name="txtNota" Foreground="#fff" materialDesign:HintAssist.Hint="Escribe algo..." MaxLength="50" FontSize="15" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Background="#2C3E50" BorderBrush="#323748" BorderThickness="0" Height="30" Width="230"/>
                         </Border>
                     </StackPanel>
 
@@ -151,7 +150,7 @@
                         <StackPanel Orientation="Vertical">
                             <TextBlock FontSize="19" HorizontalAlignment="Left" Margin="10 0 0 10" Text="Fecha:" Width="55"/>
 
-                            <!-- Error Hora -->
+                            <!-- Error Fecha -->
 
                             <TextBlock x:Name="ErrorFecha" FontSize="15" Foreground="red" Visibility="Collapsed" TextWrapping="Wrap" Width="235" Margin="0 3 0 10" Text="Error"/>
 
@@ -170,7 +169,7 @@
                         <StackPanel Orientation="Vertical">
                             <TextBlock FontSize="19" Text="Hora:" Width="70" HorizontalAlignment="Left" Margin="10 0 0 10"/>
 
-                            <!-- Error Fecha -->
+                            <!-- Error Hora -->
 
                             <TextBlock x:Name="ErrorHora" FontSize="15" TextWrapping="Wrap" Width="245" HorizontalAlignment="Left" Visibility="Collapsed" Margin="10 0 0 10" Text="Error" Foreground="Red"/>
 
@@ -178,7 +177,7 @@
                         <Border Padding="10" BorderBrush="#2C3E50" BorderThickness="2" CornerRadius="10" Width="255">
 
                             <Grid>
-                                <materialDesign:TimePicker materialDesign:HintAssist.Hint="Seleccione el reloj" FontSize="15" Is24Hours="True" x:Name="comboHoraMinuto"/>
+                                <materialDesign:TimePicker BorderThickness="0" materialDesign:HintAssist.Hint="Seleccione el reloj" FontSize="15" Is24Hours="True" x:Name="comboHoraMinuto"/>
                             </Grid>
 
                         </Border>

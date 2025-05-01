@@ -1,40 +1,66 @@
 ﻿<UserControl x:Class="ECHO.View.EditarRecordatorioDialog"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:ECHO.View"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    
+             xmlns:local="clr-namespace:ECHO.View">
+
     <Grid Width="300" Margin="20">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+        <StackPanel>
 
-        <TextBlock Text="Titulo" FontSize="20" FontWeight="Bold"/>
-        <TextBox x:Name="txtNotaEditar" FontSize="15" Margin="0,40,0,0" materialDesign:HintAssist.Hint="Nota"/>
-        <TextBlock Grid.Row="1" Text="Fecha" Margin="0 20 0 0" FontSize="20" FontWeight="Bold" />
-        <DatePicker x:Name="fechaEditar" Grid.Row="1" FontSize="15" Margin="0,60,0,0"/>
-        <TextBlock Grid.Row="2" Text="Hora" Margin="0 20 0 0" FontSize="20" FontWeight="Bold" />
-        <materialDesign:TimePicker x:Name="horaEditar" Is24Hours="True" FontSize="15" Grid.Row="2" Margin="0,60,0,0"/>
+            <!-- Título -->
+            <TextBlock Text="Título" FontSize="20" FontWeight="Bold" />
+            <TextBox x:Name="txtNotaEditar"
+                     FontSize="15"
+                     Margin="0,10,0,5"
+                     materialDesign:HintAssist.Hint="Nota" />
+            <TextBlock x:Name="ErrorTituloEdit"
+                       FontSize="14"
+                       Foreground="Red"
+                       Visibility="Collapsed"
+                       Text="Error en el título" 
+                       Margin="0 10 0 0"/>
 
-        <StackPanel Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Right" Margin="0,20,0,0">
-            <Button Content="Cancelar"
-                Background="#2C3E50"
-                Foreground="#fff"
-                Margin="0,0,10,0"
-                Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
-                CommandParameter="false"/>
-            <Button Content="Guardar"
-                Background="#27AE60"
-                Foreground="White"
-                Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
-                CommandParameter="true"/>
+            <!-- Fecha -->
+            <TextBlock Text="Fecha" Margin="0,20,0,0" FontSize="20" FontWeight="Bold" />
+            <DatePicker x:Name="fechaEditar"
+                        FontSize="15"
+                        Margin="0,10,0,5" />
+            <TextBlock x:Name="ErrorFechaEdit"
+                       FontSize="14"
+                       Foreground="Red"
+                       Visibility="Collapsed"
+                       Text="Error en la fecha"
+                       Margin="0 10 0 0"/>
+
+            <!-- Hora -->
+            <TextBlock Text="Hora" Margin="0,20,0,0" FontSize="20" FontWeight="Bold" />
+            <materialDesign:TimePicker x:Name="horaEditar"
+                                       FontSize="15"
+                                       Margin="0,10,0,5"
+                                       Is24Hours="True" />
+            <TextBlock x:Name="ErrorHoraEdit"
+                       TextWrapping="Wrap"
+                       FontSize="14"
+                       Foreground="Red"
+                       Visibility="Collapsed"
+                       Text="Error en la hora"
+                       Margin="0 10 0 0"/>
+
+            <!-- Botones -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+                <Button Content="Cancelar"
+                        Background="#2C3E50"
+                        Foreground="White"
+                        Margin="0,0,10,0"
+                        Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                        CommandParameter="false" />
+
+                <Button Content="Guardar"
+                        Background="#27AE60"
+                        Foreground="White"
+                        Click="BtnGuardar_Click" />
+            </StackPanel>
+
         </StackPanel>
     </Grid>
 </UserControl>

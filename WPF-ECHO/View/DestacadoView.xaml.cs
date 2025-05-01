@@ -17,13 +17,21 @@ namespace WPF_ECHO.View
     /// </summary>
     public partial class DestacadoView : UserControl
     {
+        public static DestacadoView InstanciaActual;
 
         public DestacadoView()
         {
             InitializeComponent();
 
+            InstanciaActual = this;
+
             this.Loaded += DestacadoView_Loaded;
 
+        }
+
+        public void RecargarRecordatorios()
+        {
+            CargarRecordatoriosDestacadosDesdeBD();
         }
 
         //Conexion DB
@@ -247,6 +255,7 @@ namespace WPF_ECHO.View
                     new TextBlock
                     {
                         Text = "¿Estás seguro de que deseas eliminar este recordatorio?",
+                        FontSize = 16,
                         TextWrapping = TextWrapping.Wrap,
                         Margin = new Thickness(20, 20, 20, 16)
                     },
@@ -260,13 +269,15 @@ namespace WPF_ECHO.View
                             {
                                 Content = "Cancelar",
                                 Margin = new Thickness(0,0,8,0),
+                                Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#fff")),
+                                Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#2C3E50")),
                                 Command = MaterialDesignThemes.Wpf.DialogHost.CloseDialogCommand,
                                 CommandParameter = false
                             },
                             new Button
                             {
                                 Content = "Eliminar",
-                                Margin = new Thickness (10,10,8,10),
+                                Margin = new Thickness (10,10,10,10),
                                 Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#C0392B")),
                                 Foreground = Brushes.White,
                                 Command = MaterialDesignThemes.Wpf.DialogHost.CloseDialogCommand,

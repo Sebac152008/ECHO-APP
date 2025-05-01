@@ -55,9 +55,10 @@
                 <!-- Contenedor de botones -->
                 <Grid DockPanel.Dock="Top" VerticalAlignment="Stretch">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="70"/>
                         <!-- Para el botón de inicio -->
-                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="70"/>
+                        <RowDefinition Height="70"/>
                         <RowDefinition Height="*"/>
                         <!-- Espacio en medio -->
                         <RowDefinition Height="auto"/>
@@ -75,7 +76,7 @@
 
                     <!-- Boton Destacados -->
 
-                    <RadioButton Command="{Binding ShowDestacadoViewCommand}" VerticalAlignment="Top" Grid.Row="1" Style="{StaticResource menuButton}" Tag="#fff" >
+                    <RadioButton Command="{Binding ShowDestacadoViewCommand}" VerticalAlignment="Center" Grid.Row="1" Style="{StaticResource menuButton}" Tag="#fff" >
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="Star" IconFont="Solid"  Style="{StaticResource menuButtonIcon}" />
                             <TextBlock Text="Destacado" Style="{StaticResource menuButtonText}" />
@@ -84,7 +85,7 @@
                     
                     <!-- Boton Buscar -->
 
-                    <RadioButton Command="{Binding ShowBuscarViewCommand}" VerticalAlignment="Top" Grid.Row="2" Style="{StaticResource menuButton}" Tag="#fff" >
+                    <RadioButton Command="{Binding ShowBuscarViewCommand}" VerticalAlignment="Center" Grid.Row="2" Style="{StaticResource menuButton}" Tag="#fff" >
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="Search" IconFont="Solid"  Style="{StaticResource menuButtonIcon}" />
                             <TextBlock Text="Buscar" Style="{StaticResource menuButtonText}" />
@@ -93,7 +94,7 @@
 
                     <!-- Botón de Acerca de -->
 
-                    <RadioButton Grid.Row="3" Command="{Binding ShowAcercaDeCommand}" Margin="0 10 0 20" Style="{StaticResource menuButton}" Tag="#fff" >
+                    <RadioButton Grid.Row="4" Command="{Binding ShowAcercaDeCommand}" Margin="0 10 0 20" Style="{StaticResource menuButton}" Tag="#fff" >
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="ExclamationCircle" Style="{StaticResource menuButtonIcon}" />
                             <TextBlock Text="Acerca de" Style="{StaticResource menuButtonText}" />

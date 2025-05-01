@@ -18,24 +18,52 @@
     <Grid>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="100" />
+            <RowDefinition Height="130" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Border CornerRadius="20" Background="#2C3E50" Height="80" Padding="0 10 0 10" Margin="40 0 40 0" Grid.Row="0">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <!-- Ícono ocupa solo lo necesario -->
-                    <ColumnDefinition Width="*"/>
-                    <!-- TextBox ocupa todo el resto -->
-                </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0" Margin="40,20,40,0" HorizontalAlignment="Center">
+            <Border Background="#F2F4F5"
+            CornerRadius="30"
+            Padding="35, 25"
+            Effect="{StaticResource MaterialDesignElevationShadow4}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-                <fa:IconImage Icon="Search" Width="40" Margin="50 0 20 0" Foreground="White" Grid.Column="0" VerticalAlignment="Center"/>
-                <TextBox x:Name="txtBuscarRecordatorio" GotFocus="txtBuscarRecordatorio_GotFocus" LostFocus="txtBuscarRecordatorio_LostFocus" Text="Buscar recordatorio..." Foreground="#A2AAB2" FontSize="20" MaxLength="50" BorderThickness="0" Height="40" BorderBrush="White" VerticalAlignment="Center" Margin="0 0 20 0" Grid.Column="1"/>
-            </Grid>
-        </Border>
+                    <fa:IconImage Icon="Search"
+                          Width="25"
+                          Height="25"
+                          VerticalAlignment="Center"
+                          Foreground="#7F8C8D"
+                          Grid.Column="0" />
 
+                    <TextBox x:Name="txtBuscarRecordatorio"
+                     Grid.Column="1"
+                     BorderThickness="0"
+                     Background="Transparent"
+                     MaxLength="50"
+                     MinWidth="500"
+                     HorizontalContentAlignment="Left"
+                     FontSize="16"
+                     Height="40"
+                     Foreground="#2C3E50"
+                     Padding="10 0"
+                     VerticalContentAlignment="Center"
+                     TextChanged="txtBuscarRecordatorio_TextChanged"
+                     materialDesign:HintAssist.Hint="Buscar recordatorio..."
+                     Style="{StaticResource MaterialDesignTextBoxBase}" />
+                </Grid>
+            </Border>
+        </StackPanel>
+
+
+
+        <ScrollViewer Grid.Row="1" Margin="40,20,40,40">
+            <StackPanel x:Name="StackResultados" />
+        </ScrollViewer>
 
     </Grid>
 </UserControl>

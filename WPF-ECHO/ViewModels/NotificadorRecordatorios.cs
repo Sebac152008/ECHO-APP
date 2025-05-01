@@ -60,7 +60,15 @@ public class NotificadorRecordatorios
             {
                 MostrarNotificacion(item.Item2);
                 EliminarDeBD(item.Item1);
+
+                // Recargar vistas
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    WPF_ECHO.View.InicioView.InstanciaActual?.RecargarRecordatorios();
+                    WPF_ECHO.View.DestacadoView.InstanciaActual?.RecargarRecordatorios();
+                });
             }
+
         }
         catch (Exception ex)
         {
