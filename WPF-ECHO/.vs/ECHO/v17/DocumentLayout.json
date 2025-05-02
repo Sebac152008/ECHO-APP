@@ -1,12 +1,70 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\Sebastian Cuevas\\Desktop\\ECHO-APP\\WPF-ECHO\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{B8C7A4A0-368E-4D6C-9D5E-173D4B4EF5CA}|ECHO.csproj|c:\\users\\sebastian cuevas\\desktop\\echo-app\\wpf-echo\\view\\buscarview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{B8C7A4A0-368E-4D6C-9D5E-173D4B4EF5CA}|ECHO.csproj|solutionrelative:view\\buscarview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B8C7A4A0-368E-4D6C-9D5E-173D4B4EF5CA}|ECHO.csproj|c:\\users\\sebastian cuevas\\desktop\\echo-app\\wpf-echo\\view\\buscarview.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
+      "RelativeMoniker": "D:0:0:{B8C7A4A0-368E-4D6C-9D5E-173D4B4EF5CA}|ECHO.csproj|solutionrelative:view\\buscarview.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B8C7A4A0-368E-4D6C-9D5E-173D4B4EF5CA}|ECHO.csproj|c:\\users\\sebastian cuevas\\desktop\\echo-app\\wpf-echo\\view\\recordatorioitem.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
+      "RelativeMoniker": "D:0:0:{B8C7A4A0-368E-4D6C-9D5E-173D4B4EF5CA}|ECHO.csproj|solutionrelative:view\\recordatorioitem.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "BuscarView.xaml",
+              "DocumentMoniker": "C:\\Users\\Sebastian Cuevas\\Desktop\\ECHO-APP\\WPF-ECHO\\View\\BuscarView.xaml",
+              "RelativeDocumentMoniker": "View\\BuscarView.xaml",
+              "ToolTip": "C:\\Users\\Sebastian Cuevas\\Desktop\\ECHO-APP\\WPF-ECHO\\View\\BuscarView.xaml",
+              "RelativeToolTip": "View\\BuscarView.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-05-02T20:30:33.315Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "RecordatorioItem.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Sebastian Cuevas\\Desktop\\ECHO-APP\\WPF-ECHO\\View\\RecordatorioItem.xaml.cs",
+              "RelativeDocumentMoniker": "View\\RecordatorioItem.xaml.cs",
+              "ToolTip": "C:\\Users\\Sebastian Cuevas\\Desktop\\ECHO-APP\\WPF-ECHO\\View\\RecordatorioItem.xaml.cs",
+              "RelativeToolTip": "View\\RecordatorioItem.xaml.cs",
+              "ViewState": "AgIAAG4AAAAAAAAAAAAAwMAAAABSAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-02T18:32:58.14Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "BuscarView.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Sebastian Cuevas\\Desktop\\ECHO-APP\\WPF-ECHO\\View\\BuscarView.xaml.cs",
+              "RelativeDocumentMoniker": "View\\BuscarView.xaml.cs",
+              "ToolTip": "C:\\Users\\Sebastian Cuevas\\Desktop\\ECHO-APP\\WPF-ECHO\\View\\BuscarView.xaml.cs",
+              "RelativeToolTip": "View\\BuscarView.xaml.cs",
+              "ViewState": "AgIAAGoAAAAAAAAAAAAiwHYAAAA9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-02T18:08:40.412Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }

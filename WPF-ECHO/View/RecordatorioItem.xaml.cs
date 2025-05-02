@@ -150,6 +150,12 @@ namespace ECHO.View
 
             CambiarVisibilidadDesdeDestacado?.Invoke(this, ID_Recordatorios);
             // Aquí puedes guardar el estado si lo necesitas
+
+            // al final de btnDestacado_Click, tras la actualización en BD:
+
+            // ❶ invoca aquí el evento que notifica el nuevo estado:
+            DestacadoCambiado?.Invoke(this, estaDestacado);
+
         }
 
 
@@ -185,11 +191,8 @@ namespace ECHO.View
 
             // Después de cambiar estaDestacado y guardar en BD...
             imgDestacado.Source = new BitmapImage(new Uri(uri, UriKind.Relative));
-            // Y lanzas el evento:
-            DestacadoCambiado?.Invoke(this, estaDestacado);
 
         }
-
 
     }
 

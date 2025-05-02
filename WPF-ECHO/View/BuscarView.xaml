@@ -12,58 +12,74 @@
      TextElement.FontSize="13"
      TextOptions.TextFormattingMode="Ideal"
      TextOptions.TextRenderingMode="Auto"
-     Background="{DynamicResource MaterialDesignPaper}"
+     Background="#000"
      FontFamily="{DynamicResource MaterialDesignFont}"
              d:DesignHeight="700" d:DesignWidth="1180">
-    <Grid>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="130" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+    <materialDesign:DialogHost Identifier="MainDialogHost">
 
-        <StackPanel Grid.Row="0" Margin="40,20,40,0" HorizontalAlignment="Center">
-            <Border Background="#F2F4F5"
-            CornerRadius="30"
-            Padding="35, 25"
-            Effect="{StaticResource MaterialDesignElevationShadow4}">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
+        <Grid>
 
-                    <fa:IconImage Icon="Search"
-                          Width="25"
-                          Height="25"
+
+            <Image x:Name="FondoImagen" Loaded="Image_Loaded" Stretch="UniformToFill" Opacity="0.5" />
+
+            <StackPanel Panel.ZIndex="50" x:Name="StackMensajes" VerticalAlignment="Top" Width="220" Margin="10" Orientation="Vertical"/>
+
+
+            <Grid>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="130" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+
+                <Grid Panel.ZIndex="20" Grid.Row="0" Margin="40,40,40,0">
+
+                    <Border Background="#F2F4F5"
+            CornerRadius="20"
+            Padding="20,10"
+            Effect="{StaticResource MaterialDesignElevationShadow2}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <fa:IconImage Icon="Search"
+                          Width="22"
+                          Height="22"
                           VerticalAlignment="Center"
+                          Margin="0,0,10,0"
                           Foreground="#7F8C8D"
                           Grid.Column="0" />
 
-                    <TextBox x:Name="txtBuscarRecordatorio"
+                            <TextBox x:Name="txtBuscarRecordatorio"
                      Grid.Column="1"
                      BorderThickness="0"
                      Background="Transparent"
-                     MaxLength="50"
-                     MinWidth="500"
-                     HorizontalContentAlignment="Left"
                      FontSize="16"
-                     Height="40"
                      Foreground="#2C3E50"
-                     Padding="10 0"
                      VerticalContentAlignment="Center"
-                     TextChanged="txtBuscarRecordatorio_TextChanged"
+                     Padding="5"
+                     Height="40"
+                     Style="{StaticResource MaterialDesignTextBoxBase}"
                      materialDesign:HintAssist.Hint="Buscar recordatorio..."
-                     Style="{StaticResource MaterialDesignTextBoxBase}" />
+                     TextChanged="txtBuscarRecordatorio_TextChanged" />
+                        </Grid>
+                    </Border>
                 </Grid>
-            </Border>
-        </StackPanel>
 
 
 
-        <ScrollViewer Grid.Row="1" Margin="40,20,40,40">
-            <StackPanel x:Name="StackResultados" />
-        </ScrollViewer>
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1" Margin="0,20,0,10" Padding="0 0 0 0" >
+                    <StackPanel x:Name="StackResultados" Margin="30 0 30 0" />
+                </ScrollViewer>
 
-    </Grid>
+            </Grid>
+
+        </Grid>
+
+    </materialDesign:DialogHost>
+    
 </UserControl>

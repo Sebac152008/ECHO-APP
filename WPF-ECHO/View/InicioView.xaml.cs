@@ -255,8 +255,7 @@ namespace WPF_ECHO.View
 
         private void LimpiarCampos() // Aqui limpiamos los datos despues de ser enviados
         {
-            txtNota.Text = "Escribe algo...";
-            txtNota.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#A2AAB2"));
+            txtNota.Text = "";
             fechaPicker.SelectedDate = null;
             comboHoraMinuto.SelectedTime = null; // Desmarca cualquier selección
         }

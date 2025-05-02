@@ -50,6 +50,14 @@ namespace WPF_ECHO
             pre.EndInit();
             Application.Current.Resources["ImagenFondoPre"] = pre;
 
+            Uri urq = new Uri("pack://application:,,,/Imagenes/daniel-dorfer-dy50JugmL_g-unsplash.jpg");
+            BitmapImage preca = new BitmapImage();
+            preca.BeginInit(); // <- usar el objeto correcto
+            preca.CacheOption = BitmapCacheOption.OnLoad;
+            preca.UriSource = urq;
+            preca.EndInit();
+            Application.Current.Resources["ImagenFondo"] = preca;
+
             // ----- Control de instancia única -----
             const string mutexName = "ECHO";
             bool createdNew;
