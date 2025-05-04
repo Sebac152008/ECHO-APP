@@ -6,128 +6,126 @@
              xmlns:local="clr-namespace:WPF_ECHO.View"
              mc:Ignorable="d" 
              d:DesignHeight="1500" d:DesignWidth="1180"
-             Background="White">
+             Background="#121212">
 
     <UserControl.Resources>
+        <!-- Estilo general de texto -->
+        <Style x:Key="GlassHeader" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="32"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Margin" Value="0 10 0 5"/>
+        </Style>
 
-        <!-- Estilo claro para tarjetas -->
-        <Style x:Key="LightCard" TargetType="Border">
-            <Setter Property="Background" Value="#F3F4F6"/>
-            <Setter Property="CornerRadius" Value="8"/>
-            <Setter Property="Padding" Value="25"/>
-            <Setter Property="Margin" Value="0 0 0 25"/>
-            <Setter Property="Effect">
+        <Style x:Key="GlassText" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="Foreground" Value="#D6D6D6"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="Margin" Value="0 5 0 15"/>
+        </Style>
+
+        <!-- Contenedor estilo glassmorphism -->
+        <Style x:Key="GlassContainer" TargetType="Grid">
+            <Setter Property="Background">
                 <Setter.Value>
-                    <DropShadowEffect BlurRadius="5" ShadowDepth="1" Opacity="0.15" Color="Black"/>
+                    <SolidColorBrush Color="#1AFFFFFF" Opacity="0.1"/>
                 </Setter.Value>
             </Setter>
-        </Style>
-
-        <!-- Encabezado claro -->
-        <Style x:Key="SectionHeader" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="26"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Foreground" Value="#1F2937"/>
-            <Setter Property="Margin" Value="0 0 0 10"/>
-        </Style>
-
-        <!-- Contenido claro -->
-        <Style x:Key="SectionText" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="16"/>
-            <Setter Property="Foreground" Value="#374151"/>
-            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="Margin" Value="0 0 0 30"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <BlurEffect Radius="4"/>
+                </Setter.Value>
+            </Setter>
         </Style>
     </UserControl.Resources>
 
     <Grid>
-        <ScrollViewer Name="MainScrollViewer"
-                      VerticalScrollBarVisibility="Auto"
-                      HorizontalScrollBarVisibility="Disabled"
-                      Margin="0,8,0,0"
-                      PanningMode="VerticalOnly"
-                      Stylus.IsPressAndHoldEnabled="False"
-                      IsDeferredScrollingEnabled="True">
+        <!-- Imagen de fondo translúcida -->
+        <Image x:Name="FondoImagen"
+               Loaded="Image_Loaded"
+               Stretch="UniformToFill"
+               Opacity="0.15"
+               Panel.ZIndex="0" />
 
-            <StackPanel Margin="80 50 80 30" Background="Transparent">
+        <ScrollViewer VerticalScrollBarVisibility="Auto"
+                      Margin="0,0,0,0"
+                      HorizontalScrollBarVisibility="Disabled">
+
+            <StackPanel Margin="100 60 100 40" Orientation="Vertical">
 
                 <!-- Logo -->
-                <StackPanel HorizontalAlignment="Center" Margin="0 0 0 40">
-                    <Image Source="/Imagenes/echoLogo.png" Width="250" Stretch="Uniform" />
-                </StackPanel>
+                <Image Source="/Imagenes/ECHOLOGO2.png"
+                       Width="220"
+                       Stretch="Uniform"
+                       HorizontalAlignment="Center"
+                       Margin="0 0 0 40"/>
 
-                <!-- Secciones -->
-                <Border Style="{StaticResource LightCard}">
+                <!-- Sección "¿Qué es Echo?" -->
+                <Grid Style="{StaticResource GlassContainer}">
                     <StackPanel>
-                        <TextBlock Style="{StaticResource SectionHeader}" Text="¿Qué es Echo?" />
-                        <TextBlock Style="{StaticResource SectionText}" FontStyle="Italic"
-                                   Text="Echo es una aplicación de recordatorios. Su nombre se inspira en el eco: un sonido que regresa tras rebotar en un obstáculo. Así, los recordatorios que ingresas vuelven a ti cuando más los necesitas." />
+                        <TextBlock Style="{StaticResource GlassHeader}" Text="¿Qué es Echo?" />
+                        <TextBlock Style="{StaticResource GlassText}" Text="Echo es una aplicación de recordatorios inspirada en el eco: un sonido que regresa cuando más lo necesitas." />
                     </StackPanel>
-                </Border>
+                </Grid>
 
-                <Border Style="{StaticResource LightCard}">
+                <!-- Sección "Función" -->
+                <Grid Style="{StaticResource GlassContainer}">
                     <StackPanel>
-                        <TextBlock Style="{StaticResource SectionHeader}" Text="Función" />
-                        <TextBlock Style="{StaticResource SectionText}" FontStyle="Italic"
-                                   Text="Permite registrar y gestionar tus recordatorios fácilmente. Ya sea una tarea, evento o actividad importante, puedes asignarle una fecha y hora específica para recibir una notificación." />
+                        <TextBlock Style="{StaticResource GlassHeader}" Text="Función" />
+                        <TextBlock Style="{StaticResource GlassText}" Text="Permite registrar y gestionar tus recordatorios fácilmente, asignando fecha y hora para recibir notificaciones." />
                     </StackPanel>
-                </Border>
+                </Grid>
 
-                <Border Style="{StaticResource LightCard}">
+                <!-- Sección "Objetivo" -->
+                <Grid Style="{StaticResource GlassContainer}">
                     <StackPanel>
-                        <TextBlock Style="{StaticResource SectionHeader}" Text="Objetivo" />
-                        <TextBlock Style="{StaticResource SectionText}" FontStyle="Italic"
-                                   Text="Echo está pensada para cualquier persona que quiera mejorar su organización diaria. Es intuitiva, accesible y útil para estudiantes, profesionales o cualquier usuario común." />
+                        <TextBlock Style="{StaticResource GlassHeader}" Text="Objetivo" />
+                        <TextBlock Style="{StaticResource GlassText}" Text="Diseñada para estudiantes, profesionales o cualquier persona que busque organizar su vida diaria de forma moderna y efectiva." />
                     </StackPanel>
-                </Border>
-                
-                <!-- Apartado de los desarrolladores -->
-                
-                <Separator Margin="0 30" Background="#D1D5DB" Height="1"/>
+                </Grid>
 
-                <Border Style="{StaticResource LightCard}">
+                <!-- Soporte -->
+                <Grid Style="{StaticResource GlassContainer}">
                     <StackPanel>
-                        <TextBlock Style="{StaticResource SectionHeader}" Text="Soporte" Margin="0 0 0 10"/>
-                          <TextBlock Style="{StaticResource SectionText}">
+                        <TextBlock Style="{StaticResource GlassHeader}" Text="Soporte" />
+                        <TextBlock Style="{StaticResource GlassText}">
                             <Run Text="Correo: "/>
-                            <Run Text="Sophymejia@icluod.com" FontWeight="Bold"/>
-                          </TextBlock>
-                          <TextBlock Style="{StaticResource SectionText}">
+                            <Run Text="Sophymejia@icloud.com" FontWeight="Bold" Foreground="#FFD700"/>
+                        </TextBlock>
+                        <TextBlock Style="{StaticResource GlassText}">
                             <Run Text="Teléfono: "/>
-                            <Run Text="+1 (829)-8799-29202" FontWeight="Bold"/>
-                       </TextBlock>
+                            <Run Text="+1 (829)-8799-29202" FontWeight="Bold" Foreground="#FFD700"/>
+                        </TextBlock>
                     </StackPanel>
-                </Border>
-
+                </Grid>
 
                 <!-- Desarrolladores -->
-                
-                <Border Style="{StaticResource LightCard}">
+                <Grid Style="{StaticResource GlassContainer}">
                     <StackPanel>
-                        <TextBlock Style="{StaticResource SectionHeader}" Text="Equipo de Desarrollo" Margin="0 0 0 15"/>
-                        <TextBlock Style="{StaticResource SectionText}" Text="• Mejia Gomez Sophy Marie"/>
-                        <TextBlock Style="{StaticResource SectionText}" Text="• Valenzuela De Paula Angel Sebastian"/>
-                        <TextBlock Style="{StaticResource SectionText}" Text="• Cueva Santiago Sebastian"/>
+                        <TextBlock Style="{StaticResource GlassHeader}" Text="Equipo de Desarrollo" />
+                        <TextBlock Style="{StaticResource GlassText}" Text="• Mejia Gomez Sophy Marie"/>
+                        <TextBlock Style="{StaticResource GlassText}" Text="• Valenzuela De Paula Angel Sebastian"/>
+                        <TextBlock Style="{StaticResource GlassText}" Text="• Cueva Santiago Sebastian"/>
                     </StackPanel>
-                </Border>
-                
-                <!-- Version -->
+                </Grid>
 
-                <Border Style="{StaticResource LightCard}">
+                <!-- Versión -->
+                <Grid Style="{StaticResource GlassContainer}">
                     <StackPanel>
-                        <TextBlock Style="{StaticResource SectionHeader}" Text="Versión"/>
-                        <TextBlock Style="{StaticResource SectionText}" Text="Echo v1.0 – Abril 2025"/>
+                        <TextBlock Style="{StaticResource GlassHeader}" Text="Versión" />
+                        <TextBlock Style="{StaticResource GlassText}" Text="Echo v1.0 – Abril 2025"/>
                     </StackPanel>
-                </Border>
-                
+                </Grid>
+
                 <!-- Licencia -->
-
-                <Border Style="{StaticResource LightCard}" Margin="0">
+                <Grid Style="{StaticResource GlassContainer}" Margin="0">
                     <StackPanel>
-                        <TextBlock Style="{StaticResource SectionHeader}" Text="Licencia"/>
-                        <TextBlock Style="{StaticResource SectionText}" FontStyle="Italic"
-                                   Text="Este software fue desarrollado como parte de un proyecto académico. Todos los derechos son reservados por los autores. Uso educativo." />
+                        <TextBlock Style="{StaticResource GlassHeader}" Text="Licencia" />
+                        <TextBlock Style="{StaticResource GlassText}" Text="Este software fue desarrollado como parte de un proyecto académico. Todos los derechos son reservados por los autores. Uso educativo." />
                     </StackPanel>
-                </Border>
+                </Grid>
 
             </StackPanel>
         </ScrollViewer>

@@ -302,7 +302,10 @@ namespace WPF_ECHO.View
         private async void EditarRecordatorio(RecordatorioItem recordatorio)
         {
 
-            var editarControl = new EditarRecordatorioDialog();
+            var editarControl = new EditarRecordatorioDialog
+            {
+                IdRecordatorio = recordatorio.ID_Recordatorios
+            };
 
             // Rellenar campos con los datos actuales
             editarControl.txtNotaEditar.Text = recordatorio.Descripcion;

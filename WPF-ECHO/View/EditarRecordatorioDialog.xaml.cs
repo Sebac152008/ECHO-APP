@@ -10,9 +10,12 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Data.SQLite;
+using Microsoft.Data.Sqlite;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPF_ECHO;
 
 namespace ECHO.View
 {
@@ -21,10 +24,16 @@ namespace ECHO.View
     /// </summary>
     public partial class EditarRecordatorioDialog : UserControl
     {
+        private static readonly string dbPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ECHO.db");
+        private static readonly string connectionString = $"Data Source={dbPath};";
+
+        public int IdRecordatorio { get; set; }
+
         public EditarRecordatorioDialog()
         {
             InitializeComponent();
         }
+
 
         private void BtnGuardar_Click(object sender, RoutedEventArgs e)
         {
@@ -82,12 +91,53 @@ namespace ECHO.View
                 ErrorHoraEdit.Visibility = Visibility.Collapsed;
             }
 
+            // Detener si hubo errores
             if (!esValido)
                 return;
+
+            // Validación: ¿ya existe otro recordatorio con la misma fecha y hora?
+            try
+            {
+                using (var connection = new SQLiteConnection(connectionString))
+                {
+
+                    connection.Open();
+
+                    var command = new SQLiteCommand("SELECT COUNT(*) FROM Recordatorios WHERE Fecha = @fecha AND Hora = @hora AND ID_Recordatorios != @id", connection);
+                    command.Parameters.AddWithValue("@fecha", fecha.Value.ToString("yyyy-MM-dd"));
+                    command.Parameters.AddWithValue("@hora", hora.Value.ToString(@"hh\:mm"));
+                    command.Parameters.AddWithValue("@id", IdRecordatorio);
+
+                    long count = (long)command.ExecuteScalar();
+
+                    if (count > 0)
+                    {
+                        ErrorHoraEdit.Visibility = Visibility.Visible;
+                        ErrorHoraEdit.Text = "Ya existe un recordatorio para esa hora.";
+                        return;
+                    }
+
+                    // Código para actualizar el recordatorio
+                    var updateCmd = new SQLiteCommand("UPDATE Recordatorios SET Nota = @nota, Fecha = @fecha, Hora = @hora WHERE ID_Recordatorios = @id", connection);
+                    updateCmd.Parameters.AddWithValue("@nota", nota);
+                    updateCmd.Parameters.AddWithValue("@fecha", fecha.Value.ToString("yyyy-MM-dd"));
+                    updateCmd.Parameters.AddWithValue("@hora", hora.Value.ToString(@"hh\:mm"));
+                    updateCmd.Parameters.AddWithValue("@id", IdRecordatorio);
+
+                    updateCmd.ExecuteNonQuery();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ocurrió un error al actualizar el recordatorio:\n{ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
 
             // Si pasa todas las validaciones, cerrar y devolver "true"
             DialogHost.CloseDialogCommand.Execute("true", null);
         }
+
 
 
     }

@@ -13,8 +13,10 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="RadioButton">
-                    <Border Background="#2C3E50" >
-                        <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <Border Background="#2C3E50">
+                        <Border Margin="10 5 0 5" BorderBrush="#2C3E50" BorderThickness="3 0 0 0">
+                            <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        </Border>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
@@ -27,12 +29,13 @@
 
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Background" Value="#3E5870"/>
-                <Setter Property="Foreground" Value="#fff"/>
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="RadioButton">
-                            <Border Background="#3E5870" >
-                                <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                            <Border Background="#2C3E50">
+                                <Border Margin="10 5 0 5" BorderBrush="#3E5870" BorderThickness="3 0 0 0">
+                                    <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                </Border>
                             </Border>
                         </ControlTemplate>
                     </Setter.Value>
@@ -48,8 +51,10 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="RadioButton">
-                            <Border Background="#3E5870" >
-                                <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                            <Border Background="#2C3E50">
+                                <Border Margin="10 5 0 5" BorderBrush="White" BorderThickness="3 0 0 0">
+                                    <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                </Border>
                             </Border>
                         </ControlTemplate>
                     </Setter.Value>

@@ -5,13 +5,26 @@
              xmlns:local="clr-namespace:ECHO.View">
 
     <Grid Width="300" Margin="20">
+
+        <Grid.RowDefinitions>
+
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+
+        </Grid.RowDefinitions>
+
         <StackPanel>
+            <TextBlock Text="Editar recordatorio" FontSize="23.2" FontWeight="Bold" HorizontalAlignment="Center" Margin="0 10 0 20"/>
+        </StackPanel>
+        
+        <StackPanel Grid.Row="1">
 
             <!-- Título -->
             <TextBlock Text="Título" FontSize="20" FontWeight="Bold" />
             <TextBox x:Name="txtNotaEditar"
                      FontSize="15"
                      Margin="0,10,0,5"
+                     MaxLength="50"
                      materialDesign:HintAssist.Hint="Nota" />
             <TextBlock x:Name="ErrorTituloEdit"
                        FontSize="14"
@@ -24,6 +37,8 @@
             <TextBlock Text="Fecha" Margin="0,20,0,0" FontSize="20" FontWeight="Bold" />
             <DatePicker x:Name="fechaEditar"
                         FontSize="15"
+                        Focusable="False"
+                        materialDesign:HintAssist.Hint="Seleccione el calendario"
                         Margin="0,10,0,5" />
             <TextBlock x:Name="ErrorFechaEdit"
                        FontSize="14"
@@ -36,6 +51,7 @@
             <TextBlock Text="Hora" Margin="0,20,0,0" FontSize="20" FontWeight="Bold" />
             <materialDesign:TimePicker x:Name="horaEditar"
                                        FontSize="15"
+                                       materialDesign:HintAssist.Hint="Seleccione el reloj"
                                        Margin="0,10,0,5"
                                        Is24Hours="True" />
             <TextBlock x:Name="ErrorHoraEdit"

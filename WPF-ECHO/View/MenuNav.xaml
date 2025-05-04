@@ -67,7 +67,7 @@
 
                     <!-- Botón de Inicio -->
 
-                    <RadioButton Command="{Binding ShowInicioViewCommand}" Grid.Row="0" Style="{StaticResource menuButton}" Tag="#fff" >
+                    <RadioButton IsChecked="True" Command="{Binding ShowInicioViewCommand}" Grid.Row="0" Style="{StaticResource menuButton}" Tag="#fff" >
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="Home" Style="{StaticResource menuButtonIcon}" />
                             <TextBlock Text="Inicio" Style="{StaticResource menuButtonText}" />

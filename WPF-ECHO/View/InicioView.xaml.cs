@@ -207,14 +207,9 @@ namespace WPF_ECHO.View
                 ErrorHora.Visibility = Visibility.Collapsed;
             }
 
-            // 🚫 Detener si hubo errores
+            // 🚫 Detener si hubo errores de validación básica
             if (!esValido)
                 return;
-            // ✅ Si llegamos aquí, todo está validado correctamente
-
-            OcultarContenedorAddRecordatorio();
-
-            MostrarRecordatorioGuardado();
 
             try
             {
@@ -222,6 +217,21 @@ namespace WPF_ECHO.View
                 {
                     connection.Open();
 
+                    // 🔍 Validación de duplicado de fecha y hora
+                    string checkQuery = "SELECT COUNT(*) FROM Recordatorios WHERE Fecha = @Fecha AND Hora = @Hora";
+                    SQLiteCommand checkCommand = new SQLiteCommand(checkQuery, connection);
+                    checkCommand.Parameters.AddWithValue("@Fecha", fecha.Value.ToString("yyyy-MM-dd"));
+                    checkCommand.Parameters.AddWithValue("@Hora", hora.Value.ToString(@"hh\:mm"));
+
+                    long existe = (long)checkCommand.ExecuteScalar();
+                    if (existe > 0)
+                    {
+                        ErrorHora.Visibility = Visibility.Visible;
+                        ErrorHora.Text = "Ya existe un recordatorio para esa hora.";
+                        return;
+                    }
+
+                    // Inserción
                     string insertQuery = "INSERT INTO Recordatorios (Nota, Fecha, Hora) VALUES (@Nota, @Fecha, @Hora)";
                     SQLiteCommand insertCommand = new SQLiteCommand(insertQuery, connection);
                     insertCommand.Parameters.AddWithValue("@Nota", nota);
@@ -234,20 +244,25 @@ namespace WPF_ECHO.View
                     {
                         LimpiarCampos();
                         AgregarRecordatorio(nota, fecha.Value.ToShortDateString(), hora.Value.ToString(@"hh\:mm"));
+                        OcultarContenedorAddRecordatorio();
+                        MostrarRecordatorioGuardado();
                     }
                     else
                     {
-                        MessageBox.Show("No se pudo guardar el recordatorio.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        ErrorHora.Visibility = Visibility.Visible;
+                        ErrorHora.Text = "No se pudo guardar el recordatorio.";
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error al guardar el recordatorio: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                ErrorHora.Visibility = Visibility.Visible;
+                ErrorHora.Text = $"Error: {ex.Message}";
             }
 
             CargarRecordatoriosDesdeBD();
         }
+
 
 
 
@@ -311,7 +326,10 @@ namespace WPF_ECHO.View
         private async void EditarRecordatorio(RecordatorioItem recordatorio)
         {
 
-            var editarControl = new EditarRecordatorioDialog();
+            var editarControl = new EditarRecordatorioDialog
+            {
+                IdRecordatorio = recordatorio.ID_Recordatorios
+            };
 
             // Rellenar con los datos actuales
             editarControl.txtNotaEditar.Text = recordatorio.Descripcion;

@@ -36,9 +36,13 @@ public class NotificadorRecordatorios
 
         try
         {
+
             using (var connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
+
+                var idsParaEliminar = new List<int>();
+
                 string query = "SELECT * FROM Recordatorios";
                 using (var command = new SQLiteCommand(query, connection))
                 using (var reader = command.ExecuteReader())
@@ -46,27 +50,31 @@ public class NotificadorRecordatorios
                     while (reader.Read())
                     {
                         var fechaHora = Convert.ToDateTime(reader["Fecha"] + " " + reader["Hora"]);
-                        if (fechaHora <= DateTime.Now)
+                        TimeSpan diferencia = DateTime.Now - fechaHora;
+                        int id = Convert.ToInt32(reader["ID_Recordatorios"]);
+
+                        if (diferencia.TotalMinutes >= 1)
                         {
-                            int id = Convert.ToInt32(reader["ID_Recordatorios"]);
+                            idsParaEliminar.Add(id); // eliminar sin notificar
+                        }
+                        else if (fechaHora <= DateTime.Now)
+                        {
                             string nota = reader["Nota"].ToString();
-                            recordatoriosParaEliminar.Add(Tuple.Create(id, nota));
+                            MostrarNotificacion(nota);
+                            idsParaEliminar.Add(id);
                         }
                     }
                 }
-            }
 
-            foreach (var item in recordatoriosParaEliminar)
-            {
-                MostrarNotificacion(item.Item2);
-                EliminarDeBD(item.Item1);
-
-                // Recargar vistas
-                Application.Current.Dispatcher.Invoke(() =>
+                foreach (var id in idsParaEliminar)
                 {
-                    WPF_ECHO.View.InicioView.InstanciaActual?.RecargarRecordatorios();
-                    WPF_ECHO.View.DestacadoView.InstanciaActual?.RecargarRecordatorios();
-                });
+                    var deleteQuery = "DELETE FROM Recordatorios WHERE ID_Recordatorios = @id";
+                    using (var deleteCommand = new SQLiteCommand(deleteQuery, connection))
+                    {
+                        deleteCommand.Parameters.AddWithValue("@id", id);
+                        deleteCommand.ExecuteNonQuery();
+                    }
+                }
             }
 
         }
@@ -76,30 +84,9 @@ public class NotificadorRecordatorios
         }
     }
 
-    private void EliminarDeBD(int id)
-    {
-        try
-        {
-            using (var connection = new SQLiteConnection(connectionString))
-            {
-                connection.Open();
-                string deleteQuery = "DELETE FROM Recordatorios WHERE ID_Recordatorios = @id";
-                using (var command = new SQLiteCommand(deleteQuery, connection))
-                {
-                    command.Parameters.AddWithValue("@id", id);
-                    command.ExecuteNonQuery();
-                }
-            }
-        }
-        catch (Exception ex)
-        {
-            MessageBox.Show($"Error al eliminar recordatorio: {ex.Message}");
-        }
-    }
-
     private void MostrarNotificacion(string mensaje)
     {
-        _mediaPlayer.Open(new Uri("C:\\Users\\Sebastian Cuevas\\Desktop\\ECHO-APP\\WPF-ECHO\\Sonidos\\alarma.mp3"));
+        _mediaPlayer.Open(new Uri("C:\\Users\\Sebastian Cuevas\\Desktop\\ECHO-APP\\WPF-ECHO\\Sonidos\\alarma.mp3", UriKind.Absolute));
         _mediaPlayer.Play();
 
         Task.Delay(25000).ContinueWith(_ =>
@@ -111,6 +98,7 @@ public class NotificadorRecordatorios
         });
 
         new ToastContentBuilder()
+            .AddArgument("action", "abrir") // ← esto captura clic en cualquier parte del toast
             .AddText(mensaje)
             .SetToastDuration(ToastDuration.Long)
             .AddButton(new ToastButton()
@@ -122,13 +110,20 @@ public class NotificadorRecordatorios
         ToastNotificationManagerCompat.OnActivated += args =>
         {
             var argumentos = ToastArguments.Parse(args.Argument);
-            if (argumentos.Contains("action") && argumentos["action"] == "detenerSonido")
+            if (argumentos.Contains("action"))
             {
-                Application.Current.Dispatcher.Invoke(() =>
+                string accion = argumentos["action"];
+
+                if (accion == "detenerSonido" || accion == "abrir")
                 {
-                    _mediaPlayer.Stop();
-                });
+                    Application.Current.Dispatcher.Invoke(() =>
+                    {
+                        _mediaPlayer.Stop();
+                    });
+                }
             }
         };
     }
+
+
 }
