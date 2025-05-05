@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\Sebastian Cuevas\\Desktop\\ECHO-APP\\WPF-ECHO\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B8C7A4A0-368E-4D6C-9D5E-173D4B4EF5CA}|ECHO.csproj|c:\\users\\sebastian cuevas\\desktop\\echo-app\\wpf-echo\\view\\editarrecordatoriodialog.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
-      "RelativeMoniker": "D:0:0:{B8C7A4A0-368E-4D6C-9D5E-173D4B4EF5CA}|ECHO.csproj|solutionrelative:view\\editarrecordatoriodialog.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
+      "AbsoluteMoniker": "D:0:0:{B8C7A4A0-368E-4D6C-9D5E-173D4B4EF5CA}|ECHO.csproj|c:\\users\\sebastian cuevas\\desktop\\echo-app\\wpf-echo\\viewmodels\\notificadorrecordatorios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B8C7A4A0-368E-4D6C-9D5E-173D4B4EF5CA}|ECHO.csproj|solutionrelative:viewmodels\\notificadorrecordatorios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B8C7A4A0-368E-4D6C-9D5E-173D4B4EF5CA}|ECHO.csproj|c:\\users\\sebastian cuevas\\desktop\\echo-app\\wpf-echo\\view\\inicioview.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
-      "RelativeMoniker": "D:0:0:{B8C7A4A0-368E-4D6C-9D5E-173D4B4EF5CA}|ECHO.csproj|solutionrelative:view\\inicioview.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
+      "AbsoluteMoniker": "D:0:0:{B8C7A4A0-368E-4D6C-9D5E-173D4B4EF5CA}|ECHO.csproj|c:\\users\\sebastian cuevas\\desktop\\echo-app\\wpf-echo\\view\\inicioview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{B8C7A4A0-368E-4D6C-9D5E-173D4B4EF5CA}|ECHO.csproj|solutionrelative:view\\inicioview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B8C7A4A0-368E-4D6C-9D5E-173D4B4EF5CA}|ECHO.csproj|c:\\users\\sebastian cuevas\\desktop\\echo-app\\wpf-echo\\view\\destacadoview.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
@@ -22,34 +22,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "EditarRecordatorioDialog.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\Sebastian Cuevas\\Desktop\\ECHO-APP\\WPF-ECHO\\View\\EditarRecordatorioDialog.xaml.cs",
-              "RelativeDocumentMoniker": "View\\EditarRecordatorioDialog.xaml.cs",
-              "ToolTip": "C:\\Users\\Sebastian Cuevas\\Desktop\\ECHO-APP\\WPF-ECHO\\View\\EditarRecordatorioDialog.xaml.cs",
-              "RelativeToolTip": "View\\EditarRecordatorioDialog.xaml.cs",
-              "ViewState": "AgIAAGkAAAAAAAAAAAAUwHQAAAAfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-04T13:15:21.83Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "InicioView.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\Sebastian Cuevas\\Desktop\\ECHO-APP\\WPF-ECHO\\View\\InicioView.xaml.cs",
-              "RelativeDocumentMoniker": "View\\InicioView.xaml.cs",
-              "ToolTip": "C:\\Users\\Sebastian Cuevas\\Desktop\\ECHO-APP\\WPF-ECHO\\View\\InicioView.xaml.cs",
-              "RelativeToolTip": "View\\InicioView.xaml.cs",
-              "ViewState": "AgIAANkAAAAAAAAAAAAIwOUAAABUAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-04T13:15:12.953Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Document",
               "DocumentIndex": 2,
@@ -58,9 +32,34 @@
               "RelativeDocumentMoniker": "View\\DestacadoView.xaml.cs",
               "ToolTip": "C:\\Users\\Sebastian Cuevas\\Desktop\\ECHO-APP\\WPF-ECHO\\View\\DestacadoView.xaml.cs",
               "RelativeToolTip": "View\\DestacadoView.xaml.cs",
-              "ViewState": "AgIAAEgBAAAAAAAAAAAUwE4BAAAeAAAAAAAAAA==",
+              "ViewState": "AgIAABQAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-04T13:15:03.191Z",
+              "WhenOpened": "2025-05-05T01:16:13.628Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "NotificadorRecordatorios.cs",
+              "DocumentMoniker": "C:\\Users\\Sebastian Cuevas\\Desktop\\ECHO-APP\\WPF-ECHO\\ViewModels\\NotificadorRecordatorios.cs",
+              "RelativeDocumentMoniker": "ViewModels\\NotificadorRecordatorios.cs",
+              "ToolTip": "C:\\Users\\Sebastian Cuevas\\Desktop\\ECHO-APP\\WPF-ECHO\\ViewModels\\NotificadorRecordatorios.cs*",
+              "RelativeToolTip": "ViewModels\\NotificadorRecordatorios.cs*",
+              "ViewState": "AgIAAEMAAAAAAAAAAAAkwFYAAABPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-05T01:06:17.506Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "InicioView.xaml",
+              "DocumentMoniker": "C:\\Users\\Sebastian Cuevas\\Desktop\\ECHO-APP\\WPF-ECHO\\View\\InicioView.xaml",
+              "RelativeDocumentMoniker": "View\\InicioView.xaml",
+              "ToolTip": "C:\\Users\\Sebastian Cuevas\\Desktop\\ECHO-APP\\WPF-ECHO\\View\\InicioView.xaml",
+              "RelativeToolTip": "View\\InicioView.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-05-05T01:02:52.45Z",
               "EditorCaption": ""
             }
           ]

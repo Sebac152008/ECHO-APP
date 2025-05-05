@@ -27,9 +27,9 @@ namespace WPF_ECHO.View
 
         private void Image_Loaded(object sender, RoutedEventArgs e)
         {
-            if (Application.Current.Resources.Contains("ImagenFondoPrecargada"))
+            if (Application.Current.Resources.Contains("ImagenFondoAcerca"))
             {
-                FondoImagen.Source = (BitmapImage)Application.Current.Resources["ImagenFondoPrecargada"];
+                FondoImagen.Source = (BitmapImage)Application.Current.Resources["ImagenFondoAcerca"];
                 FondoImagen.Visibility = Visibility.Visible;
             }
         }

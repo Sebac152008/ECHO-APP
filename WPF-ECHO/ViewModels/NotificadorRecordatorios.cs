@@ -5,6 +5,8 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
+using WPF_ECHO;
+using WPF_ECHO.View;
 using System.Windows.Threading;
 using CommunityToolkit.WinUI.Notifications;
 
@@ -75,6 +77,18 @@ public class NotificadorRecordatorios
                         deleteCommand.ExecuteNonQuery();
                     }
                 }
+
+
+                if (idsParaEliminar.Count > 0 && Application.Current.Dispatcher != null)
+                {
+                    Application.Current.Dispatcher.Invoke(() =>
+                    {
+                        InicioView.InstanciaActual?.RecargarRecordatorios();
+                        DestacadoView.InstanciaActual?.RecargarRecordatorios();
+                    });
+                }
+
+
             }
 
         }

@@ -82,7 +82,7 @@ namespace WPF_ECHO.View
                 using (var connection = new SQLiteConnection(connectionString))
                 {
                     connection.Open();
-                    var selectQuery = "SELECT * FROM Recordatorios WHERE Destacado = 1"; // Obtener los destacados
+                    var selectQuery = "SELECT * FROM Recordatorios WHERE Destacado = 1 ORDER BY ID_Recordatorios DESC"; // Obtener los destacados
                     using (var command = new SQLiteCommand(selectQuery, connection))
                     using (var reader = command.ExecuteReader())
                     {

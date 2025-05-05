@@ -20,23 +20,20 @@
 
         <Grid>
 
-
-            <Image x:Name="FondoImagen" Loaded="Image_Loaded" Stretch="UniformToFill" Opacity="0.5" />
+            <!-- Imagen de fondo -->
+            <Image x:Name="FondoImagen" Loaded="Image_Loaded" Stretch="UniformToFill" Opacity="0.4" />
 
             <StackPanel Panel.ZIndex="50" x:Name="StackMensajes" VerticalAlignment="Top" Width="220" Margin="10" Orientation="Vertical"/>
 
-
             <Grid>
-
                 <Grid.RowDefinitions>
                     <RowDefinition Height="130" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
-
+                <!-- Barra de búsqueda -->
                 <Grid Panel.ZIndex="20" Grid.Row="0" Margin="40,40,40,0">
-
-                    <Border Background="#F2F4F5"
+                    <Border Background="#FFFFFF"
                             CornerRadius="20"
                             Padding="20,10"
                             Effect="{StaticResource MaterialDesignElevationShadow2}">
@@ -46,40 +43,40 @@
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
 
+                            <!-- Icono de búsqueda -->
                             <fa:IconImage Icon="Search"
-                          Width="22"
-                          Height="22"
-                          VerticalAlignment="Center"
-                          Margin="0,0,10,0"
-                          Foreground="#7F8C8D"
-                          Grid.Column="0" />
+                                          Width="22"
+                                          Height="22"
+                                          VerticalAlignment="Center"
+                                          Margin="0,0,10,0"
+                                          Foreground="#7F8C8D"
+                                          Grid.Column="0" />
 
+                            <!-- TextBox de búsqueda -->
                             <TextBox x:Name="txtBuscarRecordatorio"
-                     Grid.Column="1"
-                     BorderThickness="0"
-                     Background="Transparent"
-                     FontSize="16"
-                     Foreground="#2C3E50"
-                     VerticalContentAlignment="Center"
-                     Padding="5"
-                     Height="40"
-                     Style="{StaticResource MaterialDesignTextBoxBase}"
-                     materialDesign:HintAssist.Hint="Buscar recordatorio..."
-                     TextChanged="txtBuscarRecordatorio_TextChanged" />
+                                     Grid.Column="1"
+                                     BorderThickness="0"
+                                     Background="Transparent"
+                                     FontSize="16"
+                                     Foreground="#2C3E50"
+                                     VerticalContentAlignment="Center"
+                                     Padding="5"
+                                     Height="40"
+                                     Style="{StaticResource MaterialDesignTextBoxBase}"
+                                     materialDesign:HintAssist.Hint="Buscar recordatorio..."
+                                     TextChanged="txtBuscarRecordatorio_TextChanged" />
                         </Grid>
                     </Border>
                 </Grid>
 
-
-
-                <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Grid.Row="1" Margin="0,20,0,0" Padding="0 0 0 0" >
+                <!-- Resultados de búsqueda -->
+                <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Grid.Row="1" Margin="0,20,0,0">
                     <StackPanel x:Name="StackResultados" Margin="30 0 30 0" />
                 </ScrollViewer>
-
             </Grid>
 
         </Grid>
 
     </materialDesign:DialogHost>
-    
+
 </UserControl>

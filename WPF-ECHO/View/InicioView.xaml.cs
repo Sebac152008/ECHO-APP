@@ -160,7 +160,7 @@ namespace WPF_ECHO.View
             bool esValido = true;
 
             // Validación del título
-            if (string.IsNullOrEmpty(nota) || nota == "Escribe algo...")
+            if (string.IsNullOrEmpty(nota))
             {
                 ErrorTitulo.Visibility = Visibility.Visible;
                 ErrorTitulo.Text = "El título no puede quedar vacío.";
@@ -244,7 +244,7 @@ namespace WPF_ECHO.View
                     {
                         LimpiarCampos();
                         AgregarRecordatorio(nota, fecha.Value.ToShortDateString(), hora.Value.ToString(@"hh\:mm"));
-                        OcultarContenedorAddRecordatorio();
+                        await OcultarContenedorAddRecordatorio();
                         MostrarRecordatorioGuardado();
                     }
                     else
@@ -286,7 +286,7 @@ namespace WPF_ECHO.View
                     connection.Open();
 
                     // Filtra los recordatorios NO destacados
-                    string selectQuery = "SELECT * FROM Recordatorios WHERE Destacado = 0";
+                    string selectQuery = "SELECT * FROM Recordatorios WHERE Destacado = 0 ORDER BY ID_Recordatorios DESC";
                     SQLiteCommand selectCommand = new SQLiteCommand(selectQuery, connection);
 
                     using (SQLiteDataReader reader = selectCommand.ExecuteReader())
@@ -584,15 +584,18 @@ namespace WPF_ECHO.View
 
         private async Task OcultarContenedorAddRecordatorio()
         {
+            // Deshabilita el botón para evitar múltiples clics
+            btnAbrirContenedor.IsEnabled = false;
+
             var tcs = new TaskCompletionSource<bool>();
             var storyboard = (Storyboard)this.FindResource("SlideOutToRightAnimation");
 
             EventHandler handler = null;
             handler = (s, e) =>
             {
-                storyboard.Completed -= handler; // 👈 importante: evitar múltiples suscripciones
+                storyboard.Completed -= handler;
                 ContenedorAddRecordatorio.Visibility = Visibility.Collapsed;
-                tcs.TrySetResult(true); // 👈 TrySetResult evita la excepción si ya se completó
+                tcs.TrySetResult(true);
             };
 
             storyboard.Completed += handler;
@@ -600,7 +603,11 @@ namespace WPF_ECHO.View
             storyboard.Begin();
 
             await tcs.Task;
+
+            // Rehabilita el botón después de terminar la animación
+            btnAbrirContenedor.IsEnabled = true;
         }
+
 
 
 

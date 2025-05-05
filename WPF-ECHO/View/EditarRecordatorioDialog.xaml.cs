@@ -44,7 +44,7 @@ namespace ECHO.View
             bool esValido = true;
 
             // Validación del título
-            if (string.IsNullOrEmpty(nota) || nota == "Escribe algo...")
+            if (string.IsNullOrEmpty(nota))
             {
                 ErrorTituloEdit.Visibility = Visibility.Visible;
                 ErrorTituloEdit.Text = "El título no puede quedar vacío.";

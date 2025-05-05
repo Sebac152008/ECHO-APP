@@ -14,7 +14,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="RadioButton">
                     <Border Background="#2C3E50">
-                        <Border Margin="10 5 0 5" BorderBrush="#2C3E50" BorderThickness="3 0 0 0">
+                        <Border BorderBrush="#2C3E50" BorderThickness="3 0 0 0">
                             <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
                         </Border>
                     </Border>
@@ -32,8 +32,8 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="RadioButton">
-                            <Border Background="#2C3E50">
-                                <Border Margin="10 5 0 5" BorderBrush="#3E5870" BorderThickness="3 0 0 0">
+                            <Border Background="#364B5F">
+                                <Border BorderBrush="#364B5F" BorderThickness="3 0 0 0">
                                     <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
                                 </Border>
                             </Border>
@@ -51,8 +51,8 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="RadioButton">
-                            <Border Background="#2C3E50">
-                                <Border Margin="10 5 0 5" BorderBrush="White" BorderThickness="3 0 0 0">
+                            <Border Background="#3E5870">
+                                <Border BorderBrush="White" BorderThickness="3 0 0 0">
                                     <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
                                 </Border>
                             </Border>
