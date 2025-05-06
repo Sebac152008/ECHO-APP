@@ -170,7 +170,7 @@
                             <TextBlock Text="Titulo:" FontSize="19" Margin="10 0 0 5"/>
                             <TextBlock FontSize="15" Margin="10 5 0 5" Visibility="Collapsed" x:Name="ErrorTitulo" Foreground="Red" Text="Error"/>
                             <Border Background="#2C3E50" Padding="0 20" Width="255" BorderThickness="4" CornerRadius="10">
-                                <TextBox x:Name="txtNota" Foreground="#fff" materialDesign:HintAssist.Hint="Escribe algo..." MaxLength="50" FontSize="15" Background="#2C3E50" BorderThickness="0" Width="230"/>
+                                <TextBox x:Name="txtNota" Foreground="#fff" materialDesign:HintAssist.Hint="Escribe algo..." TextWrapping="Wrap" MaxLength="50" FontSize="15" Background="#2C3E50" BorderThickness="0" Width="230"/>
                             </Border>
                         </StackPanel>
 
