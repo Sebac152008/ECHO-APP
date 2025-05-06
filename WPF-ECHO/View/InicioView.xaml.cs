@@ -244,7 +244,6 @@ namespace WPF_ECHO.View
                     {
                         LimpiarCampos();
                         AgregarRecordatorio(nota, fecha.Value.ToShortDateString(), hora.Value.ToString(@"hh\:mm"));
-                        await OcultarContenedorAddRecordatorio();
                         MostrarRecordatorioGuardado();
                     }
                     else
@@ -261,6 +260,7 @@ namespace WPF_ECHO.View
             }
 
             CargarRecordatoriosDesdeBD();
+            await OcultarContenedorAddRecordatorio();
         }
 
 
