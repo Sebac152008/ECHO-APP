@@ -257,7 +257,7 @@ namespace WPF_ECHO.View
             catch (Exception ex)
             {
                 ErrorHora.Visibility = Visibility.Visible;
-                ErrorHora.Text = $"Error: {ex.Message}";
+                MessageBox.Show($"Error: {ex.Message}");
             }
 
             CargarRecordatoriosDesdeBD();
