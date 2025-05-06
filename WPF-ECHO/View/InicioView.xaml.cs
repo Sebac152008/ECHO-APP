@@ -23,6 +23,7 @@ using System.IO;
 using MaterialDesignThemes.Wpf;
 using System.Windows.Controls.Primitives;
 using CommunityToolkit.WinUI.Notifications;
+using System.Globalization;
 
 namespace WPF_ECHO.View
 {
@@ -68,6 +69,12 @@ namespace WPF_ECHO.View
             };
             // Inicializar dbPath dentro del constructor
 
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromMilliseconds(1);
+            timer.Tick += Timer_Tick;
+            timer.Start();
+
+
         }
 
         public void RecargarRecordatorios()
@@ -84,6 +91,7 @@ namespace WPF_ECHO.View
             }
         }
 
+        DispatcherTimer timer;
 
         private void InicioView_Loaded(object sender, RoutedEventArgs e)
         {
@@ -91,6 +99,13 @@ namespace WPF_ECHO.View
             PanelRecordatorios.Children.Clear();
             CargarRecordatoriosDesdeBD();
             ActualizarRecordatorios();
+
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            DateTime ahora = DateTime.Now;
+            txtFechaActual.Text = ahora.ToString("dddd, dd MMMM yyyy", new CultureInfo("es-ES"));
         }
 
         private void OnRecordatorioDesdestacado(RecordatorioItem item)
@@ -245,21 +260,19 @@ namespace WPF_ECHO.View
                         LimpiarCampos();
                         AgregarRecordatorio(nota, fecha.Value.ToShortDateString(), hora.Value.ToString(@"hh\:mm"));
                         MostrarRecordatorioGuardado();
+                        CargarRecordatoriosDesdeBD();
                     }
                     else
                     {
-                        ErrorHora.Visibility = Visibility.Visible;
-                        ErrorHora.Text = "No se pudo guardar el recordatorio.";
+                        MessageBox.Show("No se pudo guardar el recordatorio.");
                     }
                 }
             }
             catch (Exception ex)
             {
-                ErrorHora.Visibility = Visibility.Visible;
                 MessageBox.Show($"Error: {ex.Message}");
             }
 
-            CargarRecordatoriosDesdeBD();
             await OcultarContenedorAddRecordatorio();
         }
 
@@ -584,28 +597,21 @@ namespace WPF_ECHO.View
 
         private async Task OcultarContenedorAddRecordatorio()
         {
-            // Deshabilita el botón para evitar múltiples clics
-            btnAbrirContenedor.IsEnabled = false;
+            animacionEnCurso = true;
 
-            var tcs = new TaskCompletionSource<bool>();
-            var storyboard = (Storyboard)this.FindResource("SlideOutToRightAnimation");
-
-            EventHandler handler = null;
-            handler = (s, e) =>
+            var slideOut = (Storyboard)FindResource("SlideOutToRightAnimation");
+            slideOut.Completed += (s, ev) =>
             {
-                storyboard.Completed -= handler;
                 ContenedorAddRecordatorio.Visibility = Visibility.Collapsed;
-                tcs.TrySetResult(true);
             };
+            slideOut.Begin(ContenedorAddRecordatorio);
 
-            storyboard.Completed += handler;
-            Storyboard.SetTarget(storyboard, ContenedorAddRecordatorio);
-            storyboard.Begin();
+            // Esperar también duración de la animación
+            await Task.Delay(600);
 
-            await tcs.Task;
-
-            // Rehabilita el botón después de terminar la animación
             btnAbrirContenedor.IsEnabled = true;
+
+            animacionEnCurso = false;
         }
 
 
@@ -621,6 +627,11 @@ namespace WPF_ECHO.View
 
             // Ahora, recargar los recordatorios desde la base de datos (separados por destacado o no)
             CargarRecordatoriosDesdeBD();  // Aquí puedes volver a llamar a tu método de carga.
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            Button_Click(sender, e);
         }
     }
 }

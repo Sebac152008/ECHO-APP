@@ -18,6 +18,7 @@ public class NotificadorRecordatorios
 
     private static readonly string dbPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ECHO.db");
 
+
     public NotificadorRecordatorios()
     {
         connectionString = $"Data Source={dbPath};";

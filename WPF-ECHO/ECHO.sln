@@ -5,6 +5,8 @@ VisualStudioVersion = 17.13.35913.81
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECHO", "ECHO.csproj", "{B8C7A4A0-368E-4D6C-9D5E-173D4B4EF5CA}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "ECHO SETUP", "..\ECHO SETUP\ECHO SETUP.vdproj", "{900F9D8E-D73F-33FC-7624-4D078F4DB4DA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,8 @@ Global
 		{B8C7A4A0-368E-4D6C-9D5E-173D4B4EF5CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B8C7A4A0-368E-4D6C-9D5E-173D4B4EF5CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B8C7A4A0-368E-4D6C-9D5E-173D4B4EF5CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{900F9D8E-D73F-33FC-7624-4D078F4DB4DA}.Debug|Any CPU.ActiveCfg = Debug
+		{900F9D8E-D73F-33FC-7624-4D078F4DB4DA}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
