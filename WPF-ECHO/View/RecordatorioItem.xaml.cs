@@ -17,6 +17,7 @@ using System.IO;
 using IOPath = System.IO.Path;
 using System.Data.SQLite;
 using Microsoft.Data.Sqlite;
+using ECHO.Recursos;
 
 namespace ECHO.View
 {
@@ -71,8 +72,7 @@ namespace ECHO.View
             set => SetValue(HoraProperty, value);
         }
 
-        private static readonly string dbPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ECHO.db");
-        private static readonly string connectionString = $"Data Source={dbPath};";
+        private static readonly string connectionString = AppContexto.Instancia.ConexionBD;
 
 
         public RecordatorioItem()

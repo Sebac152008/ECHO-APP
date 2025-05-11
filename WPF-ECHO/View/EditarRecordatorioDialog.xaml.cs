@@ -16,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WPF_ECHO;
+using ECHO.Recursos;
 
 namespace ECHO.View
 {
@@ -24,8 +25,7 @@ namespace ECHO.View
     /// </summary>
     public partial class EditarRecordatorioDialog : UserControl
     {
-        private static readonly string dbPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ECHO.db");
-        private static readonly string connectionString = $"Data Source={dbPath};";
+        private static readonly string connectionString = AppContexto.Instancia.ConexionBD;
 
         public int IdRecordatorio { get; set; }
 

@@ -16,9 +16,25 @@
              FontFamily="{DynamicResource MaterialDesignFont}"
              d:DesignHeight="700" d:DesignWidth="1180">
 
+    <UserControl.Resources>
+
+        <!-- Animacion de entrada -->
+
+        <Storyboard x:Key="VentanaAbrirAnimacion">
+            <!-- Animación de Opacidad (fade-in) -->
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                             From="0" To="1" Duration="0:0:0.4"/>
+
+            <!-- Animación de desplazamiento vertical -->
+            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
+                             From="30" To="0" Duration="0:0:0.4" />
+        </Storyboard>
+
+    </UserControl.Resources>
+
     <materialDesign:DialogHost Identifier="MainDialogHost">
 
-        <Grid>
+        <Grid RenderTransformOrigin="0.5,0.5">
 
             <!-- Imagen de fondo -->
             <Image x:Name="FondoImagen" Loaded="Image_Loaded" Stretch="UniformToFill" Opacity="0.4" />
@@ -27,12 +43,15 @@
 
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="130" />
+                    <RowDefinition Height="80" />
+                    <RowDefinition Height="100" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
+                <TextBlock Grid.Row="0" Foreground="#fff" Opacity="0.9" Margin="50 30 0 0" Text="Buscar" FontSize="40" FontWeight="ExtraBold" />
+
                 <!-- Barra de búsqueda -->
-                <Grid Panel.ZIndex="20" Grid.Row="0" Margin="40,40,40,0">
+                <Grid Panel.ZIndex="20" Grid.Row="1" Margin="40,20,40,0">
                     <Border Background="#FFFFFF"
                             CornerRadius="20"
                             Padding="20,10"
@@ -70,7 +89,7 @@
                 </Grid>
 
                 <!-- Resultados de búsqueda -->
-                <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Grid.Row="1" Margin="0,20,0,0">
+                <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Grid.Row="2" Margin="0,20,0,0">
                     <StackPanel x:Name="StackResultados" Margin="25 0 25 0" />
                 </ScrollViewer>
             </Grid>

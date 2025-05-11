@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -23,6 +24,13 @@ namespace WPF_ECHO.View
         public AcercaDeView()
         {
             InitializeComponent();
+            this.Loaded += AcercaDeView_Loaded1;
+        }
+
+        private void AcercaDeView_Loaded1(object sender, RoutedEventArgs e)
+        {
+            Storyboard abrirAnim = (Storyboard)this.Resources["VentanaAbrirAnimacion"];
+            abrirAnim.Begin(this);
         }
 
         private void Image_Loaded(object sender, RoutedEventArgs e)

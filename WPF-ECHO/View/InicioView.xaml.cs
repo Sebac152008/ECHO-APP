@@ -24,6 +24,7 @@ using MaterialDesignThemes.Wpf;
 using System.Windows.Controls.Primitives;
 using CommunityToolkit.WinUI.Notifications;
 using System.Globalization;
+using ECHO.Recursos;
 
 namespace WPF_ECHO.View
 {
@@ -36,15 +37,15 @@ namespace WPF_ECHO.View
         public static InicioView InstanciaActual;
 
         //Conexion DB
-
-        private static readonly string dbPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ECHO.db");
-        private static readonly string connectionString = $"Data Source={dbPath};";
+        private static readonly string connectionString = AppContexto.Instancia.ConexionBD;
 
 
         private bool animacionEnCurso = false;
         public InicioView()
         {
             InitializeComponent(); // Asegúrate de que esta línea esté primero
+
+            txtFechaActual.Text = DateTime.Now.ToString("dddd, dd MMMM yyyy", new CultureInfo("es-ES"));
 
             InstanciaActual = this;
 
@@ -69,11 +70,6 @@ namespace WPF_ECHO.View
             };
             // Inicializar dbPath dentro del constructor
 
-            timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromMilliseconds(1);
-            timer.Tick += Timer_Tick;
-            timer.Start();
-
 
         }
 
@@ -95,17 +91,13 @@ namespace WPF_ECHO.View
 
         private void InicioView_Loaded(object sender, RoutedEventArgs e)
         {
+            Storyboard abrirAnim = (Storyboard)this.Resources["VentanaAbrirAnimacion"];
+            abrirAnim.Begin(this);
+
             // Ya existe PanelRecordatorios, así que no dará null
-            PanelRecordatorios.Children.Clear();
+            PanelRecordatorios.Children.Clear(); // Limpia los recordatorios en el panel
             CargarRecordatoriosDesdeBD();
-            ActualizarRecordatorios();
 
-        }
-
-        private void Timer_Tick(object sender, EventArgs e)
-        {
-            DateTime ahora = DateTime.Now;
-            txtFechaActual.Text = ahora.ToString("dddd, dd MMMM yyyy", new CultureInfo("es-ES"));
         }
 
         private void OnRecordatorioDesdestacado(RecordatorioItem item)
@@ -551,9 +543,9 @@ namespace WPF_ECHO.View
             // Crear contenedor del mensaje
             Border borde = new Border
             {
-                Background = new SolidColorBrush(Color.FromRgb(44, 62, 80)),
+                Background = (Brush)new BrushConverter().ConvertFromString("#f4f4f4"),
                 CornerRadius = new CornerRadius(10),
-                Margin = new Thickness(0, 5, 0, 0),
+                Margin = new Thickness(0, 15, 0, 0),
                 Padding = new Thickness(10),
                 Opacity = 0,
                 Child = new StackPanel
@@ -571,7 +563,7 @@ namespace WPF_ECHO.View
                 new TextBlock
                 {
                     Text = texto,
-                    Foreground = Brushes.White,
+                    Foreground = Brushes.Black,
                     VerticalAlignment = VerticalAlignment.Center,
                     FontSize = 14,
                     TextWrapping = TextWrapping.Wrap

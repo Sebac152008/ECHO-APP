@@ -9,6 +9,7 @@ using ECHO.View;
 using IOPath = System.IO.Path;
 using MaterialDesignThemes.Wpf;
 using System.Windows.Media.Animation;
+using ECHO.Recursos;
 
 namespace WPF_ECHO.View
 {
@@ -35,8 +36,7 @@ namespace WPF_ECHO.View
         }
 
         //Conexion DB
-        private static readonly string dbPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ECHO.db");
-        private static readonly string connectionString = $"Data Source={dbPath};";
+        private static readonly string connectionString = AppContexto.Instancia.ConexionBD;
 
 
         private void FondoImagen_Loaded(object sender, RoutedEventArgs e)
@@ -69,6 +69,9 @@ namespace WPF_ECHO.View
 
         private void DestacadoView_Loaded(object sender, RoutedEventArgs e)
         {
+            Storyboard abrirAnim = (Storyboard)this.Resources["VentanaAbrirAnimacion"];
+            abrirAnim.Begin(this);
+
             CargarRecordatoriosDestacadosDesdeBD();
         }
 
@@ -145,9 +148,9 @@ namespace WPF_ECHO.View
             // Crear contenedor del mensaje
             Border borde = new Border
             {
-                Background = new SolidColorBrush(Color.FromRgb(44, 62, 80)),
+                Background = (Brush)new BrushConverter().ConvertFromString("#f4f4f4"),
                 CornerRadius = new CornerRadius(10),
-                Margin = new Thickness(0, 5, 0, 0),
+                Margin = new Thickness(0, 15, 0, 0),
                 Padding = new Thickness(10),
                 Opacity = 0,
                 Child = new StackPanel
@@ -165,7 +168,7 @@ namespace WPF_ECHO.View
                 new TextBlock
                 {
                     Text = texto,
-                    Foreground = Brushes.White,
+                    Foreground = Brushes.Black,
                     VerticalAlignment = VerticalAlignment.Center,
                     FontSize = 14,
                     TextWrapping = TextWrapping.Wrap

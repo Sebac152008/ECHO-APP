@@ -27,11 +27,23 @@
             </ObjectAnimationUsingKeyFrames>
         </Storyboard>
 
+        <!-- Animacion de entrada -->
+
+        <Storyboard x:Key="VentanaAbrirAnimacion">
+            <!-- Animación de Opacidad (fade-in) -->
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                             From="0" To="1" Duration="0:0:0.4"/>
+
+            <!-- Animación de desplazamiento vertical -->
+            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
+                             From="30" To="0" Duration="0:0:0.4" />
+        </Storyboard>
+
     </UserControl.Resources>
 
     <materialDesign:DialogHost x:Name="DialogHostEliminar" Identifier="MainDialogHost">
 
-        <Grid>
+        <Grid RenderTransformOrigin="0.5,0.5">
 
             <!-- Imagen de fondo -->
             <Image x:Name="FondoImagen"
@@ -48,24 +60,36 @@
                             Panel.ZIndex="50"
                             Orientation="Vertical"/>
 
-            <!-- ScrollViewer para hacer scroll en los recordatorios -->
-            <ScrollViewer VerticalScrollBarVisibility="Auto"
+            <Grid>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0" Text="Destacado" FontWeight="ExtraBold" Foreground="#fff" Margin="50 40 0 20" FontSize="40" />
+
+                <!-- ScrollViewer para hacer scroll en los recordatorios -->
+                <ScrollViewer VerticalScrollBarVisibility="Auto"
                       HorizontalScrollBarVisibility="Disabled"
                       Margin="0"
+                      Grid.Row="1"
                       IsDeferredScrollingEnabled="False"
                       Panel.ZIndex="1">
-                <StackPanel Orientation="Vertical" Margin="10">
+                    <StackPanel Orientation="Vertical" Margin="10">
 
-                    <!-- Recordatorios destacados -->
-                    <StackPanel x:Name="StackPanelContenedor"
+                        <!-- Recordatorios destacados -->
+                        <StackPanel x:Name="StackPanelContenedor"
                             Orientation="Vertical"
                             Margin="0 0 0 20"/>
 
-                    <!-- Recordatorios no destacados -->
-                    <StackPanel x:Name="PanelRecordatorios"
+                        <!-- Recordatorios no destacados -->
+                        <StackPanel x:Name="PanelRecordatorios"
                             Orientation="Vertical"/>
-                </StackPanel>
-            </ScrollViewer>
+                    </StackPanel>
+                </ScrollViewer>
+
+            </Grid>
 
         </Grid>
 

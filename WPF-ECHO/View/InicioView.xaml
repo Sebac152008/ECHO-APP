@@ -51,12 +51,26 @@
             </DoubleAnimation>
             <DoubleAnimation Storyboard.TargetProperty="Opacity" From="1" To="0" Duration="0:0:0.4"/>
         </Storyboard>
+        
+        <!-- Animacion de entrada -->
+
+        <Storyboard x:Key="VentanaAbrirAnimacion">
+            <!-- Animación de Opacidad (fade-in) -->
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                             From="0" To="1" Duration="0:0:0.4"/>
+
+            <!-- Animación de desplazamiento vertical -->
+            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
+                             From="30" To="0" Duration="0:0:0.4" />
+        </Storyboard>
+
+
     </UserControl.Resources>
 
     <!-- CONTENIDO PRINCIPAL -->
     <materialDesign:DialogHost x:Name="MainDialogHost" Identifier="MainDialogHost">
 
-        <Grid>
+        <Grid RenderTransformOrigin="0.5,0.5">
 
             <Image x:Name="FondoImagen" Loaded="FondoImagen_Loaded" Stretch="UniformToFill" Opacity="0.6" />
 
@@ -73,7 +87,8 @@
                     <!-- BOTÓN DE ABRIR PANEL -->
                     <Grid Grid.Row="0" Height="auto" VerticalAlignment="Top">
                         <Border Effect="{StaticResource MaterialDesignElevationShadow24}">
-                            <Button x:Name="btnAbrirContenedor" Margin="0 30 90 20" Cursor="Hand" Click="Button_Click" HorizontalAlignment="Right" VerticalAlignment="Top" Height="55">
+                            <Button x:Name="btnAbrirContenedor" Margin="0 30 60 20" Cursor="Hand" Click="Button_Click"
+                                    HorizontalAlignment="Right" VerticalAlignment="Top" Height="55">
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Crear recordatorio" FontSize="18" VerticalAlignment="Center" Margin="20 0 20 0" Foreground="#fff"/>
                                     <fa:IconImage Icon="PenToSquare" Margin="0 0 20 0" VerticalAlignment="Center" Width="30" Foreground="#fff"/>
@@ -94,16 +109,15 @@
                         </Border>
 
                         <!-- Mostrar fecha y hora actual -->
-                        <Grid HorizontalAlignment="Left" VerticalAlignment="Center" Margin="30 0 0 0">
+                        <Grid HorizontalAlignment="Left" VerticalAlignment="Center" Margin="30 20 0 30">
                             <StackPanel Orientation="Vertical">
+                                <StackPanel Margin="30 0 0 0" Orientation="Horizontal">
+
+                                    <TextBlock Text="Inicio" Foreground="#fff" FontWeight="ExtraBold" FontSize="40" />
+
+                                </StackPanel>
                                 <!-- Fecha -->
-                                <TextBlock x:Name="txtFechaActual" 
-                       Text="" 
-                       FontSize="20"
-                       FontWeight="Bold"
-                       Foreground="#fff" 
-                       HorizontalAlignment="Center"
-                       Margin="30 5 0 0"/>
+                                <TextBlock x:Name="txtFechaActual" FontSize="20" Foreground="#fff" HorizontalAlignment="Center" Margin="30 5 0 0"/>
                             </StackPanel>
                         </Grid>
                     </Grid>
@@ -137,82 +151,89 @@
                         <TranslateTransform />
                     </Border.RenderTransform>
 
-                    <StackPanel Margin="10">
-                        <!-- BOTÓN CERRAR -->
-                        <Button Click="Button_Click_1" Width="35" Height="35" HorizontalAlignment="Right" Margin="0 10 10 10" Cursor="Hand" ToolTip="Cerrar">
-                            <Button.Template>
-                                <ControlTemplate TargetType="Button">
-                                    <Border Background="#fff" CornerRadius="100" x:Name="border">
-                                        <TextBlock Text="✕" FontSize="18" FontWeight="Bold" Foreground="#2C3E50" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                    </Border>
-                                    <ControlTemplate.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter TargetName="border" Property="Background" Value="#e0e0e0"/>
-                                            <Setter TargetName="border" Property="Effect">
-                                                <Setter.Value>
-                                                    <DropShadowEffect BlurRadius="8" ShadowDepth="2" Color="Black" Opacity="0.2"/>
-                                                </Setter.Value>
-                                            </Setter>
-                                        </Trigger>
-                                        <Trigger Property="IsPressed" Value="True">
-                                            <Setter TargetName="border" Property="Background" Value="#cfcfcf"/>
-                                        </Trigger>
-                                    </ControlTemplate.Triggers>
-                                </ControlTemplate>
-                            </Button.Template>
-                        </Button>
+                    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
 
-                        <!-- TÍTULO -->
-                        <TextBlock Text="Nuevo recordatorio" FontSize="26" FontWeight="Bold" Foreground="#2C3E50" HorizontalAlignment="Center" Margin="0 20"/>
+                        <StackPanel Margin="10">
 
-                        <!-- TÍTULO DEL RECORDATORIO -->
-                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0 20">
-                            <TextBlock Text="Titulo:" FontSize="19" Margin="10 0 0 5"/>
-                            <TextBlock FontSize="15" Margin="10 5 0 5" Visibility="Collapsed" x:Name="ErrorTitulo" Foreground="Red" Text="Error"/>
-                            <Border Background="#2C3E50" Padding="0 20" Width="255" BorderThickness="4" CornerRadius="10">
-                                <TextBox x:Name="txtNota" Foreground="#fff" materialDesign:HintAssist.Hint="Escribe algo..." TextWrapping="Wrap" MaxLength="50" FontSize="15" Background="#2C3E50" BorderThickness="0" Width="230"/>
-                            </Border>
-                        </StackPanel>
+                            <!-- BOTÓN CERRAR -->
+                            <Button Click="Button_Click_1" Width="35" Height="35" HorizontalAlignment="Right" Margin="0 10 10 10" Cursor="Hand" ToolTip="Cerrar">
+                                <Button.Template>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Background="#fff" CornerRadius="100" x:Name="border">
+                                            <TextBlock Text="✕" FontSize="18" FontWeight="Bold" Foreground="#2C3E50" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="border" Property="Background" Value="#e0e0e0"/>
+                                                <Setter TargetName="border" Property="Effect">
+                                                    <Setter.Value>
+                                                        <DropShadowEffect BlurRadius="8" ShadowDepth="2" Color="Black" Opacity="0.2"/>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Trigger>
+                                            <Trigger Property="IsPressed" Value="True">
+                                                <Setter TargetName="border" Property="Background" Value="#cfcfcf"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
 
-                        <!-- FECHA -->
-                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="20 20">
-                            <TextBlock FontSize="19" Margin="10 0 0 10" Text="Fecha:"/>
-                            <TextBlock x:Name="ErrorFecha" FontSize="15" Foreground="Red" Visibility="Collapsed" Margin="0 3 0 10" Text="Error"/>
-                            <Border Width="255" CornerRadius="10" BorderBrush="#2C3E50" BorderThickness="2" Padding="10" Background="#fff">
-                                <DatePicker materialDesign:HintAssist.Hint="Seleccione el calendario" FontSize="15" x:Name="fechaPicker" BorderThickness="0" Focusable="False"/>
-                            </Border>
-                        </StackPanel>
+                            <!-- TÍTULO -->
+                            <TextBlock Text="Nuevo recordatorio" FontSize="26" FontWeight="Bold" Foreground="#2C3E50" HorizontalAlignment="Center" Margin="0 20"/>
 
-                        <!-- HORA -->
-                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="20 20">
-                            <TextBlock FontSize="19" Text="Hora:" Margin="10 0 0 10"/>
-                            <TextBlock x:Name="ErrorHora" FontSize="15" Visibility="Collapsed" Margin="10 0 0 10" Text="Error" Foreground="Red"/>
-                            <Border Padding="10" BorderBrush="#2C3E50" BorderThickness="2" CornerRadius="10" Width="255">
-                                <Grid>
-                                    <materialDesign:TimePicker BorderThickness="0" materialDesign:HintAssist.Hint="Seleccione el reloj" FontSize="15" Is24Hours="True" x:Name="comboHoraMinuto"/>
-                                </Grid>
-                            </Border>
-                        </StackPanel>
-
-                        <!-- BOTÓN GUARDAR -->
-                        <Button Click="btnGuardar_Click" Margin="0 20" Cursor="Hand" Width="255" Height="40" FontSize="18" Foreground="white" HorizontalAlignment="Center">
-                            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                                <TextBlock Text="Guardar recordatorio" VerticalAlignment="Center" Foreground="White" FontSize="16"/>
+                            <!-- TÍTULO DEL RECORDATORIO -->
+                            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0 20">
+                                <TextBlock Text="Titulo:" FontSize="19" Margin="10 0 0 5"/>
+                                <TextBlock FontSize="15" Margin="10 5 0 5" Visibility="Collapsed" TextWrapping="Wrap" x:Name="ErrorTitulo" Foreground="Red" Text="Error"/>
+                                <Border Background="#2C3E50" Padding="0 20" Width="255" BorderThickness="4" CornerRadius="10">
+                                    <TextBox x:Name="txtNota" Foreground="#fff" materialDesign:HintAssist.Hint="Escribe algo..." TextWrapping="Wrap" MaxLength="50" FontSize="15" Background="#2C3E50" BorderThickness="0" Width="230"/>
+                                </Border>
                             </StackPanel>
-                            <Button.Template>
-                                <ControlTemplate TargetType="Button">
-                                    <Border CornerRadius="10" Background="#274C77" x:Name="ButtonBorder">
-                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Cursor="Hand"/>
-                                    </Border>
-                                    <ControlTemplate.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter TargetName="ButtonBorder" Property="Background" Value="#1B263B"/>
-                                        </Trigger>
-                                    </ControlTemplate.Triggers>
-                                </ControlTemplate>
-                            </Button.Template>
-                        </Button>
-                    </StackPanel>
+
+                            <!-- FECHA -->
+                            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="20 20">
+                                <TextBlock FontSize="19" Margin="10 0 0 10" Text="Fecha:"/>
+                                <TextBlock x:Name="ErrorFecha" FontSize="15" Foreground="Red" Visibility="Collapsed" Margin="0 3 0 10" Text="Error"/>
+                                <Border Width="255" CornerRadius="10" BorderBrush="#2C3E50" BorderThickness="2" Padding="10" Background="#fff">
+                                    <DatePicker materialDesign:HintAssist.Hint="Seleccione el calendario" FontSize="15" x:Name="fechaPicker" BorderThickness="0" Focusable="False"/>
+                                </Border>
+                            </StackPanel>
+
+                            <!-- HORA -->
+                            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="20 20">
+                                <TextBlock FontSize="19" Text="Hora:" Margin="10 0 0 10"/>
+                                <TextBlock TextWrapping="Wrap" x:Name="ErrorHora" FontSize="15" Visibility="Collapsed" Margin="10 0 0 10" Text="Error" Foreground="Red"/>
+                                <Border Padding="10" BorderBrush="#2C3E50" BorderThickness="2" CornerRadius="10" Width="255">
+                                    <Grid>
+                                        <materialDesign:TimePicker BorderThickness="0" materialDesign:HintAssist.Hint="Seleccione el reloj" FontSize="15" Is24Hours="True" x:Name="comboHoraMinuto"/>
+                                    </Grid>
+                                </Border>
+                            </StackPanel>
+
+                            <!-- BOTÓN GUARDAR -->
+                            <Button Click="btnGuardar_Click" Margin="0 20 0 90" Cursor="Hand" Width="255" Height="40" FontSize="18" Foreground="white" HorizontalAlignment="Center">
+                                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                                    <TextBlock Text="Guardar recordatorio" VerticalAlignment="Center" Foreground="White" FontSize="16"/>
+                                </StackPanel>
+                                <Button.Template>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border CornerRadius="10" Background="#274C77" x:Name="ButtonBorder">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Cursor="Hand"/>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="ButtonBorder" Property="Background" Value="#1B263B"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+
+                        </StackPanel>
+
+                    </ScrollViewer>
+                    
                 </Border>
             </Grid>
 

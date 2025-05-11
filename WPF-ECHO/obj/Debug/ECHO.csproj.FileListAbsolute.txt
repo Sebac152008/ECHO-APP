@@ -88,13 +88,13 @@ C:\Users\Sebastian Cuevas\Desktop\Proyecto echo\WPF-ECHO\obj\Debug\ECHO.csproj.C
 C:\Users\Sebastian Cuevas\Desktop\Proyecto echo\WPF-ECHO\obj\Debug\ECHO.csproj.Up2Date
 C:\Users\Sebastian Cuevas\Desktop\Proyecto echo\WPF-ECHO\obj\Debug\ECHO.exe
 C:\Users\Sebastian Cuevas\Desktop\Proyecto echo\WPF-ECHO\obj\Debug\ECHO.pdb
+C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\bin\Debug\ECHO.exe
 C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\bin\Debug\x86\sqlite3.dll
 C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\bin\Debug\x64\sqlite3.dll
 C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\bin\Debug\ECHO.db
 C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\bin\Debug\ECHO.exe.config
 C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\bin\Debug\ECHO.exe.manifest
 C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\bin\Debug\ECHO.application
-C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\bin\Debug\ECHO.exe
 C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\bin\Debug\ECHO.pdb
 C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\bin\Debug\CommunityToolkit.WinUI.Notifications.dll
 C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\bin\Debug\ControlzEx.dll
@@ -205,3 +205,4 @@ C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\obj\Debug\ECHO.application
 C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\obj\Debug\ECHO.csproj.Up2Date
 C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\obj\Debug\ECHO.exe
 C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\obj\Debug\ECHO.pdb
+C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\obj\Debug\ECHO.TrustInfo.xml

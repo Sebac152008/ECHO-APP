@@ -1,12 +1,36 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\Sebastian Cuevas\\Desktop\\ECHO-APP\\WPF-ECHO\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{B8C7A4A0-368E-4D6C-9D5E-173D4B4EF5CA}|ECHO.csproj|c:\\users\\sebastian cuevas\\desktop\\echo-app\\wpf-echo\\splashscreen.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{B8C7A4A0-368E-4D6C-9D5E-173D4B4EF5CA}|ECHO.csproj|solutionrelative:splashscreen.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SplashScreen.xaml",
+              "DocumentMoniker": "C:\\Users\\Sebastian Cuevas\\Desktop\\ECHO-APP\\WPF-ECHO\\SplashScreen.xaml",
+              "RelativeDocumentMoniker": "SplashScreen.xaml",
+              "ToolTip": "C:\\Users\\Sebastian Cuevas\\Desktop\\ECHO-APP\\WPF-ECHO\\SplashScreen.xaml*",
+              "RelativeToolTip": "SplashScreen.xaml*",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-05-11T21:06:15.678Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }

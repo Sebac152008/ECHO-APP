@@ -9,6 +9,7 @@ using WPF_ECHO;
 using WPF_ECHO.View;
 using System.Windows.Threading;
 using CommunityToolkit.WinUI.Notifications;
+using ECHO.Recursos;
 
 public class NotificadorRecordatorios
 {
@@ -16,12 +17,10 @@ public class NotificadorRecordatorios
     private MediaPlayer _mediaPlayer = new MediaPlayer();
     private string connectionString;
 
-    private static readonly string dbPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ECHO.db");
-
 
     public NotificadorRecordatorios()
     {
-        connectionString = $"Data Source={dbPath};";
+        connectionString = AppContexto.Instancia.ConexionBD;
 
         _timer = new DispatcherTimer
         {

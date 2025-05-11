@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MaterialDesignThemes.Wpf;
 using System.Windows.Media.Animation;
+using ECHO.Recursos;
 
 namespace WPF_ECHO.View
 {
@@ -27,11 +28,17 @@ namespace WPF_ECHO.View
         public BuscarView()
         {
             InitializeComponent();
+            this.Loaded += BuscarView_Loaded;
 
         }
 
-        private static readonly string dbPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ECHO.db");
-        private static readonly string connectionString = $"Data Source={dbPath};";
+        private static readonly string connectionString = AppContexto.Instancia.ConexionBD;
+
+        private void BuscarView_Loaded(object sender, RoutedEventArgs e)
+        {
+            Storyboard abrirAnim = (Storyboard)this.Resources["VentanaAbrirAnimacion"];
+            abrirAnim.Begin(this);
+        }
 
         private void txtBuscarRecordatorio_TextChanged(object sender, TextChangedEventArgs e)
         {
