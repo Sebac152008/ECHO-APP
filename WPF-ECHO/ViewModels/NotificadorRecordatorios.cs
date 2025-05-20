@@ -24,7 +24,7 @@ public class NotificadorRecordatorios
 
         _timer = new DispatcherTimer
         {
-            Interval = TimeSpan.FromMilliseconds(1)
+            Interval = TimeSpan.FromSeconds(1)
         };
         _timer.Tick += VerificarRecordatorios;
     }

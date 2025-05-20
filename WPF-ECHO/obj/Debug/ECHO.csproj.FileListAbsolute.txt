@@ -104,22 +104,18 @@ C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\bin\Debug\MaterialDesignColo
 C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\bin\Debug\MaterialDesignExtensions.dll
 C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\bin\Debug\MaterialDesignThemes.MahApps.dll
 C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\bin\Debug\MaterialDesignThemes.Wpf.dll
-C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\bin\Debug\Microsoft.Data.Sqlite.dll
-C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\bin\Debug\Microsoft.Extensions.Primitives.dll
 C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\bin\Debug\Microsoft.Xaml.Behaviors.dll
 C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\bin\Debug\SQLitePCLRaw.batteries_v2.dll
 C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\bin\Debug\SQLitePCLRaw.core.dll
 C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\bin\Debug\SQLitePCLRaw.provider.dynamic_cdecl.dll
 C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\bin\Debug\System.Buffers.dll
 C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\bin\Debug\System.Data.SQLite.dll
-C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\bin\Debug\System.Diagnostics.DiagnosticSource.dll
 C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\bin\Debug\System.IO.FileSystem.AccessControl.dll
 C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\bin\Debug\System.Memory.dll
 C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\bin\Debug\System.Numerics.Vectors.dll
 C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
 C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\bin\Debug\System.Security.Principal.Windows.dll
-C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\bin\Debug\System.Threading.Tasks.Extensions.dll
 C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\bin\Debug\System.ValueTuple.dll
 C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\bin\Debug\Xceed.Wpf.AvalonDock.dll
 C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\bin\Debug\Xceed.Wpf.AvalonDock.Themes.Aero.dll
@@ -206,3 +202,4 @@ C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\obj\Debug\ECHO.csproj.Up2Dat
 C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\obj\Debug\ECHO.exe
 C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\obj\Debug\ECHO.pdb
 C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\obj\Debug\ECHO.TrustInfo.xml
+C:\Users\Sebastian Cuevas\Desktop\ECHO-APP\WPF-ECHO\obj\Debug\ECHO.exe.config

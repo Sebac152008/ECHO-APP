@@ -28,17 +28,21 @@ namespace WPF_ECHO.View
         public BuscarView()
         {
             InitializeComponent();
+
+            Storyboard abrirAnim = (Storyboard)this.Resources["VentanaAbrirAnimacion"];
+            abrirAnim.Begin(this);
+
             this.Loaded += BuscarView_Loaded;
-
         }
-
-        private static readonly string connectionString = AppContexto.Instancia.ConexionBD;
 
         private void BuscarView_Loaded(object sender, RoutedEventArgs e)
         {
             Storyboard abrirAnim = (Storyboard)this.Resources["VentanaAbrirAnimacion"];
             abrirAnim.Begin(this);
         }
+
+        //Conexion de DATABASE
+        private static readonly string connectionString = AppContexto.Instancia.ConexionBD;
 
         private void txtBuscarRecordatorio_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -47,7 +51,7 @@ namespace WPF_ECHO.View
             // Limpia el contenedor antes de mostrar resultados nuevos
             StackResultados.Children.Clear();
 
-            if (string.IsNullOrEmpty(filtro) || filtro == "buscar recordatorio...")
+            if (string.IsNullOrEmpty(filtro))
                 return;
 
             try

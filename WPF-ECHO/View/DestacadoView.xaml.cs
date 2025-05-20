@@ -24,6 +24,9 @@ namespace WPF_ECHO.View
         {
             InitializeComponent();
 
+            Storyboard abrirAnim = (Storyboard)this.Resources["VentanaAbrirAnimacion"];
+            abrirAnim.Begin(this);
+
             InstanciaActual = this;
 
             this.Loaded += DestacadoView_Loaded;

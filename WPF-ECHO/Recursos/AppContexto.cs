@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
+using WPF_ECHO.View;
 
 namespace ECHO.Recursos
 {
@@ -18,9 +19,11 @@ namespace ECHO.Recursos
 
         private AppContexto()
         {
+
             string dbPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ECHO.db");
             ConexionBD = $"Data Source={dbPath};";
         }
+
     }
 
 }

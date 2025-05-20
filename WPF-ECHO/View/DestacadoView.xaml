@@ -67,7 +67,7 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
-                <TextBlock Grid.Row="0" Text="Destacado" FontWeight="ExtraBold" Foreground="#fff" Margin="70 40 0 20" FontSize="40" />
+                <TextBlock Grid.Row="0" Text="Destacado" FontWeight="ExtraBold" Foreground="#fff" Margin="70 40 0 10" FontSize="40" />
 
                 <!-- ScrollViewer para hacer scroll en los recordatorios -->
                 <ScrollViewer VerticalScrollBarVisibility="Auto"

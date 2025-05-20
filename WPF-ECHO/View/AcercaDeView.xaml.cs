@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +25,8 @@ namespace WPF_ECHO.View
         public AcercaDeView()
         {
             InitializeComponent();
+            Storyboard abrirAnim = (Storyboard)this.Resources["VentanaAbrirAnimacion"];
+            abrirAnim.Begin(this);
             this.Loaded += AcercaDeView_Loaded1;
         }
 
@@ -41,5 +44,12 @@ namespace WPF_ECHO.View
                 FondoImagen.Visibility = Visibility.Visible;
             }
         }
+
+        private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
+        {
+            Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri) { UseShellExecute = true });
+            e.Handled = true;
+        }
+
     }
 }

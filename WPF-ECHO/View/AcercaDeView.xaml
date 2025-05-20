@@ -1,14 +1,73 @@
 ﻿<UserControl x:Class="WPF_ECHO.View.AcercaDeView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:WPF_ECHO.View"
-             mc:Ignorable="d" 
-             d:DesignHeight="1500" d:DesignWidth="1180"
-             Background="#000">
+             mc:Ignorable="d"
+             d:DesignHeight="2350" d:DesignWidth="1200">
 
     <UserControl.Resources>
+        <SolidColorBrush x:Key="PrimaryColor" Color="#2C3E50"/>
+        <!-- Azul oscuro -->
+        <SolidColorBrush x:Key="SecondaryColor" Color="#424242"/>
+        <!-- Gris oscuro -->
+        <SolidColorBrush x:Key="AccentColor" Color="#1976D2"/>
+        <!-- Azul intenso -->
+        <SolidColorBrush x:Key="BackgroundColor" Color="#F9F9F9"/>
+        <!-- Fondo claro -->
+        <SolidColorBrush x:Key="CardBackgroundColor" Color="#FFFFFF"/>
+        <!-- Tarjetas blancas -->
+        <SolidColorBrush x:Key="ShadowColor" Color="#999999"/>
+        <!-- Sombra más clara -->
+
+
+        <FontFamily x:Key="PrimaryFont">Segoe UI, Helvetica, Arial, sans-serif</FontFamily>
+        <FontFamily x:Key="SecondaryFont">Open Sans, Helvetica, Arial, sans-serif</FontFamily>
+
+        <!-- Estilos de Texto -->
+        <Style x:Key="SectionTitle" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="{StaticResource PrimaryFont}"/>
+            <Setter Property="FontSize" Value="32"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="{StaticResource PrimaryColor}"/>
+            <Setter Property="Margin" Value="0 40 0 20"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+        </Style>
+
+        <Style x:Key="SectionBody" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="{StaticResource SecondaryFont}"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Foreground" Value="{StaticResource SecondaryColor}"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="Margin" Value="0 0 0 30"/>
+            <Setter Property="LineHeight" Value="28"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+        </Style>
+
+        <Style x:Key="LinkText" TargetType="TextBlock" BasedOn="{StaticResource SectionBody}">
+            <Setter Property="Foreground" Value="{StaticResource AccentColor}"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+
+        <Style x:Key="TeamMemberText" TargetType="TextBlock" BasedOn="{StaticResource SectionBody}">
+            <Setter Property="Margin" Value="0 0 15 15"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="FontSize" Value="17"/>
+        </Style>
+
+        <Style x:Key="ModernCardStyle" TargetType="Border">
+            <Setter Property="Background" Value="{StaticResource CardBackgroundColor}"/>
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="Padding" Value="30"/>
+            <Setter Property="Margin" Value="0 0 0 30"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect BlurRadius="15" ShadowDepth="5" Opacity="0.3"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
         <!-- Animacion de entrada -->
 
@@ -22,112 +81,87 @@
                              From="30" To="0" Duration="0:0:0.4" />
         </Storyboard>
 
-        <!-- Títulos -->
-        <Style x:Key="TitleText" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="28"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Foreground" Value="#1E1E1E"/>
-            <Setter Property="Margin" Value="0 0 0 8"/>
-        </Style>
-
-        <!-- Texto normal -->
-        <Style x:Key="BodyText" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="16"/>
-            <Setter Property="Foreground" Value="#444444"/>
-            <Setter Property="TextWrapping" Value="Wrap"/>
-            <Setter Property="Margin" Value="0 0 0 10"/>
-        </Style>
-
-        <!-- Tarjeta estilo neumorphism claro, para la tarjeta -->
-        <Style x:Key="CardStyle" TargetType="Border">
-            <Setter Property="CornerRadius" Value="16"/>
-            <Setter Property="Padding" Value="20"/>
-            <Setter Property="Margin" Value="0 0 0 30"/>
-            <Setter Property="Background" Value="#f4f4f4"/>
-            <Setter Property="Effect">
-                <Setter.Value>
-                    <DropShadowEffect Color="#888888" BlurRadius="10" ShadowDepth="2" Direction="320" Opacity="0.15"/>
-                </Setter.Value>
-            </Setter>
-        </Style>
     </UserControl.Resources>
 
-    <Grid RenderTransformOrigin="0.5,0.5">
+    <Grid>
 
-        <!-- Imagen de fondo translúcida -->
-        <Image x:Name="FondoImagen"
-               Stretch="UniformToFill"
-               Opacity="0.4"/>
+        <Image x:Name="FondoImagen" Loaded="Image_Loaded" Stretch="UniformToFill" Opacity="0.6" />
 
-        <!-- Contenido principal -->
-        <ScrollViewer VerticalScrollBarVisibility="Auto" Panel.ZIndex="1">
-            <StackPanel Margin="80 40 80 40" Orientation="Vertical">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="100 80">
 
-                <!-- Logo -->
-                <Image Source="/Imagenes/ECHOLOGO2.png"
-                       Loaded="Image_Loaded"
-                       Width="200"
-                       HorizontalAlignment="Center"
-                       Margin="0 0 0 40"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0 0 0 60">
+                    <TextBlock Text="Acerca de ECHO"
+                               FontFamily="{StaticResource PrimaryFont}"
+                               FontSize="48"
+                               FontWeight="ExtraBold"
+                               Foreground="#fff"
+                               VerticalAlignment="Center"/>
+                </StackPanel>
 
-                <!-- Secciones en tarjetas -->
-                <Border Style="{StaticResource CardStyle}">
+                <Border Style="{StaticResource ModernCardStyle}">
                     <StackPanel>
-                        <TextBlock Style="{StaticResource TitleText}" Text="¿Qué es ECHO?" />
-                        <TextBlock Style="{StaticResource BodyText}" Text="ECHO es una aplicación de recordatorios inspirada en el eco: un sonido que regresa cuando más lo necesitas. El propósito es ayudarte a no olvidar tus tareas importantes y tener todo bajo control."/>
+                        <TextBlock Style="{StaticResource SectionTitle}" Text="¿Qué es ECHO?"/>
+                        <TextBlock Style="{StaticResource SectionBody}"
+                                   Text="ECHO es una aplicación de recordatorios reinventada para la era moderna. Inspirada en la resonancia de un eco, nuestra plataforma te devuelve tus tareas importantes en el momento preciso. Nos enfocamos en una experiencia de usuario intuitiva y un diseño elegante para que gestionar tu tiempo sea un placer, no una obligación."/>
                     </StackPanel>
                 </Border>
 
-                <Border Style="{StaticResource CardStyle}">
+                <Border Style="{StaticResource ModernCardStyle}">
                     <StackPanel>
-                        <TextBlock Style="{StaticResource TitleText}" Text="Función" />
-                        <TextBlock Style="{StaticResource BodyText}" Text="ECHO te permite crear recordatorios personalizados con fecha y hora, y recibir notificaciones justo cuando lo necesitas. Además, puedes organizar tus tareas de manera eficiente y visual, para reducir el estrés y mantener tu día bien estructurado."/>
+                        <TextBlock Style="{StaticResource SectionTitle}" Text="¿Cómo funciona?"/>
+                        <TextBlock Style="{StaticResource SectionBody}"
+                                   Text="Nuestra interfaz minimalista te permite crear recordatorios con solo unos pocos clics. Personaliza fechas, horas y recibe notificaciones discretas pero efectivas. ECHO también te ofrece una visión clara de tus próximas tareas, ayudándote a priorizar y a mantener un flujo de trabajo armonioso."/>
                     </StackPanel>
                 </Border>
 
-                <Border Style="{StaticResource CardStyle}">
+                <Border Style="{StaticResource ModernCardStyle}">
                     <StackPanel>
-                        <TextBlock Style="{StaticResource TitleText}" Text="Objetivo" />
-                        <TextBlock Style="{StaticResource BodyText}" Text="El objetivo principal de ECHO es proporcionar una herramienta práctica y accesible para todos los usuarios, desde estudiantes hasta profesionales, para mejorar su organización personal y aumentar su productividad en el día a día."/>
+                        <TextBlock Style="{StaticResource SectionTitle}" Text="Nuestro Objetivo"/>
+                        <TextBlock Style="{StaticResource SectionBody}"
+                                   Text="Buscamos simplificar la organización personal para todos. Desde estudiantes hasta profesionales, ECHO está diseñado para integrarse perfectamente en tu vida, liberándote de la carga de la memoria constante y permitiéndote concentrarte en lo que realmente importa."/>
                     </StackPanel>
                 </Border>
 
-                <Border Style="{StaticResource CardStyle}">
+                <Border Style="{StaticResource ModernCardStyle}">
                     <StackPanel>
-                        <TextBlock Style="{StaticResource TitleText}" Text="Soporte" />
-                        <TextBlock Style="{StaticResource BodyText}">
-                            <Run Text="Correo: " />
-                            <Run Text="sebac152008@gmail.com" FontWeight="Bold" Foreground="#2A6AC3"/>
+                        <TextBlock Style="{StaticResource SectionTitle}" Text="¿Necesitas Ayuda?"/>
+                        <TextBlock Style="{StaticResource SectionBody}">
+                            <Run Text="Estamos aquí para ayudarte. Si tienes alguna pregunta, comentario o necesitas soporte técnico, no dudes en contactarnos:"/>
                         </TextBlock>
-                        <TextBlock Style="{StaticResource BodyText}">
-                            <Run Text="Teléfono: " />
-                            <Run Text="+1 (849)-447-1528" FontWeight="Bold" Foreground="#2A6AC3"/>
+                        <TextBlock Style="{StaticResource SectionBody}">
+                            <Run Text="Correo electrónico: "/>
+                            <TextBlock Text="sebac152008@gmail.com" Style="{StaticResource LinkText}"/>
+                            <LineBreak />
+                            <Run Text="Teléfono: "/>
+                            <TextBlock Text="+1 (849)-447-1528" Style="{StaticResource LinkText}"/>
                         </TextBlock>
                     </StackPanel>
                 </Border>
 
-                <Border Style="{StaticResource CardStyle}">
+                <Border Style="{StaticResource ModernCardStyle}">
                     <StackPanel>
-                        <TextBlock Style="{StaticResource TitleText}" Text="Equipo de Desarrollo" />
-                        <TextBlock Style="{StaticResource BodyText}" Text="• Mejia Gomez Sophy Marie"/>
-                        <TextBlock Style="{StaticResource BodyText}" Text="• Valenzuela De Paula Angel Sebastian"/>
-                        <TextBlock Style="{StaticResource BodyText}" Text="• Cuevas Santiago Sebastian"/>
+                        <TextBlock Style="{StaticResource SectionTitle}" Text="Equipo de Desarrollo"/>
+                        <TextBlock Style="{StaticResource TeamMemberText}" Text="• Mejia Gomez Sophy Marie"/>
+                        <TextBlock Style="{StaticResource TeamMemberText}" Text="• Valenzuela De Paula Angel Sebastian"/>
+                        <TextBlock Style="{StaticResource TeamMemberText}" Text="• Cuevas Santiago Sebastian"/>
                     </StackPanel>
                 </Border>
 
-                <Border Style="{StaticResource CardStyle}">
+                <Border Style="{StaticResource ModernCardStyle}">
                     <StackPanel>
-                        <TextBlock Style="{StaticResource TitleText}" Text="Versión" />
-                        <TextBlock Style="{StaticResource BodyText}" Text="ECHO v1.0 – Mayo 2025"/>
+                        <TextBlock Style="{StaticResource SectionTitle}" Text="Versión y Licencia"/>
+                        <TextBlock Style="{StaticResource SectionBody}" Text="Versión: ECHO v1.0 – Mayo 2025"/>
+                        <TextBlock Style="{StaticResource SectionBody}" Text="Licencia: Este software fue desarrollado como parte de un proyecto académico. Todos los derechos son reservados por los autores. Uso educativo."/>
                     </StackPanel>
                 </Border>
 
-                <Border Style="{StaticResource CardStyle}" Margin="0">
-                    <StackPanel>
-                        <TextBlock Style="{StaticResource TitleText}" Text="Licencia" />
-                        <TextBlock Style="{StaticResource BodyText}" Text="Este software fue desarrollado como parte de un proyecto académico. Todos los derechos son reservados por los autores. Uso educativo."/>
-                    </StackPanel>
-                </Border>
+                <TextBlock Text="© 2025 ECHO - Todos los derechos reservados"
+                           FontFamily="{StaticResource SecondaryFont}"
+                           Foreground="#fff"
+                           FontSize="16"
+                           HorizontalAlignment="Center"
+                           Margin="0 60 0 0"/>
             </StackPanel>
         </ScrollViewer>
     </Grid>
