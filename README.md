@@ -1,4 +1,4 @@
-                        ----------------- ECHO -----------------------
+    ----------------- ECHO -----------------------
 
 Nuestra aplicación es de recordatorios, su nombre “Echo” hace referencia a el fenómeno conocido como eco, que es la repetición de un sonido producida al ser reflejadas sus ondas por un obstáculo, y quisimos tomar ese fenómeno como concepto de nuestra aplicación, ya que los recordatorios se ponen en la aplicación y al igual que el eco, vuelven. 
 
